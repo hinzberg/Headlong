@@ -7,18 +7,22 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         
-        NavigationView {
-            List(0 ..< 10) { item in
-                Text("I was here! \(item)")
-                    .padding()
-            }.listStyle(.plain)
-                .navigationBarTitle("Headlong", displayMode: .inline)
-                .toolbar {
-                    NavigationLink (destination: MapDetailView()) {
-                        Image(systemName: "plus.square")
+        ZStack {
+            Color(UIColor.red)
+                
+            NavigationView {
+                List(0 ..< 10) { item in
+                    Text("I was here! \(item)")
+                        .padding()
+                }.listStyle(.plain)
+                    .navigationBarTitle("Headlong", displayMode: .inline)
+                    .toolbar {
+                        NavigationLink (destination: MapDetailView()) {
+                            Image(systemName: "plus.square")
+                        }
                     }
-                }
-        }
+            }
+        }.ignoresSafeArea()
     }
 }
 

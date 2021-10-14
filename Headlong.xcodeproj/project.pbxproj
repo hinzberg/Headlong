@@ -15,6 +15,7 @@
 		3F22963827187706008BF92C /* HeadlongUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F22963727187706008BF92C /* HeadlongUITests.swift */; };
 		3F22963A27187706008BF92C /* HeadlongUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F22963927187706008BF92C /* HeadlongUITestsLaunchTests.swift */; };
 		3F229647271877A8008BF92C /* MapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F229646271877A8008BF92C /* MapDetailView.swift */; };
+		3F22964C27188023008BF92C /* Hinzberg.Swift.SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3F22964B27188023008BF92C /* Hinzberg.Swift.SwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F22964C27188023008BF92C /* Hinzberg.Swift.SwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +158,9 @@
 			dependencies = (
 			);
 			name = Headlong;
+			packageProductDependencies = (
+				3F22964B27188023008BF92C /* Hinzberg.Swift.SwiftUI */,
+			);
 			productName = Headlong;
 			productReference = 3F22961927187705008BF92C /* Headlong.app */;
 			productType = "com.apple.product-type.application";
@@ -228,6 +233,9 @@
 				Base,
 			);
 			mainGroup = 3F22961027187705008BF92C;
+			packageReferences = (
+				3F22964A27188023008BF92C /* XCRemoteSwiftPackageReference "Hinzberg.Swift.SwiftUI" */,
+			);
 			productRefGroup = 3F22961A27187705008BF92C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -621,6 +629,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3F22964A27188023008BF92C /* XCRemoteSwiftPackageReference "Hinzberg.Swift.SwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CocoaCoding/Hinzberg.Swift.SwiftUI.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3F22964B27188023008BF92C /* Hinzberg.Swift.SwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F22964A27188023008BF92C /* XCRemoteSwiftPackageReference "Hinzberg.Swift.SwiftUI" */;
+			productName = Hinzberg.Swift.SwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3F22961127187705008BF92C /* Project object */;
 }
