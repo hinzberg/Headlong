@@ -16,7 +16,7 @@
 		3F22963A27187706008BF92C /* HeadlongUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F22963927187706008BF92C /* HeadlongUITestsLaunchTests.swift */; };
 		3F229647271877A8008BF92C /* MapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F229646271877A8008BF92C /* MapDetailView.swift */; };
 		3F22964C27188023008BF92C /* Hinzberg.Swift.SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3F22964B27188023008BF92C /* Hinzberg.Swift.SwiftUI */; };
-		3FD91B3C272C6BEC00879F53 /* LocationControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD91B3B272C6BEC00879F53 /* LocationControl.swift */; };
+		3FD91B3C272C6BEC00879F53 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD91B3B272C6BEC00879F53 /* LocationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +50,7 @@
 		3F229646271877A8008BF92C /* MapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailView.swift; sourceTree = "<group>"; };
 		3F22964927187C6A008BF92C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3F82F653272C647A00D0E7E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		3FD91B3B272C6BEC00879F53 /* LocationControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationControl.swift; sourceTree = "<group>"; };
+		3FD91B3B272C6BEC00879F53 /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +150,7 @@
 		3F82F650272C5D5800D0E7E6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				3FD91B3B272C6BEC00879F53 /* LocationControl.swift */,
+				3FD91B3B272C6BEC00879F53 /* LocationController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -292,7 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F22961F27187705008BF92C /* ContentView.swift in Sources */,
-				3FD91B3C272C6BEC00879F53 /* LocationControl.swift in Sources */,
+				3FD91B3C272C6BEC00879F53 /* LocationController.swift in Sources */,
 				3F229647271877A8008BF92C /* MapDetailView.swift in Sources */,
 				3F22961D27187705008BF92C /* HeadlongApp.swift in Sources */,
 			);
