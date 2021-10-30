@@ -38,12 +38,33 @@ public class LocationController : NSObject, CLLocationManagerDelegate, Observabl
     }
     
     public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-            fatalError(error.localizedDescription)
-        }
+        fatalError(error.localizedDescription)
+    }
     
-    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // print(locations.last?.coordinate.latitude ?? "None")
-        // print(locations.last?.coordinate.longitude ?? "None")
-        self.userLocation = locations.last
+    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
+        if  let location = locations.last
+        {
+            self.userLocation = location
+            self.reverseGeoCoding(location: location)
+        }
+    }
+    
+    private func reverseGeoCoding(location : CLLocation)
+    {
+        let loca = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        
+        loca.geocode { placemark, error in
+            if let error = error as? CLError
+            {
+                print("CLError:", error)
+                return
+            }
+            else if let placemark = placemark?.first
+            {
+                let geoLocation = GeocodeLocation(placemark: placemark, location: loca )
+                DispatchQueue.main.async { geoLocation.debugProperties() }
+            }
+        }
     }
 }

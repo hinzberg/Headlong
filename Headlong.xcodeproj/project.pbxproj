@@ -17,6 +17,8 @@
 		3F229647271877A8008BF92C /* MapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F229646271877A8008BF92C /* MapDetailView.swift */; };
 		3F22964C27188023008BF92C /* Hinzberg.Swift.SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3F22964B27188023008BF92C /* Hinzberg.Swift.SwiftUI */; };
 		3FD91B3C272C6BEC00879F53 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD91B3B272C6BEC00879F53 /* LocationController.swift */; };
+		3FEAE9CD272D3B060042BAF8 /* CLLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEAE9CC272D3B060042BAF8 /* CLLocation+Extension.swift */; };
+		3FEAE9D0272D3DE30042BAF8 /* GeocodeLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEAE9CF272D3DE30042BAF8 /* GeocodeLocation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		3F22964927187C6A008BF92C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3F82F653272C647A00D0E7E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3FD91B3B272C6BEC00879F53 /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
+		3FEAE9CC272D3B060042BAF8 /* CLLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extension.swift"; sourceTree = "<group>"; };
+		3FEAE9CF272D3DE30042BAF8 /* GeocodeLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeLocation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				3F82F653272C647A00D0E7E6 /* Info.plist */,
+				3FEAE9CB272D3AD60042BAF8 /* Extensions */,
+				3FEAE9CE272D3DBE0042BAF8 /* Model */,
 				3F82F650272C5D5800D0E7E6 /* Controller */,
 				3F229648271877BB008BF92C /* View */,
 				3F22961C27187705008BF92C /* HeadlongApp.swift */,
@@ -153,6 +159,22 @@
 				3FD91B3B272C6BEC00879F53 /* LocationController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		3FEAE9CB272D3AD60042BAF8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3FEAE9CC272D3B060042BAF8 /* CLLocation+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3FEAE9CE272D3DBE0042BAF8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3FEAE9CF272D3DE30042BAF8 /* GeocodeLocation.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,9 +314,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F22961F27187705008BF92C /* ContentView.swift in Sources */,
+				3FEAE9D0272D3DE30042BAF8 /* GeocodeLocation.swift in Sources */,
 				3FD91B3C272C6BEC00879F53 /* LocationController.swift in Sources */,
 				3F229647271877A8008BF92C /* MapDetailView.swift in Sources */,
 				3F22961D27187705008BF92C /* HeadlongApp.swift in Sources */,
+				3FEAE9CD272D3B060042BAF8 /* CLLocation+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
