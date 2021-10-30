@@ -71,6 +71,32 @@ public class GeocodeLocation
         self.timezone = placemark.timeZone?.identifier ?? ""
     }
     
+    var  latitude : String {
+        if let value = location?.coordinate.latitude
+        {
+            return String(value)
+        }
+        return ""
+    }
+    
+    var  longitude : String {
+        if let value = location?.coordinate.longitude
+        {
+            return String(value)
+        }
+        return ""
+    }
+    
+    var  zipCodeWithCity : String {
+        let value = self.zipCode + " " + self.city
+        return value.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    var  address : String {
+        let value = self.address1 + " " + self.address2
+        return value.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
     public func debugProperties ()
     {
         print("timezone:", timezone , terminator: "\n\n")

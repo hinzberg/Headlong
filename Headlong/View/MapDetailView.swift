@@ -10,7 +10,7 @@ import MapKit
 
 struct MapDetailView: View {
     
-    var locationController = LocationController()
+    @ObservedObject  var locationController = LocationController()
         
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
 
@@ -18,6 +18,7 @@ struct MapDetailView: View {
         VStack {
             Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(.follow))
             .frame(width: 400, height: 300)
+            GeocodeLocationView(geoData: $locationController.geocodeLocation).padding(2)
             Spacer()
         }
     }
