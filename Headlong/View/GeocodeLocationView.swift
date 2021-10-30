@@ -44,7 +44,7 @@ struct GeocodeLocationView: View {
                 Text(geoData.country)
                 .font(.body) }
             .padding(EdgeInsets(top: 0, leading: 5, bottom: 5, trailing: 5))
-        }.background(colorScheme == .dark ? Color.yellow : Color.red)
+        }//.background(colorScheme == .dark ? Color.yellow : Color.red)
     }
 }
 

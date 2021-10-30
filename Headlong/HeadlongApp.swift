@@ -12,8 +12,8 @@ struct HeadlongApp: App {
     
     var body: some Scene {
         WindowGroup {
-            //ContentView()
-            MapDetailView()
+            ContentView()
+            //MapDetailView()
         }
     }
 }

@@ -16,6 +16,8 @@ struct ContentView: View {
                         .padding()
                 }.listStyle(.plain)
                     .navigationBarTitle("Headlong", displayMode: .inline)
+                    .navigationTitle("Back")
+                
                     .toolbar {
                         NavigationLink (destination: MapDetailView()) {
                             Image(systemName: "plus.square")
