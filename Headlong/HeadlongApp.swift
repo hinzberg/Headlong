@@ -9,10 +9,11 @@ import Hinzberg_Swift_SwiftUI
 struct HeadlongApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    var geocodeRepository = GeocodeLocationRepository()
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            GeocodeTableView().environmentObject(geocodeRepository)
             //MapDetailView()
         }
     }

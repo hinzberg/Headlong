@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3F22961D27187705008BF92C /* HeadlongApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F22961C27187705008BF92C /* HeadlongApp.swift */; };
-		3F22961F27187705008BF92C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F22961E27187705008BF92C /* ContentView.swift */; };
+		3F22961F27187705008BF92C /* GeocodeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F22961E27187705008BF92C /* GeocodeTableView.swift */; };
 		3F22962127187706008BF92C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F22962027187706008BF92C /* Assets.xcassets */; };
 		3F22962427187706008BF92C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F22962327187706008BF92C /* Preview Assets.xcassets */; };
 		3F22962E27187706008BF92C /* HeadlongTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F22962D27187706008BF92C /* HeadlongTests.swift */; };
@@ -16,6 +16,8 @@
 		3F22963A27187706008BF92C /* HeadlongUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F22963927187706008BF92C /* HeadlongUITestsLaunchTests.swift */; };
 		3F229647271877A8008BF92C /* MapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F229646271877A8008BF92C /* MapDetailView.swift */; };
 		3F22964C27188023008BF92C /* Hinzberg.Swift.SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3F22964B27188023008BF92C /* Hinzberg.Swift.SwiftUI */; };
+		3F6E9A8E2732E33D003ED402 /* GeocodeLocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6E9A8D2732E33D003ED402 /* GeocodeLocationRepository.swift */; };
+		3F6E9A902732E8BF003ED402 /* GeocodeLocationTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6E9A8F2732E8BF003ED402 /* GeocodeLocationTableCellView.swift */; };
 		3FD91B3C272C6BEC00879F53 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD91B3B272C6BEC00879F53 /* LocationController.swift */; };
 		3FEAE9CD272D3B060042BAF8 /* CLLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEAE9CC272D3B060042BAF8 /* CLLocation+Extension.swift */; };
 		3FEAE9D0272D3DE30042BAF8 /* GeocodeLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEAE9CF272D3DE30042BAF8 /* GeocodeLocation.swift */; };
@@ -43,7 +45,7 @@
 /* Begin PBXFileReference section */
 		3F22961927187705008BF92C /* Headlong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Headlong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F22961C27187705008BF92C /* HeadlongApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlongApp.swift; sourceTree = "<group>"; };
-		3F22961E27187705008BF92C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3F22961E27187705008BF92C /* GeocodeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeTableView.swift; sourceTree = "<group>"; };
 		3F22962027187706008BF92C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F22962327187706008BF92C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3F22962927187706008BF92C /* HeadlongTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeadlongTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +55,8 @@
 		3F22963927187706008BF92C /* HeadlongUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlongUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3F229646271877A8008BF92C /* MapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailView.swift; sourceTree = "<group>"; };
 		3F22964927187C6A008BF92C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3F6E9A8D2732E33D003ED402 /* GeocodeLocationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeLocationRepository.swift; sourceTree = "<group>"; };
+		3F6E9A8F2732E8BF003ED402 /* GeocodeLocationTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeLocationTableCellView.swift; sourceTree = "<group>"; };
 		3F82F653272C647A00D0E7E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3FD91B3B272C6BEC00879F53 /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		3FEAE9CC272D3B060042BAF8 /* CLLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extension.swift"; sourceTree = "<group>"; };
@@ -153,8 +157,9 @@
 			isa = PBXGroup;
 			children = (
 				3F229646271877A8008BF92C /* MapDetailView.swift */,
-				3F22961E27187705008BF92C /* ContentView.swift */,
+				3F22961E27187705008BF92C /* GeocodeTableView.swift */,
 				3FEAE9D1272D4C6C0042BAF8 /* GeocodeLocationView.swift */,
+				3F6E9A8F2732E8BF003ED402 /* GeocodeLocationTableCellView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -179,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				3FEAE9CF272D3DE30042BAF8 /* GeocodeLocation.swift */,
+				3F6E9A8D2732E33D003ED402 /* GeocodeLocationRepository.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -327,10 +333,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F22961F27187705008BF92C /* ContentView.swift in Sources */,
+				3F22961F27187705008BF92C /* GeocodeTableView.swift in Sources */,
 				3FEAE9D0272D3DE30042BAF8 /* GeocodeLocation.swift in Sources */,
 				3FD91B3C272C6BEC00879F53 /* LocationController.swift in Sources */,
 				3F229647271877A8008BF92C /* MapDetailView.swift in Sources */,
+				3F6E9A8E2732E33D003ED402 /* GeocodeLocationRepository.swift in Sources */,
+				3F6E9A902732E8BF003ED402 /* GeocodeLocationTableCellView.swift in Sources */,
 				3F22961D27187705008BF92C /* HeadlongApp.swift in Sources */,
 				3FEAE9D5272D8C4F0042BAF8 /* ButtonStyles.swift in Sources */,
 				3FEAE9D2272D4C6C0042BAF8 /* GeocodeLocationView.swift in Sources */,
@@ -505,7 +513,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -537,7 +545,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

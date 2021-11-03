@@ -6,6 +6,7 @@ import CoreLocation
 
 public class GeocodeLocation
 {
+    let id = UUID()
     public var location : CLLocation?
     public var name : String
     public var address1 : String

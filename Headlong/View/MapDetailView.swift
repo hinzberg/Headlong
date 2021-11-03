@@ -10,6 +10,7 @@ import MapKit
 
 struct MapDetailView: View {
     
+    @EnvironmentObject  var geocodeRepository : GeocodeLocationRepository
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject  var locationController = LocationController()
         
@@ -27,11 +28,11 @@ struct MapDetailView: View {
             
             // ButtonStack
             HStack {
-                Button("Save", action: { self.presentationMode.wrappedValue.dismiss() })
+                Button("Save", action: self.submitButton )
                     .buttonStyle(SubmitButtonStyle())
                     .padding(EdgeInsets(top: 2, leading: 10, bottom: 5, trailing: 2) )
                 
-                Button("Cancel", action: { self.presentationMode.wrappedValue.dismiss() })
+                Button("Cancel", action: self.cancelButton )
                     .buttonStyle(CancelButtonStyle())
                     .padding(EdgeInsets(top: 2, leading: 2, bottom: 5, trailing: 10) )
             }
@@ -45,6 +46,16 @@ struct MapDetailView: View {
                 Image(systemName: "arrow.left")
         })
     }
+    
+    private func submitButton() {
+        self.geocodeRepository.add(location: self.locationController.geocodeLocation)
+        self.presentationMode.wrappedValue.dismiss()
+    }
+    
+    private func cancelButton() {
+        self.presentationMode.wrappedValue.dismiss()
+    }
+    
 }
 
 
