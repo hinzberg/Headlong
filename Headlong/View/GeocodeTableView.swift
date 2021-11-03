@@ -34,6 +34,7 @@ struct GeocodeTableView: View {
                     ForEach (self.geocodeRepository.geoCodeLocations, id:\.id) { location in
                         
                         GeocodeLocationTableCellView(location: location)
+                        
                             .swipeActions(edge: .trailing , allowsFullSwipe: true) {
                                 Button {
                                     withAnimation {
@@ -43,8 +44,17 @@ struct GeocodeTableView: View {
                                 .tint(.red)
                             }
                         
-                        
-                    }.listRowSeparatorTint( Color.cocoaBlue)
+                            .swipeActions(edge: .leading , allowsFullSwipe: true) {
+                                Button {
+                                    print("Navigate")
+                                } label: {
+                                    Label("Navigate", systemImage: "map.fill")
+                                }
+                                .tint(Color.cocoaBlue)
+                            }
+                                                
+                    }//.listRowSeparatorTint( Color.cocoaBlue)
+                     .listRowSeparator(.hidden)
                 }.listStyle(.plain)
                 
                     .searchable(
@@ -60,7 +70,7 @@ struct GeocodeTableView: View {
                 
                     .toolbar {
                         NavigationLink (destination: MapDetailView()) {
-                            Image(systemName: "plus.square")
+                            Image(systemName: "plus.circle")
                         }
                     }
             }

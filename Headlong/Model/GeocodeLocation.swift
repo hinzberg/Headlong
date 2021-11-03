@@ -20,6 +20,7 @@ public class GeocodeLocation
     public var isoCountryCode : String
     public var regionIdentifier : String
     public var timezone : String
+    public var date : Date
     
     init() {
         self.name = ""
@@ -34,6 +35,7 @@ public class GeocodeLocation
         self.isoCountryCode  = ""
         self.regionIdentifier = ""
         self.timezone = ""
+        self.date = Date()
     }
     
     public static func GetSample() -> GeocodeLocation
@@ -70,6 +72,7 @@ public class GeocodeLocation
         self.isoCountryCode  = placemark.isoCountryCode ?? ""
         self.regionIdentifier = placemark.region?.identifier ?? ""
         self.timezone = placemark.timeZone?.identifier ?? ""
+        self.date = Date()
     }
     
     var  latitude : String {
@@ -93,9 +96,24 @@ public class GeocodeLocation
         return value.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
+    var  zipCodeWithCityAndCountry : String {
+        var value = self.zipCode + " " + self.city
+        if self.country != "" {
+            value += ", " + self.country
+        }
+        return value.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    
     var  address : String {
         let value = self.address1 + " " + self.address2
         return value.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    var dateFormatted : String {
+        let formatter = DateFormatter()
+        formatter.setLocalizedDateFormatFromTemplate("dd MMM y HH:mm")
+        return formatter.string(from: self.date)
     }
     
     public func debugProperties ()
