@@ -10,9 +10,10 @@ struct GeocodeTableView: View {
     @State private var searchText = ""
     
     init() {
+
         let customAppearance = UINavigationBarAppearance()
         // Backgroundcolor
-        customAppearance.backgroundColor = UIColor(red: 0.93, green: 0.93, blue: 1.0, alpha: 1)
+        customAppearance.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 1.0, alpha: 1)
         // Font color for navigationBarTitleDisplayMode large
         customAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor(Color.cocoaBlue)]
         // Font color for navigationBarTitleDisplayMode inline
