@@ -10,7 +10,7 @@ struct GeocodeTableView: View {
     @State private var searchText = ""
     
     init() {
-
+        
         let customAppearance = UINavigationBarAppearance()
         // Backgroundcolor
         customAppearance.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 1.0, alpha: 1)
@@ -23,39 +23,39 @@ struct GeocodeTableView: View {
         UINavigationBar.appearance().compactAppearance = customAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = customAppearance
     }
-    
-    
+        
     var body: some View {
         
         VStack {
-
+            
             NavigationView {
                 
                 List {
                     ForEach (self.geocodeRepository.geoCodeLocations, id:\.id) { location in
                         
-                        GeocodeLocationTableCellView(location: location)
-                        
-                            .swipeActions(edge: .trailing , allowsFullSwipe: true) {
-                                Button {
-                                    withAnimation {
-                                        self.geocodeRepository.delete(location: location)
-                                    }
-                                } label: { Label("Delete", systemImage: "trash.fill") }
-                                .tint(.red)
-                            }
-                        
-                            .swipeActions(edge: .leading , allowsFullSwipe: true) {
-                                Button {
-                                    print("Navigate")
-                                } label: {
-                                    Label("Navigate", systemImage: "map.fill")
+                        NavigationLink(destination: ShowLocationMapView(geocodeLocation: location) ) {
+                            GeocodeLocationTableCellView(location: location)
+                        }
+                        .swipeActions(edge: .trailing , allowsFullSwipe: true) {
+                            Button {
+                                withAnimation {
+                                    self.geocodeRepository.delete(location: location)
                                 }
-                                .tint(Color.cocoaBlue)
+                            } label: { Label("Delete", systemImage: "trash.fill") }
+                            .tint(.red)
+                        }
+                        
+                        .swipeActions(edge: .leading , allowsFullSwipe: true) {
+                            Button {
+                                print("Navigate")
+                            } label: {
+                                Label("Navigate", systemImage: "map.fill")
                             }
-                                                
+                            .tint(Color.cocoaBlue)
+                        }
+                        
                     }//.listRowSeparatorTint( Color.cocoaBlue)
-                     .listRowSeparator(.hidden)
+                    .listRowSeparator(.hidden)
                 }.listStyle(.plain)
                 
                     .searchable(
@@ -70,7 +70,7 @@ struct GeocodeTableView: View {
                     .navigationTitle("Back")
                 
                     .toolbar {
-                        NavigationLink (destination: MapDetailView()) {
+                        NavigationLink (destination: AddLocationMapView()) {
                             Image(systemName: "plus.circle")
                         }
                     }

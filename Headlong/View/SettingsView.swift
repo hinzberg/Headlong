@@ -5,19 +5,21 @@
 import SwiftUI
 
 struct SettingsView: View {
-
+    
     @AppStorage("quicksave") private var quickSave = true
     
     var body: some View {
-
-        Form {
+        
+        NavigationView {
+            
+            Form {
                 
                 Section(header: Text("Settings")
                             .font(.headline)
                             .foregroundColor(.cocoaBlue)  ) {
-                
-                Toggle("Quick Save", isOn: $quickSave)
-                    .tint(.cocoaBlue)
+                    
+                    Toggle("Quick Save", isOn: $quickSave)
+                        .tint(.cocoaBlue)
                 }
                 
                 Section(header: Text("About Headlong")
@@ -39,8 +41,10 @@ struct SettingsView: View {
                         Link("http://www.hinzberg.de", destination: URL(string: "http://www.hinzberg.de")!)
                     }
                 }
-            }
-     }
+            }.navigationBarTitle("Settings", displayMode: .inline)
+        }
+        
+    }
     
     func GetVersionNumber() -> String {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"]

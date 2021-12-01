@@ -8,19 +8,18 @@
 import SwiftUI
 import MapKit
 
-struct MapDetailView: View {
+struct AddLocationMapView: View {
     
     @EnvironmentObject  var geocodeRepository : GeocodeLocationRepository
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject  var locationController = LocationController()
         
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
-
+        
     var body: some View {
         VStack {
             // Map
             Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(.follow))
-            //.frame(width: 400, height: 300)
             
             // LocationView
             GeocodeLocationView(geoData: $locationController.geocodeLocation)
@@ -30,12 +29,13 @@ struct MapDetailView: View {
             HStack {
                 Button("Save", action: self.submitButton )
                     .buttonStyle(SubmitButtonStyle())
-                    .padding(EdgeInsets(top: 2, leading: 10, bottom: 5, trailing: 2) )
+                    .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 2) )
                 
                 Button("Cancel", action: self.cancelButton )
                     .buttonStyle(CancelButtonStyle())
-                    .padding(EdgeInsets(top: 2, leading: 2, bottom: 5, trailing: 10) )
+                    .padding(EdgeInsets(top: 0, leading: 2, bottom: 0, trailing: 10) )
             }
+            .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
         }
         .edgesIgnoringSafeArea(.top)
         .navigationBarTitle(Text("Current Location"), displayMode: .inline)
@@ -61,6 +61,6 @@ struct MapDetailView: View {
 
 struct MapDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MapDetailView().preferredColorScheme(.light)
+        AddLocationMapView().preferredColorScheme(.light)
     }
 }
