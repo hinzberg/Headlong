@@ -18,6 +18,8 @@
 		3F22964C27188023008BF92C /* Hinzberg.Swift.SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3F22964B27188023008BF92C /* Hinzberg.Swift.SwiftUI */; };
 		3F6E9A8E2732E33D003ED402 /* GeocodeLocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6E9A8D2732E33D003ED402 /* GeocodeLocationRepository.swift */; };
 		3F6E9A902732E8BF003ED402 /* GeocodeLocationTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6E9A8F2732E8BF003ED402 /* GeocodeLocationTableCellView.swift */; };
+		3F70AAD72757CC07008EC53D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70AAD62757CC07008EC53D /* MainView.swift */; };
+		3F70AAD92757CC29008EC53D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70AAD82757CC29008EC53D /* SettingsView.swift */; };
 		3FD91B3C272C6BEC00879F53 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD91B3B272C6BEC00879F53 /* LocationController.swift */; };
 		3FEAE9CD272D3B060042BAF8 /* CLLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEAE9CC272D3B060042BAF8 /* CLLocation+Extension.swift */; };
 		3FEAE9D0272D3DE30042BAF8 /* GeocodeLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEAE9CF272D3DE30042BAF8 /* GeocodeLocation.swift */; };
@@ -57,6 +59,8 @@
 		3F22964927187C6A008BF92C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3F6E9A8D2732E33D003ED402 /* GeocodeLocationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeLocationRepository.swift; sourceTree = "<group>"; };
 		3F6E9A8F2732E8BF003ED402 /* GeocodeLocationTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeLocationTableCellView.swift; sourceTree = "<group>"; };
+		3F70AAD62757CC07008EC53D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		3F70AAD82757CC29008EC53D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3F82F653272C647A00D0E7E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3FD91B3B272C6BEC00879F53 /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		3FEAE9CC272D3B060042BAF8 /* CLLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extension.swift"; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 				3F22961E27187705008BF92C /* GeocodeTableView.swift */,
 				3FEAE9D1272D4C6C0042BAF8 /* GeocodeLocationView.swift */,
 				3F6E9A8F2732E8BF003ED402 /* GeocodeLocationTableCellView.swift */,
+				3F70AAD62757CC07008EC53D /* MainView.swift */,
+				3F70AAD82757CC29008EC53D /* SettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -265,6 +271,7 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1300;
+				ORGANIZATIONNAME = "Holger Hinzberg";
 				TargetAttributes = {
 					3F22961827187705008BF92C = {
 						CreatedOnToolsVersion = 13.0;
@@ -340,7 +347,9 @@
 				3F6E9A8E2732E33D003ED402 /* GeocodeLocationRepository.swift in Sources */,
 				3F6E9A902732E8BF003ED402 /* GeocodeLocationTableCellView.swift in Sources */,
 				3F22961D27187705008BF92C /* HeadlongApp.swift in Sources */,
+				3F70AAD72757CC07008EC53D /* MainView.swift in Sources */,
 				3FEAE9D5272D8C4F0042BAF8 /* ButtonStyles.swift in Sources */,
+				3F70AAD92757CC29008EC53D /* SettingsView.swift in Sources */,
 				3FEAE9D2272D4C6C0042BAF8 /* GeocodeLocationView.swift in Sources */,
 				3FEAE9CD272D3B060042BAF8 /* CLLocation+Extension.swift in Sources */,
 			);
