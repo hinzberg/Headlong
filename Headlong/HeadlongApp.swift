@@ -9,12 +9,15 @@ import Hinzberg_Swift_SwiftUI
 struct HeadlongApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    var geocodeRepository = GeocodeLocationRepository()
     
     var body: some Scene {
         WindowGroup {
-            //GeocodeTableView().environmentObject(geocodeRepository)
-           MainView().environmentObject(geocodeRepository)
+            let viewContext = CoreDataManager.shared.persistentContainer.viewContext
+            let geocodeRepository = GeocodeLocationRepository(context: viewContext)
+           
+            MainView()
+                .environmentObject(geocodeRepository)
+                // .environment(\.managedObjectContext, viewContext)
         }
     }
 }
