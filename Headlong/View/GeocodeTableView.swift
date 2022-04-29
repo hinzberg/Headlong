@@ -31,15 +31,15 @@ struct GeocodeTableView: View {
             NavigationView {
                 
                 List {
-                    ForEach (self.geocodeRepository.geoCodeLocationViewModels, id:\.id) { location in
+                    ForEach (self.geocodeRepository.geoCodeLocationViewModels, id:\.id) { locationVM in
                         
-                        NavigationLink(destination: ShowLocationMapView(geocodeLocation: location) ) {
-                            GeocodeLocationTableCellView(location: location)
+                        NavigationLink(destination: ShowLocationMapView(geocodeLocationVM: locationVM) ) {
+                            GeocodeLocationTableCellView(locationVM: locationVM)
                         }
                         .swipeActions(edge: .trailing , allowsFullSwipe: true) {
                             Button {
                                 withAnimation {
-                                    self.geocodeRepository.delete(location: location)
+                                    self.geocodeRepository.delete(locationVM: locationVM)
                                 }
                             } label: { Label("Delete", systemImage: "trash.fill") }
                             .tint(.red)

@@ -11,18 +11,18 @@ import MapKit
 
 struct ShowLocationMapView: View {
 
-    @State private var geocodeLocation : GeocodeLocationViewModel
+    @State private var geocodeLocationVM : GeocodeLocationViewModel
     @State private var region : MKCoordinateRegion
     @State private var pointsOfInterest : [MapAnnotatedItem]
     
-    init(geocodeLocation : GeocodeLocationViewModel)
+    init(geocodeLocationVM : GeocodeLocationViewModel)
     {
-        self.geocodeLocation = geocodeLocation
-        let longitude : CLLocationDegrees = geocodeLocation.location!.coordinate.longitude
-        let latitude : CLLocationDegrees = geocodeLocation.location!.coordinate.latitude
+        self.geocodeLocationVM = geocodeLocationVM
+        let longitude : CLLocationDegrees = geocodeLocationVM.location!.coordinate.longitude
+        let latitude : CLLocationDegrees = geocodeLocationVM.location!.coordinate.latitude
         let span = MKCoordinateSpan(latitudeDelta: 0.008, longitudeDelta: 0.008)
         self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: span)
-        self.pointsOfInterest = [ MapAnnotatedItem(name: "Times Square", coordinate: geocodeLocation.location!.coordinate )]
+        self.pointsOfInterest = [ MapAnnotatedItem(name: "Times Square", coordinate: geocodeLocationVM.location!.coordinate )]
     }
     
     var body: some View {
@@ -30,13 +30,13 @@ struct ShowLocationMapView: View {
          Map(coordinateRegion: $region, showsUserLocation: true, annotationItems: pointsOfInterest ){ item in
              MapAnnotation(coordinate: item.coordinate) { MapAnnotationView() }
          }
-         GeocodeLocationView(geoData: $geocodeLocation)
+         GeocodeLocationView(geoData: $geocodeLocationVM)
         }
     }
 }
 
 struct ShowLocationMapView_Previews: PreviewProvider {
     static var previews: some View {
-        ShowLocationMapView(geocodeLocation:  GeocodeLocationViewModel.GetSample())
+        ShowLocationMapView(geocodeLocationVM:  GeocodeLocationViewModel.GetSample())
     }
 }

@@ -7,23 +7,23 @@ import Hinzberg_Swift_SwiftUI
 
 struct GeocodeLocationTableCellView: View {
     
-    public var location : GeocodeLocationViewModel
+    public var locationVM : GeocodeLocationViewModel
     
     var body: some View {
         VStack {
             HStack {
-                Text(location.dateFormatted)
+                Text(locationVM.dateFormatted)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                 Spacer()
             }
             
             HStack {
-                Text(location.name).font(.subheadline)
+                Text(locationVM.name).font(.subheadline)
                 Spacer()
             }
             HStack {
-                Text(location.zipCodeWithCityAndCountry).font(.subheadline)
+                Text(locationVM.zipCodeWithCityAndCountry).font(.subheadline)
                 Spacer()
             }
             HorizontalColorDivider(height: 3, color: Color.cocoaBlue)
@@ -33,6 +33,6 @@ struct GeocodeLocationTableCellView: View {
 
 struct GeocodeLocationTableCellView_Previews: PreviewProvider {
     static var previews: some View {
-        GeocodeLocationTableCellView(location: GeocodeLocationViewModel.GetSample())
+        GeocodeLocationTableCellView(locationVM: GeocodeLocationViewModel.GetSample())
     }
 }
