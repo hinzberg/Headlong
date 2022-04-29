@@ -1,10 +1,10 @@
-//  GeocodeLocation.swift
+//  GeocodeLocationViewModel.swift
 //  Headlong
 //  Created by Holger Hinzberg on 30.10.21.
 
 import CoreLocation
 
-public class GeocodeLocation
+public class GeocodeLocationViewModel
 {
     let id = UUID()
     public var location : CLLocation?
@@ -22,7 +22,8 @@ public class GeocodeLocation
     public var timezone : String
     public var date : Date
     
-    init() {
+    init()
+    {
         self.name = ""
         self.address1 = ""
         self.address2 = ""
@@ -38,9 +39,9 @@ public class GeocodeLocation
         self.date = Date()
     }
     
-    public static func GetSample() -> GeocodeLocation
+    public static func GetSample() -> GeocodeLocationViewModel
     {
-        let geoLocation = GeocodeLocation()
+        let geoLocation = GeocodeLocationViewModel()
         geoLocation.location = CLLocation(latitude: 37.33233141, longitude: -122.0312186)
         geoLocation.name = "Apple Campus"
         geoLocation.address1 = "Infinite Loop"
@@ -55,6 +56,24 @@ public class GeocodeLocation
         geoLocation.regionIdentifier = "<+37.33213110,-122.02990105> radius 279.38"
         geoLocation.timezone = "America/Los_Angeles"
         return geoLocation
+    }
+ 
+    init( cdLocation : CDGeocodeLocation)
+    {
+        self.location = CLLocation(latitude: cdLocation.latitude, longitude: cdLocation.longitude)
+        self.name = cdLocation.name ?? ""
+        self.address1 = cdLocation.address1 ?? ""
+        self.address2 = cdLocation.address1 ?? ""
+        self.neighborhood = cdLocation.neighbourhood ?? ""
+        self.city = cdLocation.city ?? ""
+        self.state = cdLocation.state ?? ""
+        self.subAdministrativeArea = cdLocation.subAdministrativeArea ?? ""
+        self.zipCode = cdLocation.zipCode ?? ""
+        self.country = cdLocation.country ?? ""
+        self.isoCountryCode  = cdLocation.isoCountryCode ?? ""
+        self.regionIdentifier = cdLocation.regionIdentifier ?? ""
+        self.timezone = cdLocation.timezone ?? ""
+        self.date = cdLocation.date ?? Date()
     }
     
     init( placemark : CLPlacemark, location : CLLocation)

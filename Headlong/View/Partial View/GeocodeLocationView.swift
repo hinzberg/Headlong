@@ -7,7 +7,7 @@ import SwiftUI
 struct GeocodeLocationView: View {
     
     @Environment(\.colorScheme) var colorScheme: ColorScheme
-    @Binding var geoData : GeocodeLocation
+    @Binding var geoData : GeocodeLocationViewModel
     
     var body: some View {
         
@@ -50,7 +50,7 @@ struct GeocodeLocationView: View {
 
 struct GeocodeLocationView_Previews: PreviewProvider {
     static var previews: some View {
-        GeocodeLocationView(geoData: .constant(GeocodeLocation.GetSample()))
+        GeocodeLocationView(geoData: .constant(GeocodeLocationViewModel.GetSample()))
             //.preferredColorScheme(.dark)
     }
 }

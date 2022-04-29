@@ -31,7 +31,7 @@ struct GeocodeTableView: View {
             NavigationView {
                 
                 List {
-                    ForEach (self.geocodeRepository.geoCodeLocations, id:\.id) { location in
+                    ForEach (self.geocodeRepository.geoCodeLocationViewModels, id:\.id) { location in
                         
                         NavigationLink(destination: ShowLocationMapView(geocodeLocation: location) ) {
                             GeocodeLocationTableCellView(location: location)

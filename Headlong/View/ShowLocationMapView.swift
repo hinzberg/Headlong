@@ -11,11 +11,11 @@ import MapKit
 
 struct ShowLocationMapView: View {
 
-    @State private var geocodeLocation : GeocodeLocation
+    @State private var geocodeLocation : GeocodeLocationViewModel
     @State private var region : MKCoordinateRegion
     @State private var pointsOfInterest : [MapAnnotatedItem]
     
-    init(geocodeLocation : GeocodeLocation)
+    init(geocodeLocation : GeocodeLocationViewModel)
     {
         self.geocodeLocation = geocodeLocation
         let longitude : CLLocationDegrees = geocodeLocation.location!.coordinate.longitude
@@ -37,6 +37,6 @@ struct ShowLocationMapView: View {
 
 struct ShowLocationMapView_Previews: PreviewProvider {
     static var previews: some View {
-        ShowLocationMapView(geocodeLocation:  GeocodeLocation.GetSample())
+        ShowLocationMapView(geocodeLocation:  GeocodeLocationViewModel.GetSample())
     }
 }

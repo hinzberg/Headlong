@@ -10,8 +10,8 @@ public class LocationController : NSObject, CLLocationManagerDelegate, Observabl
     
     @Published private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
     
-    @Published var userLocation: CLLocation!
-    @Published var geocodeLocation = GeocodeLocation.GetSample()
+    // @Published var userLocation: CLLocation!
+    @Published var geocodeLocation = GeocodeLocationViewModel.GetSample()
     
     var locationManager: CLLocationManager?
     
@@ -22,7 +22,7 @@ public class LocationController : NSObject, CLLocationManagerDelegate, Observabl
         locationManager!.delegate = self
         locationManager!.requestWhenInUseAuthorization()
         locationManager!.allowsBackgroundLocationUpdates = true
-        geocodeLocation = GeocodeLocation.GetSample()
+        geocodeLocation = GeocodeLocationViewModel.GetSample()
     }
     
     public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
@@ -39,15 +39,17 @@ public class LocationController : NSObject, CLLocationManagerDelegate, Observabl
         }
     }
     
-    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    // Called automaticly
+    public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+    {
         //fatalError(error.localizedDescription)
     }
     
+    // Called automaticly
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
         if  let location = locations.last
         {
-            self.userLocation = location
             self.reverseGeoCoding(location: location)
         }
     }
@@ -64,8 +66,9 @@ public class LocationController : NSObject, CLLocationManagerDelegate, Observabl
             }
             else if let placemark = placemark?.first
             {
-                let geoLocation = GeocodeLocation(placemark: placemark, location: loca )
-                DispatchQueue.main.async {
+                let geoLocation = GeocodeLocationViewModel(placemark: placemark, location: loca )
+                DispatchQueue.main.async
+                {
                     geoLocation.debugProperties()
                     self.geocodeLocation = geoLocation
                 }

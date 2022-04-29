@@ -7,7 +7,7 @@ import Hinzberg_Swift_SwiftUI
 
 struct GeocodeLocationTableCellView: View {
     
-    public var location : GeocodeLocation
+    public var location : GeocodeLocationViewModel
     
     var body: some View {
         VStack {
@@ -33,6 +33,6 @@ struct GeocodeLocationTableCellView: View {
 
 struct GeocodeLocationTableCellView_Previews: PreviewProvider {
     static var previews: some View {
-        GeocodeLocationTableCellView(location: GeocodeLocation.GetSample())
+        GeocodeLocationTableCellView(location: GeocodeLocationViewModel.GetSample())
     }
 }

@@ -48,7 +48,7 @@ struct AddLocationMapView: View {
     }
     
     private func submitButton() {
-        self.geocodeRepository.add(location: self.locationController.geocodeLocation)
+        self.geocodeRepository.add(locationVM: self.locationController.geocodeLocation)
         self.presentationMode.wrappedValue.dismiss()
     }
     
