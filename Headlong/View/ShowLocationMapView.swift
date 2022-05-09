@@ -30,7 +30,7 @@ struct ShowLocationMapView: View {
          Map(coordinateRegion: $region, showsUserLocation: true, annotationItems: pointsOfInterest ){ item in
              MapAnnotation(coordinate: item.coordinate) { MapAnnotationView() }
          }
-         GeocodeLocationView(geoData: $geocodeLocationVM)
+         GeocodeLocationView(locationVM: $geocodeLocationVM)
         }
     }
 }

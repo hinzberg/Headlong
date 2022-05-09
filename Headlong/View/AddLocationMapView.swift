@@ -22,7 +22,7 @@ struct AddLocationMapView: View {
             Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(.follow))
             
             // LocationView
-            GeocodeLocationView(geoData: $locationController.geocodeLocation)
+            GeocodeLocationView(locationVM: $locationController.geocodeLocation)
                 .padding(EdgeInsets(top: 2, leading: 10, bottom: 0, trailing: 10) )
             
             // ButtonStack

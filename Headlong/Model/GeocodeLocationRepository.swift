@@ -5,25 +5,59 @@
 import Foundation
 import CoreData
 
-public class GeocodeLocationRepository : ObservableObject {
+public class GeocodeLocationRepository : NSObject, ObservableObject, NSFetchedResultsControllerDelegate{
     
     @Published var geoCodeLocationViewModels = [GeocodeLocationViewModel]()
     
-    var context : NSManagedObjectContext
+    private var context : NSManagedObjectContext
+    private var fetchedResultController : NSFetchedResultsController<CDGeocodeLocation>
     
-    init(context:NSManagedObjectContext) {
-        
+    init(context:NSManagedObjectContext)
+    {
+        // Setup FetchedResultsController and execute Fetch
         self.context = context
-        
-        self.geoCodeLocationViewModels.append(GeocodeLocationViewModel.GetSample())
+        self.fetchedResultController = NSFetchedResultsController(fetchRequest: CDGeocodeLocation.all, managedObjectContext:
+                                                            context, sectionNameKeyPath: nil, cacheName: nil)
+        super.init()
+        self.fetchedResultController.delegate = self
+        self.executeFetch()
     }
     
+    public func executeFetch()
+    {
+        do  {
+            self.geoCodeLocationViewModels.removeAll()
+            try fetchedResultController.performFetch()
+                        
+            guard let results = fetchedResultController.fetchedObjects else { return }
+            for result in results {
+                self.geoCodeLocationViewModels.append(GeocodeLocationViewModel(cdLocation: result))
+            }
+            
+        } catch {
+            let fetchError = error as NSError
+            print("\(fetchError), \(fetchError.localizedDescription)")
+        }
+    }
+    
+    public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>)
+    {
+        geoCodeLocationViewModels.removeAll()
+        guard let results = controller.fetchedObjects as? [CDGeocodeLocation] else {  return }
+        for result in results {
+            geoCodeLocationViewModels.append(GeocodeLocationViewModel(cdLocation: result))
+        }
+    }
+    
+    // Add Location to Array and CoreData
     public func add(locationVM : GeocodeLocationViewModel) {
         
         self.geoCodeLocationViewModels.append(locationVM)
         
         do {
             let cdLocation = CDGeocodeLocation(context: self.context)
+            cdLocation.longitude = locationVM.location?.coordinate.longitude ?? 0
+            cdLocation.latitude = locationVM.location?.coordinate.latitude ?? 0
             cdLocation.id = locationVM.id
             cdLocation.name = locationVM.name
             cdLocation.address1 = locationVM.address1
@@ -44,6 +78,7 @@ public class GeocodeLocationRepository : ObservableObject {
         }
     }
     
+    // Delete Location from Array and CoreData
     public func delete(locationVM : GeocodeLocationViewModel)
     {
         self.geoCodeLocationViewModels.removeAll( where: {$0.id == locationVM.id} )
@@ -61,10 +96,10 @@ public class GeocodeLocationRepository : ObservableObject {
             for dataModel in dataModels {
                 self.context.delete(dataModel)
             }
+            try? self.context.save()
         }
         catch {
             print(error)
         }
     }
-    
 }

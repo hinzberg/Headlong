@@ -11,10 +11,15 @@ import Foundation
 import CoreData
 
 @objc(CDGeocodeLocation)
-public class CDGeocodeLocation: NSManagedObject , BaseModel {
+public class CDGeocodeLocation: NSManagedObject , BaseModel
+{
+    static var all : NSFetchRequest<CDGeocodeLocation> {
+        let request : NSFetchRequest<CDGeocodeLocation> = CDGeocodeLocation.fetchRequest()
+        request.sortDescriptors = []
+        return request
+    }
     
     public override var description: String {
         return "CDGeocodeLocation"
     }
-
 }

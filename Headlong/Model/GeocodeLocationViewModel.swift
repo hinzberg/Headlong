@@ -6,7 +6,7 @@ import CoreLocation
 
 public class GeocodeLocationViewModel
 {
-    let id = UUID()
+    public var id = UUID()
     public var location : CLLocation?
     public var name : String
     public var address1 : String
@@ -60,10 +60,11 @@ public class GeocodeLocationViewModel
  
     init( cdLocation : CDGeocodeLocation)
     {
+        self.id = cdLocation.id ?? UUID.init()
         self.location = CLLocation(latitude: cdLocation.latitude, longitude: cdLocation.longitude)
         self.name = cdLocation.name ?? ""
         self.address1 = cdLocation.address1 ?? ""
-        self.address2 = cdLocation.address1 ?? ""
+        self.address2 = cdLocation.address2 ?? ""
         self.neighborhood = cdLocation.neighbourhood ?? ""
         self.city = cdLocation.city ?? ""
         self.state = cdLocation.state ?? ""
@@ -122,8 +123,7 @@ public class GeocodeLocationViewModel
         }
         return value.trimmingCharacters(in: .whitespacesAndNewlines)
     }
-    
-    
+        
     var  address : String {
         let value = self.address1 + " " + self.address2
         return value.trimmingCharacters(in: .whitespacesAndNewlines)

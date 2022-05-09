@@ -69,7 +69,7 @@ public class LocationController : NSObject, CLLocationManagerDelegate, Observabl
                 let geoLocation = GeocodeLocationViewModel(placemark: placemark, location: loca )
                 DispatchQueue.main.async
                 {
-                    geoLocation.debugProperties()
+                    //geoLocation.debugProperties()
                     self.geocodeLocation = geoLocation
                 }
             }
