@@ -6,23 +6,24 @@ import UIKit
 import CoreLocation
 import MapKit
 
-public class LocationController : NSObject, CLLocationManagerDelegate, ObservableObject {
+public class AddLocationMapViewController : NSObject, CLLocationManagerDelegate, ObservableObject {
     
-    @Published private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
-    
-    // @Published var userLocation: CLLocation!
-    @Published var geocodeLocation = GeocodeLocationViewModel.GetSample()
-    
+    @Published var region : MKCoordinateRegion
+    @Published var geocodeLocationVM : GeocodeLocationViewModel
     var locationManager: CLLocationManager?
     
     public override init() {
-        super.init()
         
+        self.geocodeLocationVM = GeocodeLocationViewModel.GetSample()
+        self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
+        
+        super.init()
         locationManager = CLLocationManager()
         locationManager!.delegate = self
         locationManager!.requestWhenInUseAuthorization()
         locationManager!.allowsBackgroundLocationUpdates = true
-        geocodeLocation = GeocodeLocationViewModel.GetSample()
+        
+
     }
     
     public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
@@ -70,7 +71,7 @@ public class LocationController : NSObject, CLLocationManagerDelegate, Observabl
                 DispatchQueue.main.async
                 {
                     //geoLocation.debugProperties()
-                    self.geocodeLocation = geoLocation
+                    self.geocodeLocationVM = geoLocation
                 }
             }
         }

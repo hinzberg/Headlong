@@ -33,7 +33,7 @@ struct GeocodeTableView: View {
                 List {
                     ForEach (self.geocodeRepository.geoCodeLocationViewModels, id:\.id) { locationVM in
                         
-                        NavigationLink(destination: ShowLocationMapView(geocodeLocationVM: locationVM) ) {
+                        NavigationLink(destination: ShowStoredLocationMapView(geocodeLocationVM: locationVM) ) {
                             GeocodeLocationTableCellView(locationVM: locationVM)
                         }
                         .swipeActions(edge: .trailing , allowsFullSwipe: true) {

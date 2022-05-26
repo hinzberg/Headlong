@@ -135,9 +135,27 @@ public class GeocodeLocationViewModel
         return formatter.string(from: self.date)
     }
     
+    public func getLocationForShare() -> String
+    {
+        var locationText = "I am here:\n\n"
+        if  name != "" { locationText += name + "\n" }
+        // if  address1 != "" { locationText += address1 + "\n" }
+        // if  address2 != "" { locationText += address2 + "\n" }
+        // if  neighborhood != "" { locationText += neighborhood + "\n" }
+        // if  subAdministrativeArea != "" { locationText += subAdministrativeArea + "\n" }
+        if  zipCode != "" && city == "" { locationText += zipCode + "\n" }
+        if  zipCode == "" && city != "" { locationText += city + "\n" }
+        if  zipCode != "" && city != "" { locationText += zipCode + " " + city + "\n" }
+        if  state != "" { locationText += state + "\n" }
+        if  country != "" { locationText += country + "\n" }
+        locationText += "\n"
+        if  latitude != "" { locationText += "Latitude: " + latitude + "\n" }
+        if  longitude != "" { locationText += "Longitude: " + longitude + "\n" }
+        return locationText
+    }
+        
     public func debugProperties ()
     {
-        print("timezone:", timezone , terminator: "\n\n")
         print("latitude:", location?.coordinate.latitude ?? "")
         print("longitude:", location?.coordinate.longitude ?? "")
         print("name:", name )

@@ -8,7 +8,7 @@ struct SubmitButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(maxWidth: .infinity)
-            .padding(EdgeInsets(top: 10, leading: 5, bottom: 10, trailing: 5) )
+            .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5) )
             .font(.title3)
             .foregroundColor(.white)
             .background(Color.cocoaBlue)
@@ -22,7 +22,7 @@ struct CancelButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(maxWidth: .infinity)
-            .padding(EdgeInsets(top: 10, leading: 5, bottom: 10, trailing: 5) )
+            .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5) )
             .font(.title3)
             .foregroundColor(.white)
             .background(Color.red)
