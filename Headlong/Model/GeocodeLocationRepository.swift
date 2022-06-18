@@ -5,50 +5,125 @@
 import Foundation
 import CoreData
 
-public class GeocodeLocationRepository : NSObject, ObservableObject, NSFetchedResultsControllerDelegate{
-    
+public class GeocodeLocationRepository : NSObject, ObservableObject, NSFetchedResultsControllerDelegate
+{
+    // Public Property of all the Locations
     @Published var geoCodeLocationViewModels = [GeocodeLocationViewModel]()
+    // Grouping per date, can be used for tableView Section Headers
+    @Published var dateGroups = [DateViewModel]()
+    
+    private var allDateGroups = [DateViewModel]()
     
     private var context : NSManagedObjectContext
     private var fetchedResultController : NSFetchedResultsController<CDGeocodeLocation>
     
     init(context:NSManagedObjectContext)
     {
-        // Setup FetchedResultsController and execute Fetch
+        // Setup FetchedResultsController
         self.context = context
         self.fetchedResultController = NSFetchedResultsController(fetchRequest: CDGeocodeLocation.all, managedObjectContext:
                                                             context, sectionNameKeyPath: nil, cacheName: nil)
+       
+        // Add a SortDescription
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
+        self.fetchedResultController.fetchRequest.sortDescriptors = [sortDescriptor]
+        
         super.init()
         self.fetchedResultController.delegate = self
+        
+        self.createAllDateGroups()
+                
         self.executeFetch()
     }
     
     public func executeFetch()
     {
         do  {
-            self.geoCodeLocationViewModels.removeAll()
             try fetchedResultController.performFetch()
-                        
-            guard let results = fetchedResultController.fetchedObjects else { return }
-            for result in results {
-                self.geoCodeLocationViewModels.append(GeocodeLocationViewModel(cdLocation: result))
-            }
-            
+            self.fillViewModelsAfterFetch()
         } catch {
             let fetchError = error as NSError
             print("\(fetchError), \(fetchError.localizedDescription)")
         }
     }
     
-    public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>)
-    {
-        geoCodeLocationViewModels.removeAll()
-        guard let results = controller.fetchedObjects as? [CDGeocodeLocation] else {  return }
+    private func fillViewModelsAfterFetch() {
+        self.geoCodeLocationViewModels.removeAll()
+        guard let results = fetchedResultController.fetchedObjects else { return }
         for result in results {
-            geoCodeLocationViewModels.append(GeocodeLocationViewModel(cdLocation: result))
+            self.geoCodeLocationViewModels.append(GeocodeLocationViewModel(cdLocation: result))
+        }
+    }
+        
+    // Will be called automaticly after fetch
+    public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.fillViewModelsAfterFetch()
+    }
+    
+    private func createAllDateGroups()
+    {
+        allDateGroups.removeAll()
+        
+        // Today
+        let today = Date()
+        var dateVM = DateViewModel(start: today, end: today, description: "Today")
+        allDateGroups.append(dateVM)
+                
+        // This week
+        let startOfThisWeek = Date().startOfWeek
+        let endOfThisWeek =  Calendar.current.date(byAdding: .day, value: -1, to: today)
+        dateVM = DateViewModel(start: startOfThisWeek!, end: endOfThisWeek!, description: "This Week")
+        allDateGroups.append(dateVM)
+        
+        // Last Week
+        let startOfLastWeek = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: startOfThisWeek!)
+        let endOfLastWeek = Calendar.current.date(byAdding: .day, value: -1, to: startOfThisWeek!)
+        dateVM = DateViewModel(start: startOfLastWeek!, end: endOfLastWeek!, description: "Last Week")
+        allDateGroups.append(dateVM)
+        
+        // This month, excluding the weeks
+        let startOfThisMonth = Date().startOfMonth
+        let endOfThisMonth = Calendar.current.date(byAdding: .day, value: -1, to: startOfLastWeek!)
+        dateVM = DateViewModel(start: startOfThisMonth!, end: endOfThisMonth!, description: "This Month")
+        allDateGroups.append(dateVM)
+        
+        // Last month
+        let startOfLastMonth = Calendar.current.date(byAdding: .month, value: -1, to: startOfThisMonth!)
+        let endOfLastMonth = startOfLastMonth?.endOfMonth
+        dateVM = DateViewModel(start: startOfLastMonth!, end: endOfLastMonth!, description: "Last Month")
+        allDateGroups.append(dateVM)
+        
+        // This year, excluding the month
+        let startOfThisYear = startOfLastMonth!.startOfYear
+        let endOfThisYear = Calendar.current.date(byAdding: .day, value: -1, to: startOfLastMonth!)
+        dateVM = DateViewModel(start: startOfThisYear!, end: endOfThisYear!, description: "This Year")
+        allDateGroups.append(dateVM)
+
+        // Last year
+        let startOfLastYear = Calendar.current.date(byAdding: .year, value: -1, to: Date().startOfYear!)
+        let endOfLastYear = Calendar.current.date(byAdding: .year, value: -1, to: Date().endOfYear!)
+        dateVM = DateViewModel(start: startOfLastYear!, end: endOfLastYear!, description: "Last Year")
+        allDateGroups.append(dateVM)
+        
+        // Everything before this year
+        let startOfOlder = Date().zero
+        let endOfOlder =  Calendar.current.date(byAdding: .day, value: -1, to: startOfLastYear!)
+        dateVM = DateViewModel(start: startOfOlder!, end: endOfOlder!, description: "Older")
+        allDateGroups.append(dateVM)
+
+        for d in allDateGroups {
+            print("\(d.startDateFormated) \(d.endDateFormated) \(d.dateDescription)")
         }
     }
     
+    private func getViewModelsInTimespan( startDate : Date, endDate : Date) -> [GeocodeLocationViewModel] {
+        
+        let vms = geoCodeLocationViewModels.filter { vm in
+            vm.date >= startDate && vm.date < endDate
+        }
+        return vms
+    }
+        
     // Add Location to Array and CoreData
     public func add(locationVM : GeocodeLocationViewModel) {
         

@@ -10,18 +10,9 @@ struct GeocodeTableView: View {
     @State private var searchText = ""
     
     init() {
-        
-        let customAppearance = UINavigationBarAppearance()
-        // Backgroundcolor
-        customAppearance.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 1.0, alpha: 1)
-        // Font color for navigationBarTitleDisplayMode large
-        customAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor(Color.cocoaBlue)]
-        // Font color for navigationBarTitleDisplayMode inline
-        customAppearance.titleTextAttributes = [.foregroundColor: UIColor(Color.cocoaBlue)]
-        
-        UINavigationBar.appearance().standardAppearance = customAppearance
-        UINavigationBar.appearance().compactAppearance = customAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = customAppearance
+        UINavigationBar.appearance().standardAppearance = CustomNavigationBarAppearance.DefaultAppearance
+        UINavigationBar.appearance().compactAppearance = CustomNavigationBarAppearance.DefaultAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = CustomNavigationBarAppearance.DefaultAppearance
     }
         
     var body: some View {
@@ -54,7 +45,7 @@ struct GeocodeTableView: View {
                             .tint(Color.cocoaBlue)
                         }
                         
-                    }//.listRowSeparatorTint( Color.cocoaBlue)
+                    }
                     .listRowSeparator(.hidden)
                 }.listStyle(.plain)
                 

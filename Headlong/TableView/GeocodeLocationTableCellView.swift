@@ -11,6 +11,8 @@ struct GeocodeLocationTableCellView: View {
     
     var body: some View {
         VStack {
+            
+            // Date
             HStack {
                 Text(locationVM.dateFormatted)
                     .font(.subheadline)
@@ -18,12 +20,19 @@ struct GeocodeLocationTableCellView: View {
                 Spacer()
             }
             
+            // Street
             HStack {
-                Text(locationVM.name).font(.subheadline)
+                Text(locationVM.name)
+                    .font(.subheadline)
+                    .foregroundColor(.primary)
                 Spacer()
             }
+            
+            // Zip, City, Country
             HStack {
-                Text(locationVM.zipCodeWithCityAndCountry).font(.subheadline)
+                Text(locationVM.zipCodeWithCityAndCountry)
+                    .font(.subheadline)
+                    .foregroundColor(.primary)
                 Spacer()
             }
             HorizontalColorDivider(height: 3, color: Color.cocoaBlue)

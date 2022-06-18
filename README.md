@@ -5,24 +5,31 @@ The idea for this app didn't come to me because I was drunk. But I have to admit
 
 ## History
 
+### 2022-06-18
+- ***CustomNavigationBarAppearance*** class added.
+- Decending sort by date added to ***GeocodeLocationRepository*** fetch request.
+- Added DateGroups model
+
 ### 2022-05-26
-- Added ***Navigate To *** and ***AR View*** Buttons to ***ShowStoredLocationMapViewController***
-- ***AddLocationMapViewController*** added
-- ***ShowStoredLocationMapViewController*** added
-- Added ***UIActivityViewController*** to share current or saved location
+- Added ***Navigate To *** and ***AR View*** Buttons to ***ShowStoredLocationMapViewController***.
+- ***AddLocationMapViewController*** added.
+- ***ShowStoredLocationMapViewController*** added.
+- Added ***UIActivityViewController*** to share current or saved location.
 
 ### 2021-12-01
-- MainView (TabView) added
-- Settings View added
-- ShowLocationMapView added
-- Annotaion added
+- MainView (TabView) added.
+- Settings View added.
+- ShowLocationMapView added.
+- Annotaion added.
 
 ## Next
-- Add AR View
-- Start Navigation
+- Add AR View.
+- Start Navigation.
 
 ## ToDo
 - Haptic Buttons
 - Location Overview View
 - Translate Text from Sharing
 - Selected Language in Settings
+- Remove Quick Save from Settings
+- Add AR View
