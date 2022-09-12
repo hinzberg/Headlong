@@ -9,6 +9,7 @@ The idea for this app didn't come to me because I was drunk. But I have to admit
 - Updated Swift Packages
 - Added Share Prefix and Suffix text in settings
 - Settings for MapType (unfinished, unsupported)
+- Grouping in TableViw for Time Periods
 
 ### 2022-06-18
 - ***CustomNavigationBarAppearance*** class added.

@@ -139,6 +139,13 @@ public class GeocodeLocationViewModel
         return formatter.string(from: self.date)
     }
     
+    public func getShortDescription() -> String
+    {
+        var locationText = ""
+       locationText += city + "  " + name
+        return locationText
+    }
+    
     public func getLocationShareDescription() -> String
     {
         var locationText = ""

@@ -14,7 +14,7 @@ struct GeocodeTableView: View {
         UINavigationBar.appearance().compactAppearance = CustomNavigationBarAppearance.DefaultAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = CustomNavigationBarAppearance.DefaultAppearance
     }
-        
+    
     var body: some View {
         
         VStack {
@@ -22,29 +22,56 @@ struct GeocodeTableView: View {
             NavigationView {
                 
                 List {
-                    ForEach (self.geocodeRepository.geoCodeLocationViewModels, id:\.id) { locationVM in
-                        
-                        NavigationLink(destination: StoredLocationMapView(geocodeLocationVM: locationVM) ) {
-                            GeocodeLocationTableCellView(locationVM: locationVM)
-                        }
-                        .swipeActions(edge: .trailing , allowsFullSwipe: true) {
-                            Button {
-                                withAnimation {
-                                    self.geocodeRepository.delete(locationVM: locationVM)
+                    ForEach(self.geocodeRepository.filledDateGroups, id:\.id) { dateGroup in
+                        Section(header: GeocodeTableViewSectionHeader(headlineText: dateGroup.dateDescription) )
+                        {
+                            ForEach (dateGroup.geoCodeLocationViewModels, id:\.id) { locationVM in
+                                NavigationLink(destination: StoredLocationMapView(geocodeLocationVM: locationVM) ) {
+                                    GeocodeLocationTableCellView(locationVM: locationVM)
                                 }
-                            } label: { Label("Delete", systemImage: "trash.fill") }
-                            .tint(.red)
-                        }
-                        
-                        .swipeActions(edge: .leading , allowsFullSwipe: true) {
-                            Button {
-                                print("Navigate")
-                            } label: {
-                                Label("Navigate", systemImage: "map.fill")
+                                .swipeActions(edge: .trailing , allowsFullSwipe: true) {
+                                    Button {
+                                        withAnimation {
+                                            self.geocodeRepository.delete(locationVM: locationVM)
+                                        }
+                                    } label: { Label("Delete", systemImage: "trash.fill") }
+                                        .tint(.red)
+                                }
+                                .swipeActions(edge: .leading , allowsFullSwipe: true) {
+                                    Button {
+                                        print("Navigate")
+                                    } label: {
+                                        Label("Navigate", systemImage: "map.fill")
+                                    }
+                                    .tint(Color.cocoaBlue)
+                                }
                             }
-                            .tint(Color.cocoaBlue)
-                        }                        
+                        }
                     }
+                    /*
+                     ForEach (dateGroup.geoCodeLocationViewModels, id:\.id) { locationVM in
+                     NavigationLink(destination: StoredLocationMapView(geocodeLocationVM: locationVM) ) {
+                     GeocodeLocationTableCellView(locationVM: locationVM)
+                     }
+                     .swipeActions(edge: .trailing , allowsFullSwipe: true) {
+                     Button {
+                     withAnimation {
+                     self.geocodeRepository.delete(locationVM: locationVM)
+                     }
+                     } label: { Label("Delete", systemImage: "trash.fill") }
+                     .tint(.red)
+                     }
+                     
+                     .swipeActions(edge: .leading , allowsFullSwipe: true) {
+                     Button {
+                     print("Navigate")
+                     } label: {
+                     Label("Navigate", systemImage: "map.fill")
+                     }
+                     .tint(Color.cocoaBlue)
+                     }
+                     }
+                     */
                     .listRowSeparator(.hidden)
                 }.listStyle(.plain)
                     .searchable(

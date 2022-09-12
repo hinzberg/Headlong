@@ -9,11 +9,11 @@ public class GeocodeLocationRepository : NSObject, ObservableObject, NSFetchedRe
 {
     // Public Property of all the Locations
     @Published var geoCodeLocationViewModels = [GeocodeLocationViewModel]()
-    // Grouping per date, can be used for tableView Section Headers
-    @Published var dateGroups = [DateViewModel]()
-    
-    private var allDateGroups = [DateViewModel]()
-    
+   
+    // Grouping per date, will be used for TableView Section Headers
+    private var dateGroups = [DateGroup]()
+    @Published var filledDateGroups = [DateGroup]()
+        
     private var context : NSManagedObjectContext
     private var fetchedResultController : NSFetchedResultsController<CDGeocodeLocation>
     
@@ -31,9 +31,11 @@ public class GeocodeLocationRepository : NSObject, ObservableObject, NSFetchedRe
         super.init()
         self.fetchedResultController.delegate = self
         
-        self.createAllDateGroups()
-                
         self.executeFetch()
+        
+        self.createDateGroups()
+        self.fillDateGroups()
+        self.setFilledDateGroups()
     }
     
     public func executeFetch()
@@ -47,11 +49,13 @@ public class GeocodeLocationRepository : NSObject, ObservableObject, NSFetchedRe
         }
     }
     
-    private func fillViewModelsAfterFetch() {
+    private func fillViewModelsAfterFetch()
+    {
         self.geoCodeLocationViewModels.removeAll()
         guard let results = fetchedResultController.fetchedObjects else { return }
         for result in results {
-            self.geoCodeLocationViewModels.append(GeocodeLocationViewModel(cdLocation: result))
+            let vm = GeocodeLocationViewModel(cdLocation: result)
+            self.geoCodeLocationViewModels.append(vm)
         }
     }
         
@@ -60,62 +64,97 @@ public class GeocodeLocationRepository : NSObject, ObservableObject, NSFetchedRe
         self.fillViewModelsAfterFetch()
     }
     
-    private func createAllDateGroups()
+    private func createDateGroups()
     {
-        allDateGroups.removeAll()
+        dateGroups.removeAll()
         
         // Today
-        let today = Date()
-        var dateVM = DateViewModel(start: today, end: today, description: "Today")
-        allDateGroups.append(dateVM)
+        let aDay:TimeInterval = 60*60*23 + 60*59 + 59
+        let todayStart = Calendar.current.startOfDay(for: Date())
+        let todayEnd = todayStart.addingTimeInterval(aDay)
+        var dateVM = DateGroup(start: todayStart, end: todayEnd, description: "Today")
+        dateGroups.append(dateVM)
                 
         // This week
         let startOfThisWeek = Date().startOfWeek
-        let endOfThisWeek =  Calendar.current.date(byAdding: .day, value: -1, to: today)
-        dateVM = DateViewModel(start: startOfThisWeek!, end: endOfThisWeek!, description: "This Week")
-        allDateGroups.append(dateVM)
+        var endOfThisWeek =  Calendar.current.date(byAdding: .day, value: -1, to: todayStart)
+        endOfThisWeek =  Calendar.current.date(byAdding: .second, value: -1, to: endOfThisWeek!)
+        dateVM = DateGroup(start: startOfThisWeek!, end: endOfThisWeek!, description: "This Week")
+        if endOfThisWeek! > startOfThisWeek! {
+            // Will happen if today is the first day of the week
+            dateGroups.append(dateVM)
+        }
         
         // Last Week
         let startOfLastWeek = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: startOfThisWeek!)
-        let endOfLastWeek = Calendar.current.date(byAdding: .day, value: -1, to: startOfThisWeek!)
-        dateVM = DateViewModel(start: startOfLastWeek!, end: endOfLastWeek!, description: "Last Week")
-        allDateGroups.append(dateVM)
+        var endOfLastWeek = Calendar.current.date(byAdding: .day, value: -1, to: startOfThisWeek!)
+        endOfLastWeek = Calendar.current.date(byAdding: .second, value: -1, to: endOfLastWeek!)
+        dateVM = DateGroup(start: startOfLastWeek!, end: endOfLastWeek!, description: "Last Week")
+        dateGroups.append(dateVM)
         
         // This month, excluding the weeks
         let startOfThisMonth = Date().startOfMonth
-        let endOfThisMonth = Calendar.current.date(byAdding: .day, value: -1, to: startOfLastWeek!)
-        dateVM = DateViewModel(start: startOfThisMonth!, end: endOfThisMonth!, description: "This Month")
-        allDateGroups.append(dateVM)
+        var endOfThisMonth = Calendar.current.date(byAdding: .day, value: -1, to: startOfLastWeek!)
+        endOfThisMonth = Calendar.current.date(byAdding: .second, value: -1, to: endOfThisMonth!)
+        dateVM = DateGroup(start: startOfThisMonth!, end: endOfThisMonth!, description: "This Month")
+        dateGroups.append(dateVM)
         
         // Last month
         let startOfLastMonth = Calendar.current.date(byAdding: .month, value: -1, to: startOfThisMonth!)
-        let endOfLastMonth = startOfLastMonth?.endOfMonth
-        dateVM = DateViewModel(start: startOfLastMonth!, end: endOfLastMonth!, description: "Last Month")
-        allDateGroups.append(dateVM)
+        var endOfLastMonth = startOfLastMonth?.endOfMonth
+        endOfLastMonth = endOfLastMonth?.addingTimeInterval(aDay)
+        dateVM = DateGroup(start: startOfLastMonth!, end: endOfLastMonth!, description: "Last Month")
+        dateGroups.append(dateVM)
         
         // This year, excluding the month
         let startOfThisYear = startOfLastMonth!.startOfYear
-        let endOfThisYear = Calendar.current.date(byAdding: .day, value: -1, to: startOfLastMonth!)
-        dateVM = DateViewModel(start: startOfThisYear!, end: endOfThisYear!, description: "This Year")
-        allDateGroups.append(dateVM)
+        var endOfThisYear = Calendar.current.date(byAdding: .day, value: -1, to: startOfLastMonth!)
+        endOfThisYear = endOfThisYear?.addingTimeInterval(aDay)
+        dateVM = DateGroup(start: startOfThisYear!, end: endOfThisYear!, description: "This Year")
+        dateGroups.append(dateVM)
 
         // Last year
         let startOfLastYear = Calendar.current.date(byAdding: .year, value: -1, to: Date().startOfYear!)
-        let endOfLastYear = Calendar.current.date(byAdding: .year, value: -1, to: Date().endOfYear!)
-        dateVM = DateViewModel(start: startOfLastYear!, end: endOfLastYear!, description: "Last Year")
-        allDateGroups.append(dateVM)
+        var endOfLastYear = Calendar.current.date(byAdding: .year, value: -1, to: Date().endOfYear!)
+        endOfLastYear = endOfLastYear?.addingTimeInterval(aDay)
+        dateVM = DateGroup(start: startOfLastYear!, end: endOfLastYear!, description: "Last Year")
+        dateGroups.append(dateVM)
         
         // Everything before this year
         let startOfOlder = Date().zero
-        let endOfOlder =  Calendar.current.date(byAdding: .day, value: -1, to: startOfLastYear!)
-        dateVM = DateViewModel(start: startOfOlder!, end: endOfOlder!, description: "Older")
-        allDateGroups.append(dateVM)
+        var endOfOlder =  Calendar.current.date(byAdding: .day, value: -1, to: startOfLastYear!)
+        endOfOlder = endOfOlder?.addingTimeInterval(aDay)
+        dateVM = DateGroup(start: startOfOlder!, end: endOfOlder!, description: "Older")
+        dateGroups.append(dateVM)
 
-        for d in allDateGroups {
-            print("\(d.startDateFormated) \(d.endDateFormated) \(d.dateDescription)")
+        for d in dateGroups {
+            print("\(d.startDateTimeFormated) \(d.endDateTimeFormated) \(d.dateDescription)")
         }
     }
     
+    private func fillDateGroups()
+    {
+        for dateGroup in dateGroups {
+            dateGroup.geoCodeLocationViewModels.removeAll()
+            for model in geoCodeLocationViewModels {
+                print(model.getShortDescription())
+                if model.date >= dateGroup.startDate && model.date <= dateGroup.endDate {
+                    dateGroup.geoCodeLocationViewModels.append(model)
+                }
+            }
+        }
+    }
+    
+    private func setFilledDateGroups()
+    {
+        self.filledDateGroups.removeAll()
+        for dateGroup in dateGroups {
+            if !dateGroup.geoCodeLocationViewModels.isEmpty {
+                self.filledDateGroups.append(dateGroup)
+            }
+        }
+    }
+            
     private func getViewModelsInTimespan( startDate : Date, endDate : Date) -> [GeocodeLocationViewModel] {
         
         let vms = geoCodeLocationViewModels.filter { vm in
