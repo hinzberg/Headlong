@@ -5,6 +5,11 @@ The idea for this app didn't come to me because I was drunk. But I have to admit
 
 ## History
 
+### 2022-09-12
+- Updated Swift Packages
+- Added Share Prefix and Suffix text in settings
+- Settings for MapType (unfinished, unsupported)
+
 ### 2022-06-18
 - ***CustomNavigationBarAppearance*** class added.
 - Decending sort by date added to ***GeocodeLocationRepository*** fetch request.
@@ -29,8 +34,8 @@ The idea for this app didn't come to me because I was drunk. But I have to admit
 ## ToDo
 - Haptic Buttons
 - Location Overview View
-- Translate Text from Sharing
 - Selected Language in Settings
 - Remove Quick Save from Settings
 - Add AR View
 - Rate Locations
+- Map Type Settings

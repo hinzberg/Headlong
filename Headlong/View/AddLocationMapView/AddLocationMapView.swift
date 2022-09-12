@@ -7,13 +7,14 @@ import MapKit
 
 struct AddLocationMapView: View {
     
+    @AppStorage("mapType") private var mapType = "Standard"
     @EnvironmentObject  var geocodeRepository : GeocodeLocationRepository
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject  var controller = AddLocationMapViewController()
     @State var shareSheetIsPresented = false
         
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
-        
+    
     var body: some View {
         VStack {
             // Map
@@ -34,6 +35,9 @@ struct AddLocationMapView: View {
                     .padding(EdgeInsets(top: 0, leading: 2, bottom: 0, trailing: 10) )
             }
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+        }
+        .onAppear() {
+            // MapAppearanceController.shared.updateAppearance()
         }
         .edgesIgnoringSafeArea(.top)
         .navigationBarTitle(Text("Current Location"), displayMode: .inline)

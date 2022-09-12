@@ -6,22 +6,26 @@ import SwiftUI
 
 struct SettingsView: View {
     
+    let mapTypes = ["Standard","Satellite","Hybrid"]
+    
     @AppStorage("quicksave") private var quickSave = true
     @AppStorage("sharePrefix") private var sharePrefix = "I am here:"
     @AppStorage("sharePostfix") private var sharePostfix = "Shared with Headlong App by Holger Hinzberg"
+    @AppStorage("mapType") private var mapType = "Standard"
     
     var body: some View {
         
         NavigationView {
             
             Form {
-                
                 Section(header: Text("Settings")
                     .font(.headline)
                     .foregroundColor(.cocoaBlue)  )
                 {
-                    Toggle("Quick Save", isOn: $quickSave)
-                        .tint(.cocoaBlue)
+                    Picker("Map Type", selection: $mapType ) {
+                        ForEach(mapTypes, id: \.self) {
+                            Text($0)}
+                    }
                 }
                 
                 Section(header: Text("Sharing")
@@ -53,7 +57,6 @@ struct SettingsView: View {
                     }
             }.navigationBarTitle("Settings", displayMode: .inline)
         }
-        
     }
     
     func GetVersionNumber() -> String {

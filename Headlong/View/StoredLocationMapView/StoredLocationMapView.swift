@@ -39,6 +39,9 @@ struct StoredLocationMapView: View {
             }
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
         }
+        .onAppear() {
+            // MapAppearanceController.shared.updateAppearance()
+        }
         .edgesIgnoringSafeArea(.top)
         .navigationBarTitle(Text("Selected Location"), displayMode: .inline)
         .navigationBarBackButtonHidden(true)
