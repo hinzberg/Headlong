@@ -1,4 +1,4 @@
-//  ShowStoredLocationMapViewController.swift
+//  StoredLocationMapViewController.swift
 //  Headlong
 //  Created by Holger Hinzberg on 25.05.22.
 //  Copyright © 2022 Holger Hinzberg. All rights reserved.
@@ -6,7 +6,7 @@
 import Foundation
 import MapKit
 
-public class ShowStoredLocationMapViewController: ObservableObject {
+public class StoredLocationMapViewController: ObservableObject {
     
     @Published var geocodeLocationVM : GeocodeLocationViewModel
     @Published var region : MKCoordinateRegion

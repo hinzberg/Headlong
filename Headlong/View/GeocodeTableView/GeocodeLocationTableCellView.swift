@@ -3,7 +3,7 @@
 //  Created by Holger Hinzberg on 03.11.21.
 
 import SwiftUI
-import Hinzberg_Swift_SwiftUI
+import Hinzberg_SwiftUI
 
 struct GeocodeLocationTableCellView: View {
     

@@ -3,6 +3,7 @@
 //  Created by Holger Hinzberg on 30.10.21.
 
 import CoreLocation
+import SwiftUI
 
 public class GeocodeLocationViewModel
 {
@@ -21,6 +22,9 @@ public class GeocodeLocationViewModel
     public var regionIdentifier : String
     public var timezone : String
     public var date : Date
+    
+    @AppStorage("sharePrefix") private var sharePrefix = "I am here:"
+    @AppStorage("sharePostfix") private var sharePostfix = "Shared with Headlong App by Holger Hinzberg"
     
     init()
     {
@@ -135,22 +139,37 @@ public class GeocodeLocationViewModel
         return formatter.string(from: self.date)
     }
     
-    public func getLocationForShare() -> String
+    public func getLocationShareDescription() -> String
     {
-        var locationText = "I am here:\n\n"
-        if  name != "" { locationText += name + "\n" }
+        var locationText = ""
+        if self.sharePrefix != "" {
+            locationText += sharePrefix + "\n\n" }
+        if  name != "" {
+            locationText += name + "\n" }
+        
         // if  address1 != "" { locationText += address1 + "\n" }
         // if  address2 != "" { locationText += address2 + "\n" }
         // if  neighborhood != "" { locationText += neighborhood + "\n" }
         // if  subAdministrativeArea != "" { locationText += subAdministrativeArea + "\n" }
-        if  zipCode != "" && city == "" { locationText += zipCode + "\n" }
-        if  zipCode == "" && city != "" { locationText += city + "\n" }
-        if  zipCode != "" && city != "" { locationText += zipCode + " " + city + "\n" }
-        if  state != "" { locationText += state + "\n" }
-        if  country != "" { locationText += country + "\n" }
+        
+        if  zipCode != "" && city == "" {
+            locationText += zipCode + "\n" }
+        if  zipCode == "" && city != "" {
+            locationText += city + "\n" }
+        if  zipCode != "" && city != "" {
+            locationText += zipCode + " " + city + "\n" }
+        if  state != "" {
+            locationText += state + "\n" }
+        if  country != "" {
+            locationText += country + "\n" }
         locationText += "\n"
-        if  latitude != "" { locationText += "Latitude: " + latitude + "\n" }
-        if  longitude != "" { locationText += "Longitude: " + longitude + "\n" }
+        if  latitude != "" {
+            locationText += "Latitude: " + latitude + "\n" }
+        if  longitude != "" {
+            locationText += "Longitude: " + longitude + "\n" }
+        if self.sharePostfix != "" {
+            locationText += "\n" + sharePostfix + "\n" }
+                
         return locationText
     }
         

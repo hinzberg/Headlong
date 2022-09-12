@@ -1,4 +1,4 @@
-//  ContentView.swift
+//  GeocodeTableView.swift
 //  Headlong
 //  Created by Holger Hinzberg on 14.10.21.
 
@@ -24,7 +24,7 @@ struct GeocodeTableView: View {
                 List {
                     ForEach (self.geocodeRepository.geoCodeLocationViewModels, id:\.id) { locationVM in
                         
-                        NavigationLink(destination: ShowStoredLocationMapView(geocodeLocationVM: locationVM) ) {
+                        NavigationLink(destination: StoredLocationMapView(geocodeLocationVM: locationVM) ) {
                             GeocodeLocationTableCellView(locationVM: locationVM)
                         }
                         .swipeActions(edge: .trailing , allowsFullSwipe: true) {
@@ -43,12 +43,10 @@ struct GeocodeTableView: View {
                                 Label("Navigate", systemImage: "map.fill")
                             }
                             .tint(Color.cocoaBlue)
-                        }
-                        
+                        }                        
                     }
                     .listRowSeparator(.hidden)
                 }.listStyle(.plain)
-                
                     .searchable(
                         text: $searchText,
                         placement: .navigationBarDrawer(displayMode: .always),

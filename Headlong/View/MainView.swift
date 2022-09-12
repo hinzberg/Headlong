@@ -1,9 +1,6 @@
-//
 //  MainView.swift
 //  Headlong
-//
 //  Created by Holger Hinzberg on 01.12.21.
-//
 
 import SwiftUI
 
@@ -15,7 +12,6 @@ struct MainView: View {
                 .tabItem {
                     Label("Locations", systemImage: "list.dash")
                 }
-
             SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gear")

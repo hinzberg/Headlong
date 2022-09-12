@@ -1,4 +1,4 @@
-//  ShowLocationMapView.swift
+//  StoredLocationMapView.swift
 //  Headlong
 //  Created by Holger Hinzberg on 01.12.21.
 //  Copyright © 2021 Holger Hinzberg. All rights reserved.
@@ -6,15 +6,15 @@
 import SwiftUI
 import MapKit
 
-struct ShowStoredLocationMapView: View {
+struct StoredLocationMapView: View {
     
-    @ObservedObject  var controller : ShowStoredLocationMapViewController
+    @ObservedObject  var controller : StoredLocationMapViewController
     @Environment(\.presentationMode) var presentationMode
     @State var shareSheetIsPresented = false
     
     init(geocodeLocationVM : GeocodeLocationViewModel)
     {
-        controller = ShowStoredLocationMapViewController(geocodeLocationVM: geocodeLocationVM)
+        controller = StoredLocationMapViewController(geocodeLocationVM: geocodeLocationVM)
     }
     
     var body: some View {
@@ -58,6 +58,6 @@ struct ShowStoredLocationMapView: View {
 
 struct ShowLocationMapView_Previews: PreviewProvider {
     static var previews: some View {
-        ShowStoredLocationMapView(geocodeLocationVM:  GeocodeLocationViewModel.GetSample())
+        StoredLocationMapView(geocodeLocationVM:  GeocodeLocationViewModel.GetSample())
     }
 }

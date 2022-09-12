@@ -3,7 +3,7 @@
 //  Created by Holger Hinzberg on 14.10.21.
 
 import SwiftUI
-import Hinzberg_Swift_SwiftUI
+import Hinzberg_SwiftUI
 
 @main
 struct HeadlongApp: App {

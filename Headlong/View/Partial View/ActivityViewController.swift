@@ -15,7 +15,7 @@ struct ActivityViewController: UIViewControllerRepresentable
     
     func makeUIViewController(context: Context) -> UIActivityViewController
     {
-        let locationText = location.getLocationForShare()
+        let locationText = location.getLocationShareDescription()
         let controller = UIActivityViewController( activityItems: [locationText], applicationActivities: applicationActivities)
         controller.excludedActivityTypes = excludedActivityTypes
         controller.completionWithItemsHandler = callback

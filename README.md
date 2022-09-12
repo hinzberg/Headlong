@@ -33,3 +33,4 @@ The idea for this app didn't come to me because I was drunk. But I have to admit
 - Selected Language in Settings
 - Remove Quick Save from Settings
 - Add AR View
+- Rate Locations
