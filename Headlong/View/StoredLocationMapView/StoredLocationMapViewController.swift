@@ -11,7 +11,7 @@ public class StoredLocationMapViewController: ObservableObject {
     @Published var geocodeLocationVM : GeocodeLocationViewModel
     @Published var region : MKCoordinateRegion
     @Published var pointsOfInterest : [MapAnnotatedItem]
-    
+        
     init(geocodeLocationVM : GeocodeLocationViewModel)
     {
         self.geocodeLocationVM = geocodeLocationVM

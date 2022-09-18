@@ -12,8 +12,8 @@ public class AddLocationMapViewController : NSObject, CLLocationManagerDelegate,
     @Published var geocodeLocationVM : GeocodeLocationViewModel
     var locationManager: CLLocationManager?
     
-    public override init() {
-        
+    public override init()
+    {
         self.geocodeLocationVM = GeocodeLocationViewModel.GetSample()
         self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
         
@@ -22,10 +22,8 @@ public class AddLocationMapViewController : NSObject, CLLocationManagerDelegate,
         locationManager!.delegate = self
         locationManager!.requestWhenInUseAuthorization()
         locationManager!.allowsBackgroundLocationUpdates = true
-        
-
     }
-    
+        
     public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
     {
         if status == .authorizedAlways || status == .authorizedWhenInUse

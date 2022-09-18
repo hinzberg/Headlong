@@ -11,8 +11,8 @@ struct AddLocationMapView: View {
     @EnvironmentObject  var geocodeRepository : GeocodeLocationRepository
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject  var controller = AddLocationMapViewController()
+    
     @State var shareSheetIsPresented = false
-        
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
     
     var body: some View {
@@ -40,19 +40,19 @@ struct AddLocationMapView: View {
             // MapAppearanceController.shared.updateAppearance()
         }
         .edgesIgnoringSafeArea(.top)
-        .navigationBarTitle(Text("Current Location"), displayMode: .inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }, label: { Image(systemName: "arrow.left") } )
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                viewMenu()
+            }
+        }
         .navigationBarBackButtonHidden(true)
-        .navigationBarItems( leading: Button(action : {
-            self.presentationMode.wrappedValue.dismiss()
-        }) {
-                Image(systemName: "arrow.left")
-        })
-        .navigationBarItems( trailing: Button(action : {
-            shareSheetIsPresented.toggle()
-        }) {
-            Image(systemName: "square.and.arrow.up")
-        })
-        .sheet(isPresented: $shareSheetIsPresented, content: {ActivityViewController(location: controller.geocodeLocationVM)})
+        .navigationBarTitle(Text("Current Location"), displayMode: .inline)
+        .sheet(isPresented: $shareSheetIsPresented) {ActivityViewController(location: self.controller.geocodeLocationVM) }
     }
     
     private func submitButton() {
@@ -63,8 +63,33 @@ struct AddLocationMapView: View {
     private func cancelButton() {
         self.presentationMode.wrappedValue.dismiss()
     }
+    
+    private func viewMenu() -> some View  {
+        Menu() {
+            Button {
+                shareSheetIsPresented.toggle()
+            } label: {
+                Label("Share Location", systemImage: "square.and.arrow.up")
+            }.buttonStyle(.borderless)
+            
+            Button {
+                // add note
+            } label: {
+                Label("Add Note", systemImage: "note.text.badge.plus")
+            }.buttonStyle(.borderless)
+                        
+            Button {
+                // rate
+            } label: {
+                Label("Rate Location", systemImage: "star")
+            }.buttonStyle(.borderless)
+            
+        } label: {
+            Image(systemName: "line.horizontal.3")
+                .tint(Color.cocoaBlue)
+        }
+    }
 }
-
 
 struct MapDetailView_Previews: PreviewProvider {
     static var previews: some View {

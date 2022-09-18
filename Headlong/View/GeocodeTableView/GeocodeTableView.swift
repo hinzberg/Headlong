@@ -9,18 +9,10 @@ struct GeocodeTableView: View {
     @EnvironmentObject  var geocodeRepository : GeocodeLocationRepository
     @State private var searchText = ""
     
-    init() {
-        UINavigationBar.appearance().standardAppearance = CustomNavigationBarAppearance.DefaultAppearance
-        UINavigationBar.appearance().compactAppearance = CustomNavigationBarAppearance.DefaultAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = CustomNavigationBarAppearance.DefaultAppearance
-    }
-    
-    var body: some View {
-        
+    var body: some View
+    {
         VStack {
-            
             NavigationView {
-                
                 List {
                     ForEach(self.geocodeRepository.filledDateGroups, id:\.id) { dateGroup in
                         Section(header: GeocodeTableViewSectionHeader(headlineText: dateGroup.dateDescription) )
@@ -48,30 +40,6 @@ struct GeocodeTableView: View {
                             }
                         }
                     }
-                    /*
-                     ForEach (dateGroup.geoCodeLocationViewModels, id:\.id) { locationVM in
-                     NavigationLink(destination: StoredLocationMapView(geocodeLocationVM: locationVM) ) {
-                     GeocodeLocationTableCellView(locationVM: locationVM)
-                     }
-                     .swipeActions(edge: .trailing , allowsFullSwipe: true) {
-                     Button {
-                     withAnimation {
-                     self.geocodeRepository.delete(locationVM: locationVM)
-                     }
-                     } label: { Label("Delete", systemImage: "trash.fill") }
-                     .tint(.red)
-                     }
-                     
-                     .swipeActions(edge: .leading , allowsFullSwipe: true) {
-                     Button {
-                     print("Navigate")
-                     } label: {
-                     Label("Navigate", systemImage: "map.fill")
-                     }
-                     .tint(Color.cocoaBlue)
-                     }
-                     }
-                     */
                     .listRowSeparator(.hidden)
                 }.listStyle(.plain)
                     .searchable(
@@ -84,7 +52,6 @@ struct GeocodeTableView: View {
                 
                     .navigationBarTitle("Headlong", displayMode: .inline)
                     .navigationTitle("Back")
-                
                     .toolbar {
                         NavigationLink (destination: AddLocationMapView()) {
                             Image(systemName: "plus.circle")

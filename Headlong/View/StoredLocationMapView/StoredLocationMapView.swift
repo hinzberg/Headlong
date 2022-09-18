@@ -43,19 +43,61 @@ struct StoredLocationMapView: View {
             // MapAppearanceController.shared.updateAppearance()
         }
         .edgesIgnoringSafeArea(.top)
-        .navigationBarTitle(Text("Selected Location"), displayMode: .inline)
+        /*
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }, label: { Image(systemName: "arrow.left") } )
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                viewMenu()
+            }
+        }
         .navigationBarBackButtonHidden(true)
-        .navigationBarItems( leading: Button(action : {
-            self.presentationMode.wrappedValue.dismiss()
-        }) {
-            Image(systemName: "arrow.left")
-        })
-        .navigationBarItems( trailing: Button(action : {
-            shareSheetIsPresented.toggle()
-        }) {
-            Image(systemName: "square.and.arrow.up")
-        })
+        .navigationBarTitle(Text("Current Location"), displayMode: .inline)
         .sheet(isPresented: $shareSheetIsPresented, content: {ActivityViewController(location: controller.geocodeLocationVM)})
+        */
+        
+        .navigationBarTitle(Text("Selected Location"), displayMode: .inline)
+                .navigationBarBackButtonHidden(true)
+                .navigationBarItems( leading: Button(action : {
+                    self.presentationMode.wrappedValue.dismiss()
+                }) {
+                    Image(systemName: "arrow.left")
+                })
+                .navigationBarItems( trailing: Button(action : {
+                    shareSheetIsPresented.toggle()
+                }) {
+                    Image(systemName: "square.and.arrow.up")
+                })
+                .sheet(isPresented: $shareSheetIsPresented, content: {ActivityViewController(location: controller.geocodeLocationVM)})
+    }
+    
+    private func viewMenu() -> some View  {
+        Menu() {
+            Button {
+                shareSheetIsPresented.toggle()
+            } label: {
+                Label("Share Location", systemImage: "square.and.arrow.up")
+            }.buttonStyle(.borderless)
+            
+            Button {
+                // add note
+            } label: {
+                Label("Add Note", systemImage: "note.text.badge.plus")
+            }.buttonStyle(.borderless)
+                        
+            Button {
+                // rate
+            } label: {
+                Label("Rate Location", systemImage: "star")
+            }.buttonStyle(.borderless)
+            
+        } label: {
+            Image(systemName: "line.horizontal.3")
+                .tint(Color.cocoaBlue)
+        }
     }
 }
 

@@ -5,6 +5,9 @@ The idea for this app didn't come to me because I was drunk. But I have to admit
 
 ## History
 
+### 2022-09-18
+- Toolbar Menu added for AddLocationMapView and StoredLocationMapView
+
 ### 2022-09-12
 - Updated Swift Packages
 - Added Share Prefix and Suffix text in settings

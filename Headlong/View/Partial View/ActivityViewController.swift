@@ -8,7 +8,7 @@ struct ActivityViewController: UIViewControllerRepresentable
 {
     typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
     
-    let location : GeocodeLocationViewModel
+    var location : GeocodeLocationViewModel
     let applicationActivities: [UIActivity]? = nil
     let excludedActivityTypes: [UIActivity.ActivityType] = [.openInIBooks, .saveToCameraRoll, .airDrop]
     let callback: Callback? = nil
@@ -19,6 +19,20 @@ struct ActivityViewController: UIViewControllerRepresentable
         let controller = UIActivityViewController( activityItems: [locationText], applicationActivities: applicationActivities)
         controller.excludedActivityTypes = excludedActivityTypes
         controller.completionWithItemsHandler = callback
+        return controller
+    }
+    
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
+        // nothing to do here
+    }
+}
+
+struct TestActivityViewController: UIViewControllerRepresentable
+{
+    func makeUIViewController(context: Context) -> UIActivityViewController
+    {
+        let locationText = "Hello World"
+        let controller = UIActivityViewController( activityItems: [locationText], applicationActivities: nil)
         return controller
     }
     
