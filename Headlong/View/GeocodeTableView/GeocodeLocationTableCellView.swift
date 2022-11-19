@@ -10,33 +10,36 @@ struct GeocodeLocationTableCellView: View {
     public var locationVM : GeocodeLocationViewModel
     
     var body: some View {
-        VStack {
-            
-            // Date
-            HStack {
-                Text(locationVM.dateFormatted)
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                Spacer()
+        
+        HStack {
+            VStack {
+                // Date
+                HStack {
+                    Text(locationVM.dateFormatted)
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                    Spacer()
+                }
+                // Street
+                HStack {
+                    Text(locationVM.name)
+                        .font(.subheadline)
+                        .foregroundColor(.primary)
+                    Spacer()
+                }
+                // Zip, City, Country
+                HStack {
+                    Text(locationVM.zipCodeWithCityAndCountry)
+                        .font(.subheadline)
+                        .foregroundColor(.primary)
+                    Spacer()
+                }
             }
-            
-            // Street
-            HStack {
-                Text(locationVM.name)
-                    .font(.subheadline)
-                    .foregroundColor(.primary)
-                Spacer()
-            }
-            
-            // Zip, City, Country
-            HStack {
-                Text(locationVM.zipCodeWithCityAndCountry)
-                    .font(.subheadline)
-                    .foregroundColor(.primary)
-                Spacer()
-            }
-            HorizontalColorDivider(height: 3, color: Color.cocoaBlue)
+            Image(systemName: "chevron.right")
+                .foregroundColor(.secondary)
         }
+        .padding()
+        .ShadowPanel()
     }
 }
 

@@ -18,9 +18,14 @@ struct GeocodeTableView: View {
                         Section(header: GeocodeTableViewSectionHeader(headlineText: dateGroup.dateDescription) )
                         {
                             ForEach (dateGroup.geoCodeLocationViewModels, id:\.id) { locationVM in
-                                NavigationLink(destination: StoredLocationMapView(geocodeLocationVM: locationVM) ) {
+                                
+                                ZStack { // With this Zstack you can hide the disclosure indicator
+                                    NavigationLink(destination: StoredLocationMapView(geocodeLocationVM: locationVM) ) {
+                                        EmptyView()
+                                    }
                                     GeocodeLocationTableCellView(locationVM: locationVM)
                                 }
+                                // The Swipe actions
                                 .swipeActions(edge: .trailing , allowsFullSwipe: true) {
                                     Button {
                                         withAnimation {

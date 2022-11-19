@@ -26,6 +26,8 @@
 		3F94B7E028CF1DEB002475D1 /* Hinzberg-Foundation in Frameworks */ = {isa = PBXBuildFile; productRef = 3F94B7DF28CF1DEB002475D1 /* Hinzberg-Foundation */; };
 		3F94B7E328CF1DFF002475D1 /* Hinzberg-SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3F94B7E228CF1DFF002475D1 /* Hinzberg-SwiftUI */; };
 		3F94B7E828CF3064002475D1 /* MapAppearanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F94B7E728CF3064002475D1 /* MapAppearanceController.swift */; };
+		3FCCC93529294AA500CF9678 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCCC93429294AA500CF9678 /* Color+Extension.swift */; };
+		3FCCC93729294B0B00CF9678 /* ShadowPanelModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCCC93629294B0B00CF9678 /* ShadowPanelModifier.swift */; };
 		3FD398822819D18B00525AB7 /* CDGeocodeLocation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD398802819D18B00525AB7 /* CDGeocodeLocation+CoreDataClass.swift */; };
 		3FD398832819D18B00525AB7 /* CDGeocodeLocation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD398812819D18B00525AB7 /* CDGeocodeLocation+CoreDataProperties.swift */; };
 		3FD398852819D1FD00525AB7 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD398842819D1FD00525AB7 /* BaseModel.swift */; };
@@ -84,6 +86,8 @@
 		3F70AAE027581AE8008EC53D /* MapAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotationView.swift; sourceTree = "<group>"; };
 		3F82F653272C647A00D0E7E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3F94B7E728CF3064002475D1 /* MapAppearanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAppearanceController.swift; sourceTree = "<group>"; };
+		3FCCC93429294AA500CF9678 /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		3FCCC93629294B0B00CF9678 /* ShadowPanelModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowPanelModifier.swift; sourceTree = "<group>"; };
 		3FD3987A2819CD4D00525AB7 /* HeadlongDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HeadlongDataModel.xcdatamodel; sourceTree = "<group>"; };
 		3FD398802819D18B00525AB7 /* CDGeocodeLocation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDGeocodeLocation+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3FD398812819D18B00525AB7 /* CDGeocodeLocation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDGeocodeLocation+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -277,8 +281,10 @@
 		3FEAE9D3272D85720042BAF8 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
+				3FCCC93429294AA500CF9678 /* Color+Extension.swift */,
 				3FF63735285E211C00FC1C11 /* CustomNavigationBarAppearance.swift */,
 				3FEAE9D4272D8C4F0042BAF8 /* ButtonStyles.swift */,
+				3FCCC93629294B0B00CF9678 /* ShadowPanelModifier.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -439,9 +445,11 @@
 				3F70AAE127581AE8008EC53D /* MapAnnotationView.swift in Sources */,
 				3FDA72FC285E4E9500A91651 /* Calendar+Extension.swift in Sources */,
 				3F22961F27187705008BF92C /* GeocodeTableView.swift in Sources */,
+				3FCCC93529294AA500CF9678 /* Color+Extension.swift in Sources */,
 				3FD398882819D88B00525AB7 /* HeadlongDataModel.xcdatamodeld in Sources */,
 				3FD398872819D2E100525AB7 /* CoreDataManager.swift in Sources */,
 				3FD398832819D18B00525AB7 /* CDGeocodeLocation+CoreDataProperties.swift in Sources */,
+				3FCCC93729294B0B00CF9678 /* ShadowPanelModifier.swift in Sources */,
 				3FEAE9D0272D3DE30042BAF8 /* GeocodeLocationViewModel.swift in Sources */,
 				3FD91B3C272C6BEC00879F53 /* AddLocationMapViewController.swift in Sources */,
 				3F229647271877A8008BF92C /* AddLocationMapView.swift in Sources */,
@@ -617,14 +625,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Headlong/Preview Content\"";
-				DEVELOPMENT_TEAM = Q4JYUA6UF4;
+				DEVELOPMENT_TEAM = 689286JZWP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Headlong/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "This is a text (always)";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This is a text (when in use)";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -638,6 +649,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.cocoa-coding.Headlong";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -649,14 +661,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Headlong/Preview Content\"";
-				DEVELOPMENT_TEAM = Q4JYUA6UF4;
+				DEVELOPMENT_TEAM = 689286JZWP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Headlong/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "This is a text (always)";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This is a text (when in use)";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -670,6 +685,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.cocoa-coding.Headlong";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
