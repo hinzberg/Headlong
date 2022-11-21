@@ -77,13 +77,10 @@ public class GeocodeLocationRepository : NSObject, ObservableObject, NSFetchedRe
                 
         // This week
         let startOfThisWeek = Date().startOfWeek
-        var endOfThisWeek =  Calendar.current.date(byAdding: .day, value: -1, to: todayStart)
+        var endOfThisWeek =  Calendar.current.date(byAdding: .day, value: 7, to: startOfThisWeek!)
         endOfThisWeek =  Calendar.current.date(byAdding: .second, value: -1, to: endOfThisWeek!)
         dateVM = DateGroup(start: startOfThisWeek!, end: endOfThisWeek!, description: "This Week")
-        if endOfThisWeek! > startOfThisWeek! {
-            // Will happen if today is the first day of the week
-            dateGroups.append(dateVM)
-        }
+        dateGroups.append(dateVM)
         
         // Last Week
         let startOfLastWeek = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: startOfThisWeek!)
@@ -128,7 +125,7 @@ public class GeocodeLocationRepository : NSObject, ObservableObject, NSFetchedRe
         dateGroups.append(dateVM)
 
         for d in dateGroups {
-            print("\(d.startDateTimeFormated) \(d.endDateTimeFormated) \(d.dateDescription)")
+            print("\(d.startDateTimeFormated) to \(d.endDateTimeFormated) \(d.dateDescription)")
         }
     }
     
@@ -137,8 +134,9 @@ public class GeocodeLocationRepository : NSObject, ObservableObject, NSFetchedRe
         for dateGroup in dateGroups {
             dateGroup.geoCodeLocationViewModels.removeAll()
             for model in geoCodeLocationViewModels {
-                print(model.getShortDescription())
+                print(dateGroup.dateDescription)
                 if model.date >= dateGroup.startDate && model.date <= dateGroup.endDate {
+                    print(model.getShortDescription())
                     dateGroup.geoCodeLocationViewModels.append(model)
                 }
             }

@@ -5,28 +5,31 @@
 
 import SwiftUI
 
-public struct ShadowPanelModifier : ViewModifier {
+public struct ShadowPanelModifier : ViewModifier
+{
     @Environment(\.colorScheme) var colorScheme
     
-    public var shadowColorUpper : Color = Color(hex: "#FFFFFF")
+    private var strokeWidth : CGFloat = 1
     
-    public var shadowColorLower : Color = Color(hex: "#AEAEC0")
-    public var shadowColorLowerDark : Color = Color(hex: "#515130")
-        
-    public var backgroundColor : Color =  Color(hex: "#F0F0F3")
-    public var backgroundColorDark : Color =  Color(hex: "#202020")
+    private var shadowColor : Color {
+        return colorScheme == .dark ? Color(hex: "#000000") : Color(hex: "#AEAEC0")
+    }
     
-    public var strokeColor : Color = Color.red
-    public var strokeWidth : CGFloat = 1
+    private var backgroundColor : Color {
+        return colorScheme == .dark ? Color(hex: "#404040") : Color(hex: "#F0F0F3")
+    }
     
+    private var strokeColor : Color {
+        return colorScheme == .dark ? Color.black : Color.white
+    }
+           
     public func body(content : Content) -> some View {
         content
             .background(
                 Rectangle()
                     .cornerRadius(10)
-                    .foregroundColor(colorScheme == .dark ? backgroundColorDark : backgroundColor)
-                    //.shadow(color: shadowColorUpper, radius: 5, x: -5, y:-5)
-                    .shadow(color: colorScheme == .dark ? shadowColorLowerDark : shadowColorLower, radius: 5, x: 5, y:5)
+                    .foregroundColor( backgroundColor)
+                    .shadow(color: shadowColor, radius: 3, x: 3, y:3)
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
                             .stroke( strokeColor, lineWidth: strokeWidth)
@@ -36,16 +39,9 @@ public struct ShadowPanelModifier : ViewModifier {
 }
 
 extension View {
-    func ShadowPanel(
-        strokeColor : Color = Color.white,
-        strokeWidth : CGFloat = 1)
-    
-    -> some View {
+    func ShadowPanel()-> some View {
         modifier(
-            ShadowPanelModifier(
-                strokeColor: strokeColor,
-                strokeWidth: strokeWidth
-            )
+            ShadowPanelModifier()
         )
     }
 }

@@ -19,10 +19,10 @@ struct GeocodeTableViewSectionHeader: View
                 Text(headlineText)
                     .font(.title3.bold())
                     .foregroundColor(foreColor)
-                    .padding(EdgeInsets(top: 0, leading: 15, bottom: 5, trailing: 0))
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 Spacer()
         }
-        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+        //.listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
         .background(backColor)
     }
 }

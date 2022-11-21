@@ -6,11 +6,9 @@ import SwiftUI
 import Hinzberg_SwiftUI
 
 struct GeocodeLocationTableCellView: View {
-    
     public var locationVM : GeocodeLocationViewModel
-    
+  
     var body: some View {
-        
         HStack {
             VStack {
                 // Date

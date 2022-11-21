@@ -30,12 +30,12 @@ struct StoredLocationMapView: View {
             // ButtonStack
             HStack {
                 Button("Navigate To", action: self.controller.NavigateTo)
-                    .buttonStyle(SubmitButtonStyle())
-                    .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 2) )
+                    .buttonStyle(ShadowButtonStyle())
+                    .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0) )
                 
                 Button("AR View", action: self.controller.NavigateTo)
-                    .buttonStyle(SubmitButtonStyle())
-                    .padding(EdgeInsets(top: 0, leading: 2, bottom: 0, trailing: 10) )
+                    .buttonStyle(ShadowButtonStyle())
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5) )
             }
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
         }

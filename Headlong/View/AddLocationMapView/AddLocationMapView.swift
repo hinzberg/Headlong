@@ -27,12 +27,12 @@ struct AddLocationMapView: View {
             // ButtonStack
             HStack {
                 Button("Save", action: self.submitButton )
-                    .buttonStyle(SubmitButtonStyle())
-                    .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 2) )
+                    .buttonStyle(SubmitShadowButtonStyle())
+                    .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0) )
                 
                 Button("Cancel", action: self.cancelButton )
-                    .buttonStyle(CancelButtonStyle())
-                    .padding(EdgeInsets(top: 0, leading: 2, bottom: 0, trailing: 10) )
+                    .buttonStyle(CancelShadowButtonStyle())
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5) )
             }
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
         }

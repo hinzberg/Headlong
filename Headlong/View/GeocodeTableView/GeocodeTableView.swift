@@ -18,7 +18,6 @@ struct GeocodeTableView: View {
                         Section(header: GeocodeTableViewSectionHeader(headlineText: dateGroup.dateDescription) )
                         {
                             ForEach (dateGroup.geoCodeLocationViewModels, id:\.id) { locationVM in
-                                
                                 ZStack { // With this Zstack you can hide the disclosure indicator
                                     NavigationLink(destination: StoredLocationMapView(geocodeLocationVM: locationVM) ) {
                                         EmptyView()
@@ -46,29 +45,34 @@ struct GeocodeTableView: View {
                         }
                     }
                     .listRowSeparator(.hidden)
-                }.listStyle(.plain)
-                    .searchable(
-                        text: $searchText,
-                        placement: .navigationBarDrawer(displayMode: .always),
-                        prompt: "Search ...")
-                    .onChange(of: searchText) { searchText in
-                        print(searchText)
+                }
+                .listStyle(.plain)
+                .searchable(
+                    text: $searchText,
+                    placement: .navigationBarDrawer(displayMode: .always),
+                    prompt: "Search ...")
+                .onChange(of: searchText) { searchText in
+                    print(searchText)
+                }
+                .navigationBarTitle("Headlong", displayMode: .inline)
+                .navigationTitle("Back")
+                .toolbar {
+                    NavigationLink (destination: AddLocationMapView()) {
+                        Image(systemName: "plus.circle")
                     }
-                
-                    .navigationBarTitle("Headlong", displayMode: .inline)
-                    .navigationTitle("Back")
-                    .toolbar {
-                        NavigationLink (destination: AddLocationMapView()) {
-                            Image(systemName: "plus.circle")
-                        }
-                    }
+                }
             }
         }.ignoresSafeArea()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
+    
     static var previews: some View {
+        let viewContext = CoreDataManager.shared.persistentContainer.viewContext
+        let geocodeRepository = GeocodeLocationRepository(context: viewContext)
+        
         GeocodeTableView()
+            .environmentObject(geocodeRepository)
     }
 }
