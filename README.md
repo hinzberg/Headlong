@@ -5,6 +5,9 @@ The idea for this app didn't come to me because I was drunk. But I have to admit
 
 ## History
 
+### 2025-01-04
+- Started SwiftData migration
+
 ### 2022-11-19
 - Added ShadowPanelModifier
 

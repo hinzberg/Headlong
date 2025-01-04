@@ -6,54 +6,70 @@ import SwiftUI
 
 struct GeocodeTableView: View {
     
-    @EnvironmentObject  var geocodeRepository : GeocodeLocationRepository
+    @EnvironmentObject  var geocodeRepository : GeocodeLocationRepository // alt
+    @Environment(\.modelContext) private var modelContext
+    
+    @State private var geolocationRepositoy =  GeolocationRepository.shared
     @State private var searchText = ""
     
     var body: some View
     {
         VStack {
             NavigationView {
+                    
                 List {
-                    ForEach(self.geocodeRepository.filledDateGroups, id:\.id) { dateGroup in
-                        Section(header: GeocodeTableViewSectionHeader(headlineText: dateGroup.dateDescription) )
-                        {
-                            ForEach (dateGroup.geoCodeLocationViewModels, id:\.id) { locationVM in
-                                ZStack { // With this Zstack you can hide the disclosure indicator
-                                    NavigationLink(destination: StoredLocationMapView(geocodeLocationVM: locationVM) ) {
-                                        EmptyView()
-                                    }
-                                    GeocodeLocationTableCellView(locationVM: locationVM)
-                                }
-                                // The Swipe actions
-                                .swipeActions(edge: .trailing , allowsFullSwipe: true) {
-                                    Button {
-                                        withAnimation {
-                                            self.geocodeRepository.delete(locationVM: locationVM)
+                    ForEach (self.geolocationRepositoy.fetchLocations(), id:\.id) { location in
+                        HStack {
+                            Text("Hallo")
+                            Text("\(location.latitude)")
+                            Text("\(location.latitude)")
+                        }
+                    }
+                }
+                                
+                /*
+                List {
+                        ForEach(self.geocodeRepository.filledDateGroups, id:\.id) { dateGroup in
+                            Section(header: GeocodeTableViewSectionHeader(headlineText: dateGroup.dateDescription) )
+                            {
+                                ForEach (dateGroup.geoCodeLocationViewModels, id:\.id) { locationVM in
+                                    ZStack { // With this Zstack you can hide the disclosure indicator
+                                        NavigationLink(destination: StoredLocationMapView(geocodeLocationVM: locationVM) ) {
+                                            EmptyView()
                                         }
-                                    } label: { Label("Delete", systemImage: "trash.fill") }
-                                        .tint(.red)
-                                }
-                                .swipeActions(edge: .leading , allowsFullSwipe: true) {
-                                    Button {
-                                        print("Navigate")
-                                    } label: {
-                                        Label("Navigate", systemImage: "map.fill")
+                                        GeocodeLocationTableCellView(locationVM: locationVM)
                                     }
-                                    .tint(Color.cocoaBlue)
+                                    // The Swipe actions
+                                    .swipeActions(edge: .trailing , allowsFullSwipe: true) {
+                                        Button {
+                                            withAnimation {
+                                                self.geocodeRepository.delete(locationVM: locationVM)
+                                            }
+                                        } label: { Label("Delete", systemImage: "trash.fill") }
+                                            .tint(.red)
+                                    }
+                                    .swipeActions(edge: .leading , allowsFullSwipe: true) {
+                                        Button {
+                                            print("Navigate")
+                                        } label: {
+                                            Label("Navigate", systemImage: "map.fill")
+                                        }
+                                        .tint(Color.cocoaBlue)
+                                    }
                                 }
                             }
                         }
+                        .listRowSeparator(.hidden)
                     }
-                    .listRowSeparator(.hidden)
-                }
-                .listStyle(.plain)
-                .searchable(
-                    text: $searchText,
-                    placement: .navigationBarDrawer(displayMode: .always),
-                    prompt: "Search ...")
-                .onChange(of: searchText) { searchText in
-                    print(searchText)
-                }
+                    */
+                    .listStyle(.plain)
+                    .searchable(
+                        text: $searchText,
+                        placement: .navigationBarDrawer(displayMode: .always),
+                        prompt: "Search ...")
+                    .onChange(of: searchText) { searchText in
+                        print(searchText)
+                    }
                 .navigationBarTitle("Headlong", displayMode: .inline)
                 .navigationTitle("Back")
                 .toolbar {

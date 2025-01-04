@@ -24,8 +24,8 @@ struct StoredLocationMapView: View {
                 MapAnnotation(coordinate: item.coordinate) { MapAnnotationView() }
             }
             // LocationView
-            GeocodeLocationView(locationVM: $controller.geocodeLocationVM)
-                .padding(EdgeInsets(top: 2, leading: 10, bottom: 0, trailing: 10) )
+           // GeocodeLocationView(locationVM: $controller.geocodeLocationVM)
+           //     .padding(EdgeInsets(top: 2, leading: 10, bottom: 0, trailing: 10) )
             
             // ButtonStack
             HStack {
@@ -71,7 +71,7 @@ struct StoredLocationMapView: View {
                 }) {
                     Image(systemName: "square.and.arrow.up")
                 })
-                .sheet(isPresented: $shareSheetIsPresented, content: {ActivityViewController(location: controller.geocodeLocationVM)})
+              //  .sheet(isPresented: $shareSheetIsPresented, content: {ActivityViewController(location: controller.geocodeLocationVM)})
     }
     
     private func viewMenu() -> some View  {

@@ -3,22 +3,25 @@
 //  Created by Holger Hinzberg on 14.10.21.
 
 import SwiftUI
+import SwiftData
 import Hinzberg_SwiftUI
 
 @main
 struct HeadlongApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+   // var moc = ApplicationModelContainer.create()
     
     var body: some Scene {
         WindowGroup {
-            let viewContext = CoreDataManager.shared.persistentContainer.viewContext
-            let geocodeRepository = GeocodeLocationRepository(context: viewContext)
+           // let viewContext = CoreDataManager.shared.persistentContainer.viewContext
+            //let geocodeRepository = GeocodeLocationRepository(context: viewContext)
            
             MainView()
-                .environmentObject(geocodeRepository)
+              //  .environmentObject(GeolocationRepository(modelContext: moc.mainContext ))
                 // .environment(\.managedObjectContext, viewContext)
         }
+      // .modelContainer(moc)
     }
 }
 

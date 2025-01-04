@@ -9,12 +9,16 @@ import MapKit
 public class AddLocationMapViewController : NSObject, CLLocationManagerDelegate, ObservableObject {
     
     @Published var region : MKCoordinateRegion
-    @Published var geocodeLocationVM : GeocodeLocationViewModel
     var locationManager: CLLocationManager?
-    
+  
+    // All the information aboutt the current location
+    private var currentCLLocation : CLLocation?
+    private var currentCLPlacemark : CLPlacemark?
+    @Published var currentLocation : Geolocation
+        
     public override init()
     {
-        self.geocodeLocationVM = GeocodeLocationViewModel.GetSample()
+        self.currentLocation = Geolocation.GetSample()
         self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
         
         super.init()
@@ -55,9 +59,9 @@ public class AddLocationMapViewController : NSObject, CLLocationManagerDelegate,
     
     private func reverseGeoCoding(location : CLLocation)
     {
-        let loca = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        self.currentCLLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         
-        loca.geocode { placemark, error in
+        self.currentCLLocation!.geocode { placemark, error in
             if let error = error as? CLError
             {
                 print("CLError:", error)
@@ -65,11 +69,12 @@ public class AddLocationMapViewController : NSObject, CLLocationManagerDelegate,
             }
             else if let placemark = placemark?.first
             {
-                let geoLocation = GeocodeLocationViewModel(placemark: placemark, location: loca )
+                self.currentCLPlacemark = placemark
+
                 DispatchQueue.main.async
                 {
-                    //geoLocation.debugProperties()
-                    self.geocodeLocationVM = geoLocation
+                    let geoLocation = Geolocation(clPlacemark: self.currentCLPlacemark!, clLocation: self.currentCLLocation!)
+                    self.currentLocation = geoLocation
                 }
             }
         }

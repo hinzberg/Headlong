@@ -8,20 +8,22 @@ import MapKit
 struct AddLocationMapView: View {
     
     @AppStorage("mapType") private var mapType = "Standard"
-    @EnvironmentObject  var geocodeRepository : GeocodeLocationRepository
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @ObservedObject  var controller = AddLocationMapViewController()
-    
+    @ObservedObject  var mapController = AddLocationMapViewController()
+
+    @Environment(\.modelContext) private var modelContext
+    @State private var geolocationRepositoy =  GeolocationRepository.shared
+   
     @State var shareSheetIsPresented = false
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
-    
+        
     var body: some View {
         VStack {
             // Map
             Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(.follow))
             
             // LocationView
-            GeocodeLocationView(locationVM: $controller.geocodeLocationVM)
+            GeolocationInfoView(geolocation: $mapController.currentLocation)
                 .padding(EdgeInsets(top: 2, leading: 10, bottom: 0, trailing: 10) )
             
             // ButtonStack
@@ -52,11 +54,20 @@ struct AddLocationMapView: View {
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarTitle(Text("Current Location"), displayMode: .inline)
-        .sheet(isPresented: $shareSheetIsPresented) {ActivityViewController(location: self.controller.geocodeLocationVM) }
+        .sheet(isPresented: $shareSheetIsPresented) {
+            ActivityViewController(location: self.mapController.currentLocation)
+        }
     }
     
+    // MARK: Submit Button to save a new location
+    
     private func submitButton() {
-        self.geocodeRepository.add(locationVM: self.controller.geocodeLocationVM)
+        var geoLocation = self.mapController.currentLocation
+        do {
+            try self.geolocationRepositoy.addLocation(location: geoLocation)
+        } catch {
+            print("Error adding Location: \(error)")
+        }
         self.presentationMode.wrappedValue.dismiss()
     }
     
@@ -77,7 +88,7 @@ struct AddLocationMapView: View {
             } label: {
                 Label("Add Note", systemImage: "note.text.badge.plus")
             }.buttonStyle(.borderless)
-                        
+            
             Button {
                 // rate
             } label: {

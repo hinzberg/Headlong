@@ -4,10 +4,10 @@
 
 import SwiftUI
 
-struct GeocodeLocationView: View {
+struct GeolocationInfoView: View {
     
     @Environment(\.colorScheme) var colorScheme: ColorScheme
-    @Binding var locationVM : GeocodeLocationViewModel
+    @Binding var geolocation : Geolocation
     
     var body: some View {
         
@@ -16,32 +16,32 @@ struct GeocodeLocationView: View {
                 Text("Latitude")
                     .font(.body)
                 Spacer()
-                Text(locationVM.latitude).font(.body) }
+                Text("\(geolocation.latitude)").font(.body) }
             .padding(EdgeInsets(top: 5, leading: 5, bottom: 1, trailing: 5))
             
             HStack {
                 Text("Longitude")
                     .font(.body)
                 Spacer()
-                Text(locationVM.longitude).font(.body) }
+                Text("\(geolocation.longitude)").font(.body) }
             .padding(EdgeInsets(top: 0, leading: 5, bottom: 1, trailing: 5))
             
             HStack {
                 Text("Address")
                     .font(.body)
                 Spacer()
-                Text(locationVM.address).font(.body) }
+                Text("\(geolocation.address1)").font(.body) }
             .padding(EdgeInsets(top: 0, leading: 5, bottom: 1, trailing: 5))
             
             HStack {
                 Spacer()
-                Text(locationVM.zipCodeWithCity)
+                Text("\(geolocation.zipCodeWithCity)")
                 .font(.body) }
             .padding(EdgeInsets(top: 0, leading: 5, bottom: 1, trailing: 5))
             
             HStack {
                 Spacer()
-                Text(locationVM.country)
+                Text("\(geolocation.country)")
                 .font(.body) }
             .padding(EdgeInsets(top: 0, leading: 5, bottom: 5, trailing: 5))
         }//.background(colorScheme == .dark ? Color.yellow : Color.red)
@@ -50,7 +50,7 @@ struct GeocodeLocationView: View {
 
 struct GeocodeLocationView_Previews: PreviewProvider {
     static var previews: some View {
-        GeocodeLocationView(locationVM: .constant(GeocodeLocationViewModel.GetSample()))
+        GeolocationInfoView(geolocation: .constant(Geolocation.GetSample()))
             //.preferredColorScheme(.dark)
     }
 }

@@ -31,11 +31,13 @@ public class GeocodeLocationRepository : NSObject, ObservableObject, NSFetchedRe
         super.init()
         self.fetchedResultController.delegate = self
         
+        /*
         self.executeFetch()
         
         self.createDateGroups()
         self.fillDateGroups()
         self.setFilledDateGroups()
+        */
     }
     
     public func executeFetch()

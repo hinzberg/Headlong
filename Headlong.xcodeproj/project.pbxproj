@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -39,7 +39,7 @@
 		3FDA72FE285E4EBC00A91651 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDA72FD285E4EBC00A91651 /* Date+Extension.swift */; };
 		3FEAE9CD272D3B060042BAF8 /* CLLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEAE9CC272D3B060042BAF8 /* CLLocation+Extension.swift */; };
 		3FEAE9D0272D3DE30042BAF8 /* GeocodeLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEAE9CF272D3DE30042BAF8 /* GeocodeLocationViewModel.swift */; };
-		3FEAE9D2272D4C6C0042BAF8 /* GeocodeLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEAE9D1272D4C6C0042BAF8 /* GeocodeLocationView.swift */; };
+		3FEAE9D2272D4C6C0042BAF8 /* GeolocationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEAE9D1272D4C6C0042BAF8 /* GeolocationInfoView.swift */; };
 		3FEAE9D5272D8C4F0042BAF8 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEAE9D4272D8C4F0042BAF8 /* ButtonStyles.swift */; };
 		3FEC962F283EBD2A00D8CE96 /* StoredLocationMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEC962E283EBD2A00D8CE96 /* StoredLocationMapViewController.swift */; };
 		3FEC9631283F877800D8CE96 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEC9630283F877800D8CE96 /* ActivityViewController.swift */; };
@@ -100,13 +100,17 @@
 		3FDA72FD285E4EBC00A91651 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		3FEAE9CC272D3B060042BAF8 /* CLLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extension.swift"; sourceTree = "<group>"; };
 		3FEAE9CF272D3DE30042BAF8 /* GeocodeLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeLocationViewModel.swift; sourceTree = "<group>"; };
-		3FEAE9D1272D4C6C0042BAF8 /* GeocodeLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeLocationView.swift; sourceTree = "<group>"; };
+		3FEAE9D1272D4C6C0042BAF8 /* GeolocationInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeolocationInfoView.swift; sourceTree = "<group>"; };
 		3FEAE9D4272D8C4F0042BAF8 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		3FEC962E283EBD2A00D8CE96 /* StoredLocationMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredLocationMapViewController.swift; sourceTree = "<group>"; };
 		3FEC9630283F877800D8CE96 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		3FF63735285E211C00FC1C11 /* CustomNavigationBarAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBarAppearance.swift; sourceTree = "<group>"; };
 		3FF63737285E2ADD00FC1C11 /* DateGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateGroup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		3FBA34322D29288300F2D96D /* SwiftData */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SwiftData; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		3F22961627187705008BF92C /* Frameworks */ = {
@@ -159,6 +163,7 @@
 		3F22961B27187705008BF92C /* Headlong */ = {
 			isa = PBXGroup;
 			children = (
+				3FBA34322D29288300F2D96D /* SwiftData */,
 				3F22961C27187705008BF92C /* HeadlongApp.swift */,
 				3F94B7E628CF3042002475D1 /* Classes */,
 				3F82F653272C647A00D0E7E6 /* Info.plist */,
@@ -214,7 +219,7 @@
 		3F70AAE227581DD1008EC53D /* Partial View */ = {
 			isa = PBXGroup;
 			children = (
-				3FEAE9D1272D4C6C0042BAF8 /* GeocodeLocationView.swift */,
+				3FEAE9D1272D4C6C0042BAF8 /* GeolocationInfoView.swift */,
 				3F70AAE027581AE8008EC53D /* MapAnnotationView.swift */,
 				3FEC9630283F877800D8CE96 /* ActivityViewController.swift */,
 			);
@@ -317,6 +322,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				3FBA34322D29288300F2D96D /* SwiftData */,
+			);
 			name = Headlong;
 			packageProductDependencies = (
 				3F94B7DF28CF1DEB002475D1 /* Hinzberg-Foundation */,
@@ -370,7 +378,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1620;
 				ORGANIZATIONNAME = "Holger Hinzberg";
 				TargetAttributes = {
 					3F22961827187705008BF92C = {
@@ -468,7 +476,7 @@
 				3FD398822819D18B00525AB7 /* CDGeocodeLocation+CoreDataClass.swift in Sources */,
 				3F70AAD92757CC29008EC53D /* SettingsView.swift in Sources */,
 				3F70AADB2758126D008EC53D /* StoredLocationMapView.swift in Sources */,
-				3FEAE9D2272D4C6C0042BAF8 /* GeocodeLocationView.swift in Sources */,
+				3FEAE9D2272D4C6C0042BAF8 /* GeolocationInfoView.swift in Sources */,
 				3F70AADD2758189E008EC53D /* MapAnnotatedItem.swift in Sources */,
 				3FEAE9CD272D3B060042BAF8 /* CLLocation+Extension.swift in Sources */,
 				3FEC9631283F877800D8CE96 /* ActivityViewController.swift in Sources */,
@@ -545,6 +553,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -559,7 +568,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -606,6 +615,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -614,7 +624,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -645,13 +655,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.cocoa-coding.Headlong";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.cocoa-coding.HeadlongApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -681,13 +691,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.cocoa-coding.Headlong";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.cocoa-coding.HeadlongApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -699,13 +709,12 @@
 		3F22964127187706008BF92C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q4JYUA6UF4;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -724,13 +733,12 @@
 		3F22964227187706008BF92C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q4JYUA6UF4;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -749,11 +757,11 @@
 		3F22964427187706008BF92C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q4JYUA6UF4;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -772,11 +780,11 @@
 		3F22964527187706008BF92C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q4JYUA6UF4;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
