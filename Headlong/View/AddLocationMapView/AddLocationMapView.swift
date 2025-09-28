@@ -10,13 +10,13 @@ struct AddLocationMapView: View {
     @AppStorage("mapType") private var mapType = "Standard"
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject  var mapController = AddLocationMapViewController()
-
+    
     @Environment(\.modelContext) private var modelContext
     @State private var geolocationRepositoy =  GeolocationRepository.shared
-   
+    
     @State var shareSheetIsPresented = false
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
-        
+    
     var body: some View {
         VStack {
             // Map
@@ -28,13 +28,25 @@ struct AddLocationMapView: View {
             
             // ButtonStack
             HStack {
-                Button("Save", action: self.submitButton )
-                    .buttonStyle(SubmitShadowButtonStyle())
-                    .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0) )
+                Button() {
+                    self.submitButton()
+                } label: {
+                    Text("Save")
+                        .frame(width:80)
+                }
+                .buttonStyle(.glass)
+                .tint(.blue)
+                .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0) )
                 
-                Button("Cancel", action: self.cancelButton )
-                    .buttonStyle(CancelShadowButtonStyle())
-                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5) )
+                Button() {
+                    self.cancelButton()
+                } label: {
+                    Text("Cancel")
+                        .frame(width:80)
+                }
+                .buttonStyle(.glass)
+                .tint(.red)
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5) )
             }
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
         }
