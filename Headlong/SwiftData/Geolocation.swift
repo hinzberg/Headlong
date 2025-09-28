@@ -2,7 +2,6 @@
 //  Headlong
 //  Created by Holger Hinzberg on 04.01.25.
 //  Copyright © 2025 Holger Hinzberg. All rights reserved.
-
 // This is the Datamodel class for storing the locations with SwiftData
 
 import Foundation
@@ -31,12 +30,17 @@ public class Geolocation {
     public var note: String = ""
     public var rating:Int?
     
-    var  zipCodeWithCity : String {
-        let city : String = self.city ?? ""
-        let zip : String = self.zipCode ?? ""
-        let value = zip + " " + city
-        return value.trimmingCharacters(in: .whitespacesAndNewlines)
-    }
+    // These properties do not need to be saved
+    // These are for display only
+    
+    @Transient
+    public var addressLine1 : String = ""
+    @Transient
+    public var addressLine2 : String = ""
+    @Transient
+    public var addressLine3 : String = ""
+    @Transient
+    public var zipCodeWithCity : String = ""
     
     init() {
         self.id = UUID()
@@ -60,6 +64,42 @@ public class Geolocation {
         self.regionIdentifier = clPlacemark.region?.identifier ?? ""
         self.timezone = clPlacemark.timeZone?.identifier ?? ""
         self.date = Date()
+        self.SetAddressLines()
+    }
+    
+    private func SetAddressLines()
+    {
+        var lines = [String]()
+        
+        if ( !isNilOrEmpty(self.address1) ){
+            lines.append(self.address1!)
+        }
+        
+        if (!isNilOrEmpty(self.city))
+        {
+            let city : String = self.city ?? ""
+            let zip : String = self.zipCode ?? ""
+            var value = zip + " " + city
+            value =  value.trimmingCharacters(in: .whitespacesAndNewlines)
+            lines.append(value)
+            self.zipCodeWithCity = value
+        }
+        
+        if (!isNilOrEmpty(self.country)){
+            lines.append(self.country!)
+        }
+        
+        if (lines.count > 0) {
+            self.addressLine1 = lines[0]
+        }
+        
+        if (lines.count > 1) {
+            self.addressLine2 = lines[1]
+        }
+        
+        if (lines.count > 2) {
+            self.addressLine3 = lines[2]
+        }
     }
     
     public static func GetSample() -> Geolocation
@@ -79,6 +119,7 @@ public class Geolocation {
         geoLocation.isoCountryCode  = "US"
         geoLocation.regionIdentifier = "<+37.33213110,-122.02990105> radius 279.38"
         geoLocation.timezone = "America/Los_Angeles"
+        geoLocation.SetAddressLines()
         return geoLocation
     }
     

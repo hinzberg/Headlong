@@ -20,35 +20,40 @@ struct AddLocationMapView: View {
     var body: some View {
         VStack {
             // Map
-            Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(.follow))
             
-            // LocationView
-            GeolocationInfoView(geolocation: $mapController.currentLocation)
-                .padding(EdgeInsets(top: 2, leading: 10, bottom: 0, trailing: 10) )
-            
-            // ButtonStack
-            HStack {
-                Button() {
-                    self.submitButton()
-                } label: {
-                    Text("Save")
-                        .frame(width:80)
-                }
-                .buttonStyle(.glass)
-                .tint(.blue)
-                .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0) )
+            ZStack {
+                Map(coordinateRegion: $region, showsUserLocation: true, userTrackingMode: .constant(.follow))
                 
-                Button() {
-                    self.cancelButton()
-                } label: {
-                    Text("Cancel")
-                        .frame(width:80)
+                // Button stack over map
+                VStack {
+                    Spacer()
+                    HStack {
+                        Button() {
+                            self.submitButton()
+                        } label: {
+                            Text("Save")
+                                .frame(width:80)
+                        }
+                        .buttonStyle(.glass)
+                        .tint(.blue)
+                        .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0) )
+                        
+                        Button() {
+                            self.cancelButton()
+                        } label: {
+                            Text("Cancel")
+                                .frame(width:80)
+                        }
+                        .buttonStyle(.glass)
+                        .tint(.red)
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5) )
+                    }
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
                 }
-                .buttonStyle(.glass)
-                .tint(.red)
-                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5) )
             }
-            .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+            // The address information
+            GeolocationIAddressView(geolocation: $mapController.currentLocation)
+                .padding(EdgeInsets(top: 2, leading: 10, bottom: 0, trailing: 10) )
         }
         .onAppear() {
             // MapAppearanceController.shared.updateAppearance()
@@ -74,7 +79,7 @@ struct AddLocationMapView: View {
     // MARK: Submit Button to save a new location
     
     private func submitButton() {
-        var geoLocation = self.mapController.currentLocation
+        let geoLocation = self.mapController.currentLocation
         do {
             try self.geolocationRepositoy.addLocation(location: geoLocation)
         } catch {
