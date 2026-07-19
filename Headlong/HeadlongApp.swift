@@ -37,7 +37,7 @@ class AppDelegate : NSObject, UIApplicationDelegate {
                
         UITableViewHeaderFooterView.appearance().tintColor = UIColor.clear
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .white
-        UITabBar.appearance().backgroundColor = bgColor
+        // UITabBar.appearance().backgroundColor = bgColor
         return true
     }
 }

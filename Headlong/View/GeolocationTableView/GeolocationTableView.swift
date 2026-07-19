@@ -20,14 +20,14 @@ struct GeolocationTableView: View {
                List {
                     ForEach (self.geolocationRepositoy.fetchAll(), id:\.id) { location in
                         
-                        ZStack {
-                            // With this Zstack you can hide the disclosure indicator
+                        ZStack { // With this Zstack you can hide the disclosure indicator
                            NavigationLink(destination: StoredLocationMapView(geolocation: location) )
                             {
                                 EmptyView()
                             }
                             GeolocationTableCellView(geolocation:location)
                         }
+                        .listRowSeparator(.hidden)
                         // The Swipe actions
                         .swipeActions(edge: .trailing , allowsFullSwipe: true) {
                             Button {
