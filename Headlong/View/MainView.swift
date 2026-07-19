@@ -8,7 +8,7 @@ struct MainView: View {
     
     var body: some View {
         TabView {
-            GeocodeTableView()
+            GeolocationTableView()
                 .tabItem {
                     Label("Locations", systemImage: "list.dash")
                 }

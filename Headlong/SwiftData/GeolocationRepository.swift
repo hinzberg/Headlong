@@ -51,10 +51,8 @@ final class GeolocationRepository : GeolocationRepositoryProtocol, Observable, O
         }
         */
     }
-       
-    
-    
-     func fetchLocations()  -> [Geolocation] {
+     
+     func fetchAll()  -> [Geolocation] {
         
         let request = FetchDescriptor<Geolocation>()
         var locations = [Geolocation]()
@@ -66,19 +64,22 @@ final class GeolocationRepository : GeolocationRepositoryProtocol, Observable, O
                 print("Error fetching locations")
         }
         
+        print("\(locations.count) locations fetched.")
         return locations
     }
-    
-    func addLocation(location: Geolocation)  throws {
+        
+    func add(location: Geolocation)  throws {
         self.modelContext.insert(location)
         print("Location added to ModelContext")
+        print(location.name ?? "")
+        print(location.city ?? "")
     }
     
-    func updateLocation(location: Geolocation)  throws {
+    func update(location: Geolocation)  throws {
         
     }
     
-    func deleteLocation(location: Geolocation)  throws {
+    func delete(location: Geolocation)  throws {
         self.modelContext.delete(location)
         print("Location deleted from ModelContext")
     }

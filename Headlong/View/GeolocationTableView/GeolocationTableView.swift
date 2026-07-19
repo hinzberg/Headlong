@@ -1,10 +1,10 @@
-//  GeocodeTableView.swift
+//  GeolocationTableView.swift
 //  Headlong
-//  Created by Holger Hinzberg on 14.10.21.
+//  Created by Holger Hinzberg on 19.07.26.
 
 import SwiftUI
 
-struct GeocodeTableView: View {
+struct GeolocationTableView: View {
     
     @EnvironmentObject  var geocodeRepository : GeocodeLocationRepository // alt
     @Environment(\.modelContext) private var modelContext
@@ -17,17 +17,52 @@ struct GeocodeTableView: View {
         VStack {
             NavigationView {
                     
-                List {
-                    ForEach (self.geolocationRepositoy.fetchLocations(), id:\.id) { location in
-                        HStack {
-                            Text("Hallo")
-                            Text("\(location.latitude)")
-                            Text("\(location.latitude)")
+               List {
+                    ForEach (self.geolocationRepositoy.fetchAll(), id:\.id) { location in
+                        
+                        ZStack {
+                            // With this Zstack you can hide the disclosure indicator
+                           NavigationLink(destination: StoredLocationMapView(geolocation: location) )
+                            {
+                                EmptyView()
+                            }
+                            GeolocationTableCellView(geolocation:location)
+                        }
+                        // The Swipe actions
+                        .swipeActions(edge: .trailing , allowsFullSwipe: true) {
+                            Button {
+                                withAnimation {
+                                    do {
+                                        try self.geolocationRepositoy.delete(location: location)
+                                    } catch {
+                                        print("Failed to delete location: \(error)")
+                                    }
+                                }
+                            } label: { Label("Delete", systemImage: "trash.fill") }
+                                .tint(.red)
+                        }
+                        .swipeActions(edge: .leading , allowsFullSwipe: true) {
+                            Button {
+                                print("Navigate")
+                            } label: {
+                                Label("Navigate", systemImage: "map.fill")
+                            }
+                            .tint(Color.cocoaBlue)
                         }
                     }
                 }
+                // List configuration
+               .listStyle(.plain)
+               .searchable(
+                text: $searchText,
+                placement: .navigationBarDrawer(displayMode: .always),
+                prompt: "Search ...")
+               .onChange(of: searchText) { oldValue, newValue in
+                   print(newValue)
+               }
+                 
                                 
-                /*
+              /*
                 List {
                         ForEach(self.geocodeRepository.filledDateGroups, id:\.id) { dateGroup in
                             Section(header: GeocodeTableViewSectionHeader(headlineText: dateGroup.dateDescription) )
@@ -61,7 +96,6 @@ struct GeocodeTableView: View {
                         }
                         .listRowSeparator(.hidden)
                     }
-                    */
                     .listStyle(.plain)
                     .searchable(
                         text: $searchText,
@@ -70,6 +104,7 @@ struct GeocodeTableView: View {
                     .onChange(of: searchText) { searchText in
                         print(searchText)
                     }
+                */
                 .navigationBarTitle("Headlong", displayMode: .inline)
                 .navigationTitle("Back")
                 .toolbar {
@@ -88,7 +123,7 @@ struct ContentView_Previews: PreviewProvider {
         let viewContext = CoreDataManager.shared.persistentContainer.viewContext
         let geocodeRepository = GeocodeLocationRepository(context: viewContext)
         
-        GeocodeTableView()
+        GeolocationTableView()
             .environmentObject(geocodeRepository)
     }
 }

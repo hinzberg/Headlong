@@ -1,4 +1,4 @@
-//  SDGeolocation.swift
+//  Geolocation.swift
 //  Headlong
 //  Created by Holger Hinzberg on 04.01.25.
 //  Copyright © 2025 Holger Hinzberg. All rights reserved.
@@ -122,5 +122,4 @@ public class Geolocation {
         geoLocation.SetAddressLines()
         return geoLocation
     }
-    
 }

@@ -81,7 +81,7 @@ struct AddLocationMapView: View {
     private func submitButton() {
         let geoLocation = self.mapController.currentLocation
         do {
-            try self.geolocationRepositoy.addLocation(location: geoLocation)
+            try self.geolocationRepositoy.add(location: geoLocation)
         } catch {
             print("Error adding Location: \(error)")
         }

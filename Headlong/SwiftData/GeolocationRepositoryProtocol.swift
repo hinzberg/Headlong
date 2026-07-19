@@ -5,8 +5,8 @@
 
 protocol GeolocationRepositoryProtocol
 {
-    func fetchLocations()  throws -> [Geolocation]
-    func addLocation(location: Geolocation)  throws
-    func updateLocation(location: Geolocation)  throws
-    func deleteLocation(location: Geolocation)  throws
+    func fetchAll()  throws -> [Geolocation]
+    func add(location: Geolocation)  throws
+    func update(location: Geolocation)  throws
+    func delete(location: Geolocation)  throws
 }

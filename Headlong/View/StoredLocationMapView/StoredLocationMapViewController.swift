@@ -8,20 +8,20 @@ import MapKit
 
 public class StoredLocationMapViewController: ObservableObject {
     
-    @Published var geocodeLocationVM : GeocodeLocationViewModel
+    @Published var geolocationVM : GeolocationViewModel
     @Published var region : MKCoordinateRegion
     @Published var pointsOfInterest : [MapAnnotatedItem]
         
-    init(geocodeLocationVM : GeocodeLocationViewModel)
+    init(geolocationVM : GeolocationViewModel)
     {
-        self.geocodeLocationVM = geocodeLocationVM
+        self.geolocationVM = geolocationVM
         
-        let longitude : CLLocationDegrees = geocodeLocationVM.location!.coordinate.longitude
-        let latitude : CLLocationDegrees = geocodeLocationVM.location!.coordinate.latitude
+        let longitude : CLLocationDegrees = geolocationVM.location!.coordinate.longitude
+        let latitude : CLLocationDegrees = geolocationVM.location!.coordinate.latitude
         let span = MKCoordinateSpan(latitudeDelta: 0.008, longitudeDelta: 0.008)
         
         region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: span)
-        pointsOfInterest = [ MapAnnotatedItem(name: "", coordinate: geocodeLocationVM.location!.coordinate )]
+        pointsOfInterest = [ MapAnnotatedItem(name: "", coordinate: geolocationVM.location!.coordinate )]
     }
     
     public func NavigateTo()

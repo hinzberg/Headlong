@@ -12,9 +12,10 @@ struct StoredLocationMapView: View {
     @Environment(\.presentationMode) var presentationMode
     @State var shareSheetIsPresented = false
     
-    init(geocodeLocationVM : GeocodeLocationViewModel)
+    init(geolocation : Geolocation)
     {
-        controller = StoredLocationMapViewController(geocodeLocationVM: geocodeLocationVM)
+        let geolocationVM = GeolocationViewModel(geolocation: geolocation)
+        controller = StoredLocationMapViewController(geolocationVM: geolocationVM)
     }
     
     var body: some View {
@@ -103,6 +104,6 @@ struct StoredLocationMapView: View {
 
 struct ShowLocationMapView_Previews: PreviewProvider {
     static var previews: some View {
-        StoredLocationMapView(geocodeLocationVM:  GeocodeLocationViewModel.GetSample())
+        StoredLocationMapView(geolocation:  Geolocation.GetSample())
     }
 }
