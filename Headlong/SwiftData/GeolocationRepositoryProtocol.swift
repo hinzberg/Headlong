@@ -9,4 +9,5 @@ protocol GeolocationRepositoryProtocol
     func add(location: Geolocation)  throws
     func update(location: Geolocation)  throws
     func delete(location: Geolocation)  throws
+    func deleteAll()  throws
 }

@@ -9,58 +9,72 @@ struct GeolocationTableView: View {
     @EnvironmentObject  var geocodeRepository : GeocodeLocationRepository // alt
     @Environment(\.modelContext) private var modelContext
     
-    @State private var geolocationRepositoy =  GeolocationRepository.shared
+    @ObservedObject private var geolocationRepositoy =  GeolocationRepository.shared
     @State private var searchText = ""
+    
+    private var locations: [Geolocation] {
+        self.geolocationRepositoy.fetchAll()
+    }
     
     var body: some View
     {
         VStack {
             NavigationView {
                     
-               List {
-                    ForEach (self.geolocationRepositoy.fetchAll(), id:\.id) { location in
-                        
-                        ZStack { // With this Zstack you can hide the disclosure indicator
-                           NavigationLink(destination: StoredLocationMapView(geolocation: location) )
-                            {
-                                EmptyView()
-                            }
-                            GeolocationTableCellView(geolocation:location)
+                Group {
+                    if self.locations.isEmpty {
+                        ContentUnavailableView {
+                            Label("No Locations", systemImage: "mappin.slash")
+                        } description: {
+                            Text("Save a location and it will appear here.")
                         }
-                        .listRowSeparator(.hidden)
-                        // The Swipe actions
-                        .swipeActions(edge: .trailing , allowsFullSwipe: true) {
-                            Button {
-                                withAnimation {
-                                    do {
-                                        try self.geolocationRepositoy.delete(location: location)
-                                    } catch {
-                                        print("Failed to delete location: \(error)")
+                    } else {
+                        List {
+                            ForEach (self.locations, id:\.id) { location in
+                                
+                                ZStack { // With this Zstack you can hide the disclosure indicator
+                                   NavigationLink(destination: StoredLocationMapView(geolocation: location) )
+                                    {
+                                        EmptyView()
                                     }
+                                    GeolocationTableCellView(geolocation:location)
                                 }
-                            } label: { Label("Delete", systemImage: "trash.fill") }
-                                .tint(.red)
-                        }
-                        .swipeActions(edge: .leading , allowsFullSwipe: true) {
-                            Button {
-                                print("Navigate")
-                            } label: {
-                                Label("Navigate", systemImage: "map.fill")
+                                .listRowSeparator(.hidden)
+                                // The Swipe actions
+                                .swipeActions(edge: .trailing , allowsFullSwipe: true) {
+                                    Button {
+                                        withAnimation {
+                                            do {
+                                                try self.geolocationRepositoy.delete(location: location)
+                                            } catch {
+                                                print("Failed to delete location: \(error)")
+                                            }
+                                        }
+                                    } label: { Label("Delete", systemImage: "trash.fill") }
+                                        .tint(.red)
+                                }
+                                .swipeActions(edge: .leading , allowsFullSwipe: true) {
+                                    Button {
+                                        print("Navigate")
+                                    } label: {
+                                        Label("Navigate", systemImage: "map.fill")
+                                    }
+                                    .tint(Color.cocoaBlue)
+                                }
                             }
-                            .tint(Color.cocoaBlue)
                         }
+                        // List configuration
+                        .listStyle(.plain)
                     }
                 }
-                // List configuration
-               .listStyle(.plain)
-               .searchable(
-                text: $searchText,
-                placement: .navigationBarDrawer(displayMode: .always),
-                prompt: "Search ...")
-               .onChange(of: searchText) { oldValue, newValue in
-                   print(newValue)
-               }
-                 
+                .searchable(
+                    text: $searchText,
+                    placement: .navigationBarDrawer(displayMode: .always),
+                    prompt: "Search ...")
+                .onChange(of: searchText) { oldValue, newValue in
+                    print(newValue)
+                }
+                  
                                 
               /*
                 List {

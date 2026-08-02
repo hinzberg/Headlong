@@ -36,6 +36,20 @@ struct SettingsView: View {
                     TextField("Share Postfix", text: $sharePostfix)
                 }
                 
+                Section(header: Text("Data")
+                    .font(.headline)
+                    .foregroundColor(.cocoaBlue)  )
+                {
+                    Button("Delete all Locations") {
+                        do {
+                            try GeolocationRepository.shared.deleteAll()
+                        } catch {
+                            print("Failed to delete all locations: \(error)")
+                        }
+                    }
+                    .foregroundColor(.red)
+                }
+                
                 Section(header: Text("About Headlong")
                     .font(.headline)
                     .foregroundColor(.cocoaBlue)  ) {

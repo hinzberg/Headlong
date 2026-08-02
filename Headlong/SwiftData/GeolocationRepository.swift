@@ -20,6 +20,10 @@ final class GeolocationRepository : GeolocationRepositoryProtocol, Observable, O
         private init() {
             self.modelContainer =  GeolocationRepository.createModelContainer()
             self.modelContext = modelContainer.mainContext
+            let locationCount = (try? self.modelContext.fetchCount(FetchDescriptor<Geolocation>())) ?? 0
+            if locationCount == 0 {
+                try? self.addSampleLandmarks()
+            }
         }
     
     @MainActor
@@ -70,6 +74,8 @@ final class GeolocationRepository : GeolocationRepositoryProtocol, Observable, O
         
     func add(location: Geolocation)  throws {
         self.modelContext.insert(location)
+        try self.modelContext.save()
+        self.objectWillChange.send()
         print("Location added to ModelContext")
         print(location.name ?? "")
         print(location.city ?? "")
@@ -81,6 +87,44 @@ final class GeolocationRepository : GeolocationRepositoryProtocol, Observable, O
     
     func delete(location: Geolocation)  throws {
         self.modelContext.delete(location)
+        try self.modelContext.save()
+        self.objectWillChange.send()
         print("Location deleted from ModelContext")
+    }
+    
+    func deleteAll()  throws {
+        let request = FetchDescriptor<Geolocation>()
+        let locations = try self.modelContext.fetch(request)
+        for location in locations {
+            self.modelContext.delete(location)
+        }
+        try self.modelContext.save()
+        self.objectWillChange.send()
+        print("All \(locations.count) locations deleted from ModelContext")
+    }
+    
+    func addSampleLandmarks()  throws {
+        let landmarks = [
+            ("Eiffel Tower", 48.8584, 2.2945),
+            ("Statue of Liberty", 40.6892, -74.0445),
+            ("Sydney Opera House", -33.8568, 151.2153),
+            ("Colosseum", 41.8902, 12.4922),
+            ("Golden Gate Bridge", 37.8199, -122.4783),
+            ("Taj Mahal", 27.1751, 78.0421)
+        ]
+        
+        for landmark in landmarks {
+            let location = Geolocation()
+            location.name = landmark.0
+            location.latitude = landmark.1
+            location.longitude = landmark.2
+            location.date = GeolocationRepository.randomDate()
+            try self.add(location: location)
+        }
+    }
+    
+    private static func randomDate() -> Date {
+        let days = Int.random(in: 1...3650)
+        return Calendar.current.date(byAdding: .day, value: -days, to: Date()) ?? Date()
     }
 }
