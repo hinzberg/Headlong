@@ -110,15 +110,24 @@ final class GeolocationRepository : GeolocationRepositoryProtocol, Observable, O
             ("Sydney Opera House", -33.8568, 151.2153),
             ("Colosseum", 41.8902, 12.4922),
             ("Golden Gate Bridge", 37.8199, -122.4783),
-            ("Taj Mahal", 27.1751, 78.0421)
+            ("Taj Mahal", 27.1751, 78.0421),
+            ("Christ the Redeemer", -22.9519, -43.2105),
+            ("Pyramids of Giza", 29.9792, 31.1342),
+            ("Great Wall of China", 40.4319, 116.5704),
+            ("Machu Picchu", -13.1631, -72.5450),
+            ("Stonehenge", 51.1789, -1.8262),
+            ("Petra", 30.3285, 35.4444)
         ]
         
-        for landmark in landmarks {
+        let sharedDate = GeolocationRepository.randomDate()
+        let sharedDate2 = GeolocationRepository.randomDate()
+        
+        for (index, landmark) in landmarks.enumerated() {
             let location = Geolocation()
             location.name = landmark.0
             location.latitude = landmark.1
             location.longitude = landmark.2
-            location.date = GeolocationRepository.randomDate()
+            location.date = index >= 6 && index <= 8 ? sharedDate : (index >= 10 ? sharedDate2 : GeolocationRepository.randomDate())
             try self.add(location: location)
         }
     }
