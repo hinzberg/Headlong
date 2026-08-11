@@ -10,18 +10,11 @@ import Hinzberg_SwiftUI
 struct HeadlongApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-   // var moc = ApplicationModelContainer.create()
     
     var body: some Scene {
         WindowGroup {
-           // let viewContext = CoreDataManager.shared.persistentContainer.viewContext
-            //let geocodeRepository = GeocodeLocationRepository(context: viewContext)
-           
             MainView()
-              //  .environmentObject(GeolocationRepository(modelContext: moc.mainContext ))
-                // .environment(\.managedObjectContext, viewContext)
         }
-      // .modelContainer(moc)
     }
 }
 

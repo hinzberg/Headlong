@@ -6,9 +6,6 @@ import SwiftUI
 
 struct GeolocationTableView: View {
     
-    @EnvironmentObject  var geocodeRepository : GeocodeLocationRepository // alt
-    @Environment(\.modelContext) private var modelContext
-    
     @ObservedObject private var geolocationRepositoy =  GeolocationRepository.shared
     @State private var searchText = ""
     
@@ -91,51 +88,6 @@ struct GeolocationTableView: View {
                 .onChange(of: searchText) { oldValue, newValue in
                     print(newValue)
                 }
-                  
-                                
-              /*
-                List {
-                        ForEach(self.geocodeRepository.filledDateGroups, id:\.id) { dateGroup in
-                            Section(header: GeocodeTableViewSectionHeader(headlineText: dateGroup.dateDescription) )
-                            {
-                                ForEach (dateGroup.geoCodeLocationViewModels, id:\.id) { locationVM in
-                                    ZStack { // With this Zstack you can hide the disclosure indicator
-                                        NavigationLink(destination: StoredLocationMapView(geocodeLocationVM: locationVM) ) {
-                                            EmptyView()
-                                        }
-                                        GeocodeLocationTableCellView(locationVM: locationVM)
-                                    }
-                                    // The Swipe actions
-                                    .swipeActions(edge: .trailing , allowsFullSwipe: true) {
-                                        Button {
-                                            withAnimation {
-                                                self.geocodeRepository.delete(locationVM: locationVM)
-                                            }
-                                        } label: { Label("Delete", systemImage: "trash.fill") }
-                                            .tint(.red)
-                                    }
-                                    .swipeActions(edge: .leading , allowsFullSwipe: true) {
-                                        Button {
-                                            print("Navigate")
-                                        } label: {
-                                            Label("Navigate", systemImage: "map.fill")
-                                        }
-                                        .tint(Color.cocoaBlue)
-                                    }
-                                }
-                            }
-                        }
-                        .listRowSeparator(.hidden)
-                    }
-                    .listStyle(.plain)
-                    .searchable(
-                        text: $searchText,
-                        placement: .navigationBarDrawer(displayMode: .always),
-                        prompt: "Search ...")
-                    .onChange(of: searchText) { searchText in
-                        print(searchText)
-                    }
-                */
                 .navigationBarTitle("Headlong", displayMode: .inline)
                 .navigationTitle("Back")
                 .toolbar {
@@ -151,10 +103,6 @@ struct GeolocationTableView: View {
 struct ContentView_Previews: PreviewProvider {
     
     static var previews: some View {
-        let viewContext = CoreDataManager.shared.persistentContainer.viewContext
-        let geocodeRepository = GeocodeLocationRepository(context: viewContext)
-        
         GeolocationTableView()
-            .environmentObject(geocodeRepository)
     }
 }

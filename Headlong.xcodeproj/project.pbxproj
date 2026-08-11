@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3F14AEFF2E895BDB0039A00F /* headlong.icon in Resources */ = {isa = PBXBuildFile; fileRef = 3F14AEFE2E895BDB0039A00F /* headlong.icon */; };
 		3F14AF012E8985E80039A00F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F14AF002E8985E30039A00F /* Helper.swift */; };
-		3F225B8028CF70F4000FB7FB /* old_GeocodeTableViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F225B7F28CF70F4000FB7FB /* old_GeocodeTableViewSectionHeader.swift */; };
+		3F225B8028CF70F4000FB7FB /* GeocodeTableViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F225B7F28CF70F4000FB7FB /* GeocodeTableViewSectionHeader.swift */; };
 		3F22961D27187705008BF92C /* HeadlongApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F22961C27187705008BF92C /* HeadlongApp.swift */; };
 		3F22961F27187705008BF92C /* GeolocationTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F22961E27187705008BF92C /* GeolocationTableView.swift */; };
 		3F22962127187706008BF92C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F22962027187706008BF92C /* Assets.xcassets */; };
@@ -19,8 +19,6 @@
 		3F22963A27187706008BF92C /* HeadlongUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F22963927187706008BF92C /* HeadlongUITestsLaunchTests.swift */; };
 		3F229647271877A8008BF92C /* AddLocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F229646271877A8008BF92C /* AddLocationMapView.swift */; };
 		3F398B8D292C08B100F117E5 /* ShadowButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F398B8C292C08B100F117E5 /* ShadowButtonStyles.swift */; };
-		3F6E9A8E2732E33D003ED402 /* GeocodeLocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6E9A8D2732E33D003ED402 /* GeocodeLocationRepository.swift */; };
-		3F6E9A902732E8BF003ED402 /* old_GeocodeLocationTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6E9A8F2732E8BF003ED402 /* old_GeocodeLocationTableCellView.swift */; };
 		3F70AAD72757CC07008EC53D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70AAD62757CC07008EC53D /* MainView.swift */; };
 		3F70AAD92757CC29008EC53D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70AAD82757CC29008EC53D /* SettingsView.swift */; };
 		3F70AADB2758126D008EC53D /* StoredLocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F70AADA2758126D008EC53D /* StoredLocationMapView.swift */; };
@@ -35,16 +33,8 @@
 		3FAD93C8300CD02400814AA3 /* GeolocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAD93C5300CD02300814AA3 /* GeolocationViewModel.swift */; };
 		3FCCC93529294AA500CF9678 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCCC93429294AA500CF9678 /* Color+Extension.swift */; };
 		3FCCC93729294B0B00CF9678 /* ShadowPanelModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCCC93629294B0B00CF9678 /* ShadowPanelModifier.swift */; };
-		3FD398822819D18B00525AB7 /* CDGeocodeLocation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD398802819D18B00525AB7 /* CDGeocodeLocation+CoreDataClass.swift */; };
-		3FD398832819D18B00525AB7 /* CDGeocodeLocation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD398812819D18B00525AB7 /* CDGeocodeLocation+CoreDataProperties.swift */; };
-		3FD398852819D1FD00525AB7 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD398842819D1FD00525AB7 /* BaseModel.swift */; };
-		3FD398872819D2E100525AB7 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD398862819D2E100525AB7 /* CoreDataManager.swift */; };
-		3FD398882819D88B00525AB7 /* HeadlongDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3FD398792819CD4D00525AB7 /* HeadlongDataModel.xcdatamodeld */; };
 		3FD91B3C272C6BEC00879F53 /* AddLocationMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD91B3B272C6BEC00879F53 /* AddLocationMapViewController.swift */; };
-		3FDA72FC285E4E9500A91651 /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDA72FB285E4E9500A91651 /* Calendar+Extension.swift */; };
-		3FDA72FE285E4EBC00A91651 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDA72FD285E4EBC00A91651 /* Date+Extension.swift */; };
 		3FEAE9CD272D3B060042BAF8 /* CLLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEAE9CC272D3B060042BAF8 /* CLLocation+Extension.swift */; };
-		3FEAE9D0272D3DE30042BAF8 /* GeocodeLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEAE9CF272D3DE30042BAF8 /* GeocodeLocationViewModel.swift */; };
 		3FEAE9D5272D8C4F0042BAF8 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEAE9D4272D8C4F0042BAF8 /* ButtonStyles.swift */; };
 		3FEC962F283EBD2A00D8CE96 /* StoredLocationMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEC962E283EBD2A00D8CE96 /* StoredLocationMapViewController.swift */; };
 		3FEC9631283F877800D8CE96 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEC9630283F877800D8CE96 /* ActivityViewController.swift */; };
@@ -72,7 +62,7 @@
 /* Begin PBXFileReference section */
 		3F14AEFE2E895BDB0039A00F /* headlong.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = headlong.icon; sourceTree = "<group>"; };
 		3F14AF002E8985E30039A00F /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
-		3F225B7F28CF70F4000FB7FB /* old_GeocodeTableViewSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = old_GeocodeTableViewSectionHeader.swift; sourceTree = "<group>"; };
+		3F225B7F28CF70F4000FB7FB /* GeocodeTableViewSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeTableViewSectionHeader.swift; sourceTree = "<group>"; };
 		3F22961927187705008BF92C /* Headlong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Headlong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F22961C27187705008BF92C /* HeadlongApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlongApp.swift; sourceTree = "<group>"; };
 		3F22961E27187705008BF92C /* GeolocationTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeolocationTableView.swift; sourceTree = "<group>"; };
@@ -86,8 +76,6 @@
 		3F229646271877A8008BF92C /* AddLocationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationMapView.swift; sourceTree = "<group>"; };
 		3F22964927187C6A008BF92C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3F398B8C292C08B100F117E5 /* ShadowButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowButtonStyles.swift; sourceTree = "<group>"; };
-		3F6E9A8D2732E33D003ED402 /* GeocodeLocationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeLocationRepository.swift; sourceTree = "<group>"; };
-		3F6E9A8F2732E8BF003ED402 /* old_GeocodeLocationTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = old_GeocodeLocationTableCellView.swift; sourceTree = "<group>"; };
 		3F70AAD62757CC07008EC53D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		3F70AAD82757CC29008EC53D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3F70AADA2758126D008EC53D /* StoredLocationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredLocationMapView.swift; sourceTree = "<group>"; };
@@ -99,16 +87,8 @@
 		3FAD93C5300CD02300814AA3 /* GeolocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeolocationViewModel.swift; sourceTree = "<group>"; };
 		3FCCC93429294AA500CF9678 /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		3FCCC93629294B0B00CF9678 /* ShadowPanelModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowPanelModifier.swift; sourceTree = "<group>"; };
-		3FD3987A2819CD4D00525AB7 /* HeadlongDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HeadlongDataModel.xcdatamodel; sourceTree = "<group>"; };
-		3FD398802819D18B00525AB7 /* CDGeocodeLocation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDGeocodeLocation+CoreDataClass.swift"; sourceTree = "<group>"; };
-		3FD398812819D18B00525AB7 /* CDGeocodeLocation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDGeocodeLocation+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		3FD398842819D1FD00525AB7 /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
-		3FD398862819D2E100525AB7 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		3FD91B3B272C6BEC00879F53 /* AddLocationMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationMapViewController.swift; sourceTree = "<group>"; };
-		3FDA72FB285E4E9500A91651 /* Calendar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Extension.swift"; sourceTree = "<group>"; };
-		3FDA72FD285E4EBC00A91651 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		3FEAE9CC272D3B060042BAF8 /* CLLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extension.swift"; sourceTree = "<group>"; };
-		3FEAE9CF272D3DE30042BAF8 /* GeocodeLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeLocationViewModel.swift; sourceTree = "<group>"; };
 		3FEAE9D4272D8C4F0042BAF8 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		3FEC962E283EBD2A00D8CE96 /* StoredLocationMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredLocationMapViewController.swift; sourceTree = "<group>"; };
 		3FEC9630283F877800D8CE96 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
@@ -177,7 +157,6 @@
 				3F22961C27187705008BF92C /* HeadlongApp.swift */,
 				3F94B7E628CF3042002475D1 /* Classes */,
 				3F82F653272C647A00D0E7E6 /* Info.plist */,
-				3FD3987B2819CE7100525AB7 /* CoreData */,
 				3FEAE9CB272D3AD60042BAF8 /* Extensions */,
 				3FEAE9CE272D3DBE0042BAF8 /* Model */,
 				3F229648271877BB008BF92C /* View */,
@@ -263,24 +242,10 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		3FD3987B2819CE7100525AB7 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				3FD398802819D18B00525AB7 /* CDGeocodeLocation+CoreDataClass.swift */,
-				3FD398812819D18B00525AB7 /* CDGeocodeLocation+CoreDataProperties.swift */,
-				3FD398792819CD4D00525AB7 /* HeadlongDataModel.xcdatamodeld */,
-				3FD398842819D1FD00525AB7 /* BaseModel.swift */,
-				3FD398862819D2E100525AB7 /* CoreDataManager.swift */,
-			);
-			path = CoreData;
-			sourceTree = "<group>";
-		};
 		3FEAE9CB272D3AD60042BAF8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				3FEAE9CC272D3B060042BAF8 /* CLLocation+Extension.swift */,
-				3FDA72FB285E4E9500A91651 /* Calendar+Extension.swift */,
-				3FDA72FD285E4EBC00A91651 /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -289,8 +254,6 @@
 			isa = PBXGroup;
 			children = (
 				3FAD93C5300CD02300814AA3 /* GeolocationViewModel.swift */,
-				3FEAE9CF272D3DE30042BAF8 /* GeocodeLocationViewModel.swift */,
-				3F6E9A8D2732E33D003ED402 /* GeocodeLocationRepository.swift */,
 				3F70AADC2758189E008EC53D /* MapAnnotatedItem.swift */,
 				3FF63737285E2ADD00FC1C11 /* DateGroup.swift */,
 			);
@@ -313,8 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				3F22961E27187705008BF92C /* GeolocationTableView.swift */,
-				3F6E9A8F2732E8BF003ED402 /* old_GeocodeLocationTableCellView.swift */,
-				3F225B7F28CF70F4000FB7FB /* old_GeocodeTableViewSectionHeader.swift */,
+				3F225B7F28CF70F4000FB7FB /* GeocodeTableViewSectionHeader.swift */,
 				3FAD93C3300CCF5900814AA3 /* GeolocationTableCellView.swift */,
 			);
 			path = GeolocationTableView;
@@ -465,32 +427,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FF63738285E2ADD00FC1C11 /* DateGroup.swift in Sources */,
-				3FD398852819D1FD00525AB7 /* BaseModel.swift in Sources */,
 				3F94B7E828CF3064002475D1 /* MapAppearanceController.swift in Sources */,
 				3FEC962F283EBD2A00D8CE96 /* StoredLocationMapViewController.swift in Sources */,
 				3F398B8D292C08B100F117E5 /* ShadowButtonStyles.swift in Sources */,
 				3F70AAE127581AE8008EC53D /* MapAnnotationView.swift in Sources */,
-				3FDA72FC285E4E9500A91651 /* Calendar+Extension.swift in Sources */,
 				3F22961F27187705008BF92C /* GeolocationTableView.swift in Sources */,
 				3FCCC93529294AA500CF9678 /* Color+Extension.swift in Sources */,
-				3FD398882819D88B00525AB7 /* HeadlongDataModel.xcdatamodeld in Sources */,
-				3FD398872819D2E100525AB7 /* CoreDataManager.swift in Sources */,
-				3FD398832819D18B00525AB7 /* CDGeocodeLocation+CoreDataProperties.swift in Sources */,
 				3FAD93C4300CCF5900814AA3 /* GeolocationTableCellView.swift in Sources */,
 				3FCCC93729294B0B00CF9678 /* ShadowPanelModifier.swift in Sources */,
-				3FEAE9D0272D3DE30042BAF8 /* GeocodeLocationViewModel.swift in Sources */,
 				3FD91B3C272C6BEC00879F53 /* AddLocationMapViewController.swift in Sources */,
 				3F229647271877A8008BF92C /* AddLocationMapView.swift in Sources */,
-				3F225B8028CF70F4000FB7FB /* old_GeocodeTableViewSectionHeader.swift in Sources */,
-				3F6E9A8E2732E33D003ED402 /* GeocodeLocationRepository.swift in Sources */,
-				3F6E9A902732E8BF003ED402 /* old_GeocodeLocationTableCellView.swift in Sources */,
+				3F225B8028CF70F4000FB7FB /* GeocodeTableViewSectionHeader.swift in Sources */,
 				3F14AF012E8985E80039A00F /* Helper.swift in Sources */,
 				3FF63736285E211C00FC1C11 /* CustomNavigationBarAppearance.swift in Sources */,
-				3FDA72FE285E4EBC00A91651 /* Date+Extension.swift in Sources */,
 				3F22961D27187705008BF92C /* HeadlongApp.swift in Sources */,
 				3F70AAD72757CC07008EC53D /* MainView.swift in Sources */,
 				3FEAE9D5272D8C4F0042BAF8 /* ButtonStyles.swift in Sources */,
-				3FD398822819D18B00525AB7 /* CDGeocodeLocation+CoreDataClass.swift in Sources */,
 				3F70AAD92757CC29008EC53D /* SettingsView.swift in Sources */,
 				3FAD93C6300CD02400814AA3 /* GeolocationViewModel.swift in Sources */,
 				3F70AADB2758126D008EC53D /* StoredLocationMapView.swift in Sources */,
@@ -897,19 +849,6 @@
 			productName = "Hinzberg-SwiftUI";
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		3FD398792819CD4D00525AB7 /* HeadlongDataModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				3FD3987A2819CD4D00525AB7 /* HeadlongDataModel.xcdatamodel */,
-			);
-			currentVersion = 3FD3987A2819CD4D00525AB7 /* HeadlongDataModel.xcdatamodel */;
-			path = HeadlongDataModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 3F22961127187705008BF92C /* Project object */;
 }

@@ -145,12 +145,12 @@ final class GeolocationRepository : GeolocationRepositoryProtocol, Observable, O
             if let date = location.date {
                 let day = Calendar.current.startOfDay(for: date)
                 if groups[day] == nil {
-                    groups[day] = DateGroup(start: day, end: day, description: GeolocationRepository.formatDate(day))
+                    groups[day] = DateGroup(description: GeolocationRepository.formatDate(day))
                 }
                 groups[day]?.geoLocations.append(location)
             } else {
                 if unknownGroup == nil {
-                    unknownGroup = DateGroup(start: Date.distantPast, end: Date.distantPast, description: "Unknown")
+                    unknownGroup = DateGroup(description: "Unknown")
                 }
                 unknownGroup?.geoLocations.append(location)
             }
