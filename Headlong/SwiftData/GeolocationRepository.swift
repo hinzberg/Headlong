@@ -136,4 +136,41 @@ final class GeolocationRepository : GeolocationRepositoryProtocol, Observable, O
         let days = Int.random(in: 1...3650)
         return Calendar.current.date(byAdding: .day, value: -days, to: Date()) ?? Date()
     }
+    
+    func fetchAllGroupedByDate() -> [DateGroup] {
+        var groups = [Date: DateGroup]()
+        var unknownGroup: DateGroup?
+        
+        for location in self.fetchAll() {
+            if let date = location.date {
+                let day = Calendar.current.startOfDay(for: date)
+                if groups[day] == nil {
+                    groups[day] = DateGroup(start: day, end: day, description: GeolocationRepository.formatDate(day))
+                }
+                groups[day]?.geoLocations.append(location)
+            } else {
+                if unknownGroup == nil {
+                    unknownGroup = DateGroup(start: Date.distantPast, end: Date.distantPast, description: "Unknown")
+                }
+                unknownGroup?.geoLocations.append(location)
+            }
+        }
+        
+        for (_, group) in groups {
+            group.geoLocations.sort { ($0.date ?? .distantPast) > ($1.date ?? .distantPast) }
+        }
+        
+        var result = groups.keys.sorted(by: >).map { groups[$0]! }
+        if let unknownGroup = unknownGroup {
+            unknownGroup.geoLocations.sort { ($0.date ?? .distantPast) > ($1.date ?? .distantPast) }
+            result.append(unknownGroup)
+        }
+        return result
+    }
+    
+    private static func formatDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.setLocalizedDateFormatFromTemplate("EEE, dd MMM yyyy")
+        return formatter.string(from: date)
+    }
 }

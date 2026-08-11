@@ -139,6 +139,12 @@ public class GeolocationViewModel
         return formatter.string(from: self.date)
     }
     
+    var time : String {
+        let formatter = DateFormatter()
+        formatter.setLocalizedDateFormatFromTemplate("HH:mm")
+        return formatter.string(from: self.date)
+    }
+    
     public func getShortDescription() -> String
     {
         var locationText = ""

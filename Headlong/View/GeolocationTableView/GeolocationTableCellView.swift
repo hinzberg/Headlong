@@ -17,7 +17,7 @@ struct GeolocationTableCellView: View {
         HStack {
             VStack {
                 HStack {
-                    Text(locationVM.dateFormatted)
+                    Text(locationVM.time)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                     Spacer()
