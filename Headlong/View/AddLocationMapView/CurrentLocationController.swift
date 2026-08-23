@@ -1,4 +1,4 @@
-// LocationController.swift
+// CurrentLocationController.swift
 //  Headlong
 //  Created by Holger Hinzberg on 29.10.21.
 
@@ -6,7 +6,7 @@ import UIKit
 import CoreLocation
 import MapKit
 
-public class AddLocationMapViewController : NSObject, CLLocationManagerDelegate, ObservableObject {
+public class CurrentLocationController : NSObject, CLLocationManagerDelegate, ObservableObject {
     
     @Published var region : MKCoordinateRegion
     var locationManager: CLLocationManager?

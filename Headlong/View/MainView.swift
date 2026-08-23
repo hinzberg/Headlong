@@ -7,7 +7,7 @@ import SwiftUI
 struct MainView: View {
     
     enum RootTab: Hashable {
-        case locations, settings, add
+        case locations, settings, view3d
     }
     
     @State private var selection: RootTab = .locations
@@ -26,13 +26,13 @@ struct MainView: View {
                 SettingsView()
             }
             
-            Tab("Add New", systemImage: "plus", value: .add) { // Make this role: .prominent in iOS 27
+            Tab("Add New", systemImage: "move.3d", value: .view3d) { // Make this role: .prominent in iOS 27
                 EmptyView()
             }
         }
         .accentColor(.cocoaBlue)
         .onChange(of: selection) {
-            if (selection == .add) {
+            if (selection == .view3d) {
                 isPresenting = true
             } else {
                 self.oldSelection = selection

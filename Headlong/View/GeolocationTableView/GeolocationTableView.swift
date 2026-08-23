@@ -8,6 +8,7 @@ struct GeolocationTableView: View {
     
     @ObservedObject private var geolocationRepositoy =  GeolocationRepository.shared
     @State private var searchText = ""
+    @State private var addLocationSheetIsPresented = false
     
     private var dateGroups: [DateGroup] {
         let groups = self.geolocationRepositoy.fetchAllGroupedByDate()
@@ -91,9 +92,14 @@ struct GeolocationTableView: View {
                 .navigationBarTitle("Headlong", displayMode: .inline)
                 .navigationTitle("Back")
                 .toolbar {
-                    NavigationLink (destination: AddLocationMapView()) {
+                    Button {
+                        addLocationSheetIsPresented = true
+                    } label: {
                         Image(systemName: "plus.circle")
                     }
+                }
+                .sheet(isPresented: $addLocationSheetIsPresented) {
+                    AddLocationMapView()
                 }
             }
         }.ignoresSafeArea()
