@@ -15,6 +15,7 @@ struct AddLocationMapView: View {
     @State private var geolocationRepositoy =  GeolocationRepository.shared
 
     @State private var cameraPosition: MapCameraPosition = .region(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)))
+    @State private var hasCenteredOnCurrentLocation = false
     
     var body: some View {
         NavigationStack {
@@ -23,7 +24,7 @@ struct AddLocationMapView: View {
                     // Map
                     Map(position: $cameraPosition)
                     {
-                        // You can add MapAnnotation, MapMarker, etc. here if needed (leave empty for now)
+                        UserAnnotation()
                     }
                     // Button stack over map
                     VStack {
@@ -36,15 +37,21 @@ struct AddLocationMapView: View {
                         }
                         .buttonStyle(.glass)
                         .tint(.blue)
-                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
                     }
                 }
                 // The address information
-                GeolocationIAddressView(geolocation: $mapController.currentLocation)
+                AddressView(geolocation: $mapController.currentLocation)
                     .padding(EdgeInsets(top: 2, leading: 10, bottom: 0, trailing: 10) )
             }
             .onAppear() {
                 // MapAppearanceController.shared.updateAppearance()
+            }
+            .onChange(of: mapController.currentLocation.latitude) { _, _ in
+                self.centerCameraOnCurrentLocation()
+            }
+            .onChange(of: mapController.currentLocation.longitude) { _, _ in
+                self.centerCameraOnCurrentLocation()
             }
             .edgesIgnoringSafeArea(.top)
             .toolbar {
@@ -60,6 +67,18 @@ struct AddLocationMapView: View {
                 }
             }
         }
+    }
+    
+    // MARK: Move the map camera to the users current location
+    private func centerCameraOnCurrentLocation()
+    {
+        guard !self.hasCenteredOnCurrentLocation else { return }
+        self.hasCenteredOnCurrentLocation = true
+        let location = self.mapController.currentLocation
+        let region = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude),
+            span: MKCoordinateSpan(latitudeDelta: 0.008, longitudeDelta: 0.008))
+        self.cameraPosition = .region(region)
     }
     
     // MARK: Submit Button to save a new location

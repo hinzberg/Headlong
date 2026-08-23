@@ -4,7 +4,7 @@
 
 import SwiftUI
 
-struct GeolocationIAddressView: View {
+struct AddressView: View {
     
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     @Binding var geolocation : Geolocation
@@ -50,9 +50,9 @@ struct GeolocationIAddressView: View {
     }
 }
 
-struct GeocodeLocationView_Previews: PreviewProvider {
+struct AddressView_Previews: PreviewProvider {
     static var previews: some View {
-        GeolocationIAddressView(geolocation: .constant(Geolocation.GetSample()))
+        AddressView(geolocation: .constant(Geolocation.GetSample()))
             //.preferredColorScheme(.dark)
     }
 }

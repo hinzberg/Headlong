@@ -53,6 +53,7 @@ public class CurrentLocationController : NSObject, CLLocationManagerDelegate, Ob
     {
         if  let location = locations.last
         {
+            self.region = MKCoordinateRegion(center: location.coordinate, span: self.region.span)
             self.reverseGeoCoding(location: location)
         }
     }

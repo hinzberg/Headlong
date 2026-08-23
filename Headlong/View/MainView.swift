@@ -12,37 +12,22 @@ struct MainView: View {
     
     @State private var selection: RootTab = .locations
     @State private var oldSelection: RootTab = .locations
-    @State var isPresenting = false
     
     var body: some View {
-        
         TabView(selection: $selection)
         {
             Tab("Locations", systemImage: "list.dash", value: .locations) {
                 GeolocationTableView()
             }
-            
+            Tab("AR View", systemImage: "move.3d", value: .view3d) { // Make this role: .prominent in iOS 27
+                testSheet
+            }
             Tab("Settings", systemImage: "gear", value: .settings) {
                 SettingsView()
             }
-            
-            Tab("Add New", systemImage: "move.3d", value: .view3d) { // Make this role: .prominent in iOS 27
-                EmptyView()
-            }
         }
         .accentColor(.cocoaBlue)
-        .onChange(of: selection) {
-            if (selection == .view3d) {
-                isPresenting = true
-            } else {
-                self.oldSelection = selection
-            }
-        }
-        .sheet(isPresented: $isPresenting, onDismiss: {
-            self.selection = self.oldSelection
-        }) {
-            testSheet
-        }
+        .onChange(of: selection) {     }
     }
 }
 

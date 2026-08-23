@@ -27,6 +27,7 @@
 		3F94B7E028CF1DEB002475D1 /* Hinzberg-Foundation in Frameworks */ = {isa = PBXBuildFile; productRef = 3F94B7DF28CF1DEB002475D1 /* Hinzberg-Foundation */; };
 		3F94B7E328CF1DFF002475D1 /* Hinzberg-SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3F94B7E228CF1DFF002475D1 /* Hinzberg-SwiftUI */; };
 		3F94B7E828CF3064002475D1 /* MapAppearanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F94B7E728CF3064002475D1 /* MapAppearanceController.swift */; };
+		3F9908D5303B5B35004EFC78 /* AddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9908D4303B5B35004EFC78 /* AddressView.swift */; };
 		3FAD93C4300CCF5900814AA3 /* GeolocationTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAD93C3300CCF5900814AA3 /* GeolocationTableCellView.swift */; };
 		3FAD93C6300CD02400814AA3 /* GeolocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAD93C5300CD02300814AA3 /* GeolocationViewModel.swift */; };
 		3FAD93C7300CD02400814AA3 /* GeolocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAD93C5300CD02300814AA3 /* GeolocationViewModel.swift */; };
@@ -83,6 +84,7 @@
 		3F70AAE027581AE8008EC53D /* MapAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotationView.swift; sourceTree = "<group>"; };
 		3F82F653272C647A00D0E7E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3F94B7E728CF3064002475D1 /* MapAppearanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAppearanceController.swift; sourceTree = "<group>"; };
+		3F9908D4303B5B35004EFC78 /* AddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressView.swift; sourceTree = "<group>"; };
 		3FAD93C3300CCF5900814AA3 /* GeolocationTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeolocationTableCellView.swift; sourceTree = "<group>"; };
 		3FAD93C5300CD02300814AA3 /* GeolocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeolocationViewModel.swift; sourceTree = "<group>"; };
 		3FCCC93429294AA500CF9678 /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
@@ -97,7 +99,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		3F14AF022E89888B0039A00F /* GeoLocationInfo */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = GeoLocationInfo; sourceTree = "<group>"; };
 		3FBA34322D29288300F2D96D /* SwiftData */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SwiftData; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -196,7 +197,6 @@
 		3F229648271877BB008BF92C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3F14AF022E89888B0039A00F /* GeoLocationInfo */,
 				3F70AAD62757CC07008EC53D /* MainView.swift */,
 				3F70AAD82757CC29008EC53D /* SettingsView.swift */,
 				3FF63734285E209000FC1C11 /* GeolocationTableView */,
@@ -212,6 +212,7 @@
 			children = (
 				3F70AAE027581AE8008EC53D /* MapAnnotationView.swift */,
 				3FEC9630283F877800D8CE96 /* ActivityViewController.swift */,
+				3F9908D4303B5B35004EFC78 /* AddressView.swift */,
 			);
 			path = "Partial View";
 			sourceTree = "<group>";
@@ -298,7 +299,6 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				3F14AF022E89888B0039A00F /* GeoLocationInfo */,
 				3FBA34322D29288300F2D96D /* SwiftData */,
 			);
 			name = Headlong;
@@ -444,6 +444,7 @@
 				3F70AAD72757CC07008EC53D /* MainView.swift in Sources */,
 				3FEAE9D5272D8C4F0042BAF8 /* ButtonStyles.swift in Sources */,
 				3F70AAD92757CC29008EC53D /* SettingsView.swift in Sources */,
+				3F9908D5303B5B35004EFC78 /* AddressView.swift in Sources */,
 				3FAD93C6300CD02400814AA3 /* GeolocationViewModel.swift in Sources */,
 				3F70AADB2758126D008EC53D /* StoredLocationMapView.swift in Sources */,
 				3F70AADD2758189E008EC53D /* MapAnnotatedItem.swift in Sources */,
