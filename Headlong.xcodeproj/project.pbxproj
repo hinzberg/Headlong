@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3F14AEFF2E895BDB0039A00F /* headlong.icon in Resources */ = {isa = PBXBuildFile; fileRef = 3F14AEFE2E895BDB0039A00F /* headlong.icon */; };
+		3F1A2B3C4D5E6F708192AACC /* ImportSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1A2B3C4D5E6F708192AABB /* ImportSheetView.swift */; };
 		3F14AF012E8985E80039A00F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F14AF002E8985E30039A00F /* Helper.swift */; };
 		3F225B8028CF70F4000FB7FB /* GeocodeTableViewSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F225B7F28CF70F4000FB7FB /* GeocodeTableViewSectionHeader.swift */; };
 		3F22961D27187705008BF92C /* HeadlongApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F22961C27187705008BF92C /* HeadlongApp.swift */; };
@@ -77,6 +78,7 @@
 		3F229646271877A8008BF92C /* AddLocationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationMapView.swift; sourceTree = "<group>"; };
 		3F22964927187C6A008BF92C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3F398B8C292C08B100F117E5 /* ShadowButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowButtonStyles.swift; sourceTree = "<group>"; };
+		3F1A2B3C4D5E6F708192AABB /* ImportSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportSheetView.swift; sourceTree = "<group>"; };
 		3F70AAD62757CC07008EC53D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		3F70AAD82757CC29008EC53D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3F70AADA2758126D008EC53D /* StoredLocationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredLocationMapView.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			children = (
 				3F70AAD62757CC07008EC53D /* MainView.swift */,
 				3F70AAD82757CC29008EC53D /* SettingsView.swift */,
+				3F1A2B3C4D5E6F708192AABB /* ImportSheetView.swift */,
 				3FF63734285E209000FC1C11 /* GeolocationTableView */,
 				3F94B7E528CF26CE002475D1 /* AddLocationMapView */,
 				3F94B7E428CF26A8002475D1 /* StoredLocationMapView */,
@@ -450,6 +453,7 @@
 				3F70AADD2758189E008EC53D /* MapAnnotatedItem.swift in Sources */,
 				3FEAE9CD272D3B060042BAF8 /* CLLocation+Extension.swift in Sources */,
 				3FEC9631283F877800D8CE96 /* ActivityViewController.swift in Sources */,
+				3F1A2B3C4D5E6F708192AACC /* ImportSheetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

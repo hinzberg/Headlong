@@ -12,6 +12,8 @@ struct SettingsView: View {
     @AppStorage("sharePrefix") private var sharePrefix = "I am here:"
     @AppStorage("sharePostfix") private var sharePostfix = "Shared with Headlong App by Holger Hinzberg"
     @AppStorage("mapType") private var mapType = "Standard"
+
+    @State private var showImportSheet = false
     
     var body: some View {
         
@@ -36,16 +38,24 @@ struct SettingsView: View {
                     TextField("Share Postfix", text: $sharePostfix)
                 }
                 
-                Section(header: Text("Data")
+                Section(header: Text("Location Data")
                     .font(.headline)
                     .foregroundColor(.cocoaBlue)  )
                 {
-                    Button("Delete all Locations") {
+                    ExportLocationsShareLink()
+                    Button {
+                        showImportSheet = true
+                    } label: {
+                        Label("Import Locations", systemImage: "square.and.arrow.down")
+                    }
+                    Button {
                         do {
                             try GeolocationRepository.shared.deleteAll()
                         } catch {
                             print("Failed to delete all locations: \(error)")
                         }
+                    } label: {
+                        Label("Delete all Locations", systemImage: "trash")
                     }
                     .foregroundColor(.red)
                 }
@@ -70,6 +80,9 @@ struct SettingsView: View {
                         }
                     }
             }.navigationBarTitle("Settings", displayMode: .inline)
+            .sheet(isPresented: $showImportSheet) {
+                ImportSheetView()
+            }
         }
     }
     
@@ -86,5 +99,13 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
+    }
+}
+
+struct ExportLocationsShareLink: View {
+    var body: some View {
+        if let json = try? GeolocationRepository.shared.exportAsJson() {
+            ShareLink("Export Locations", item: json)
+        }
     }
 }

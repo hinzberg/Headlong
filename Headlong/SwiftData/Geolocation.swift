@@ -29,6 +29,7 @@ public class Geolocation {
     public var longitude: Double = 0
     public var note: String = ""
     public var rating:Int?
+    public var isFavorite: Bool = false
     
     // These properties do not need to be saved
     // These are for display only

@@ -10,4 +10,6 @@ protocol GeolocationRepositoryProtocol
     func update(location: Geolocation)  throws
     func delete(location: Geolocation)  throws
     func deleteAll()  throws
+    func exportAsJson() throws -> String
+    func importFromJson(json: String, replaceExisting: Bool) throws -> Int
 }

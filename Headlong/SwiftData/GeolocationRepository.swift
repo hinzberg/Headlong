@@ -103,6 +103,79 @@ final class GeolocationRepository : GeolocationRepositoryProtocol, Observable, O
         print("All \(locations.count) locations deleted from ModelContext")
     }
     
+    func exportAsJson() throws -> String {
+        let locations = self.fetchAll()
+        let exports = locations.map { location in
+            GeolocationExport(id: location.id,
+                              name: location.name,
+                              address1: location.address1,
+                              address2: location.address2,
+                              neighbourhood: location.neighbourhood,
+                              city: location.city,
+                              state: location.state,
+                              subAdministrativeArea: location.subAdministrativeArea,
+                              zipCode: location.zipCode,
+                              country: location.country,
+                              isoCountryCode: location.isoCountryCode,
+                              regionIdentifier: location.regionIdentifier,
+                              timezone: location.timezone,
+                              date: location.date,
+                              latitude: location.latitude,
+                              longitude: location.longitude,
+                              note: location.note,
+                              rating: location.rating,
+                              isFavorite: location.isFavorite)
+        }
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        encoder.dateEncodingStrategy = .iso8601
+        let data = try encoder.encode(exports)
+        print("\(exports.count) locations exported as JSON.")
+        return String(data: data, encoding: .utf8) ?? "[]"
+    }
+
+    func importFromJson(json: String, replaceExisting: Bool = false) throws -> Int {
+        guard let data = json.data(using: .utf8) else {
+            throw GeolocationImportError.invalidJson
+        }
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let exports = try decoder.decode([GeolocationExport].self, from: data)
+
+        if replaceExisting {
+            try self.deleteAll()
+        }
+
+        let existingIds = Set(self.fetchAll().map { $0.id })
+        var importedCount = 0
+        for export in exports where !existingIds.contains(export.id) {
+            let location = Geolocation()
+            location.id = export.id
+            location.name = export.name
+            location.address1 = export.address1
+            location.address2 = export.address2
+            location.neighbourhood = export.neighbourhood
+            location.city = export.city
+            location.state = export.state
+            location.subAdministrativeArea = export.subAdministrativeArea
+            location.zipCode = export.zipCode
+            location.country = export.country
+            location.isoCountryCode = export.isoCountryCode
+            location.regionIdentifier = export.regionIdentifier
+            location.timezone = export.timezone
+            location.date = export.date
+            location.latitude = export.latitude
+            location.longitude = export.longitude
+            location.note = export.note
+            location.rating = export.rating
+            location.isFavorite = export.isFavorite
+            try self.add(location: location)
+            importedCount += 1
+        }
+        print("\(importedCount) of \(exports.count) locations imported from JSON.")
+        return importedCount
+    }
+
     func addSampleLandmarks()  throws {
         let landmarks = [
             ("Eiffel Tower", 48.8584, 2.2945),
@@ -173,4 +246,30 @@ final class GeolocationRepository : GeolocationRepositoryProtocol, Observable, O
         formatter.setLocalizedDateFormatFromTemplate("EEE, dd MMM yyyy")
         return formatter.string(from: date)
     }
+}
+
+struct GeolocationExport: Codable {
+    var id: UUID
+    var name: String?
+    var address1: String?
+    var address2: String?
+    var neighbourhood: String?
+    var city: String?
+    var state: String?
+    var subAdministrativeArea: String?
+    var zipCode: String?
+    var country: String?
+    var isoCountryCode: String?
+    var regionIdentifier: String?
+    var timezone: String?
+    var date: Date?
+    var latitude: Double
+    var longitude: Double
+    var note: String
+    var rating: Int?
+    var isFavorite: Bool
+}
+
+enum GeolocationImportError: Error {
+    case invalidJson
 }
