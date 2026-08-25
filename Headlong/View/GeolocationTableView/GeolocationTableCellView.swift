@@ -7,10 +7,57 @@ import Hinzberg_SwiftUI
 
 struct GeolocationTableCellView: View {
     
-    private var locationVM : GeolocationViewModel
+    enum PanelCornerStyle {
+        case allCorners
+        case topCorners
+        case bottomCorners
+        case noCorners
+    }
     
-    public init(geolocation: Geolocation) {
+    @Environment(\.colorScheme) private var colorScheme
+    
+    private var locationVM : GeolocationViewModel
+    private var cornerStyle : PanelCornerStyle
+    
+    private let strokeWidth : CGFloat = 1
+    private let cornerRadius : CGFloat = 10
+    
+    private var backgroundColor : Color {
+        return colorScheme == .dark ? Color(hex: "#404040") : Color(hex: "#F0F0F3")
+    }
+    
+    private var strokeColor : Color {
+        return colorScheme == .dark ? Color.black : Color.white
+    }
+    
+    private var panelShape : UnevenRoundedRectangle {
+        switch self.cornerStyle {
+        case .allCorners:
+            return UnevenRoundedRectangle(topLeadingRadius: self.cornerRadius,
+                                          bottomLeadingRadius: self.cornerRadius,
+                                          bottomTrailingRadius: self.cornerRadius,
+                                          topTrailingRadius: self.cornerRadius)
+        case .topCorners:
+            return UnevenRoundedRectangle(topLeadingRadius: self.cornerRadius,
+                                          bottomLeadingRadius: 0,
+                                          bottomTrailingRadius: 0,
+                                          topTrailingRadius: self.cornerRadius)
+        case .bottomCorners:
+            return UnevenRoundedRectangle(topLeadingRadius: 0,
+                                          bottomLeadingRadius: self.cornerRadius,
+                                          bottomTrailingRadius: self.cornerRadius,
+                                          topTrailingRadius: 0)
+        case .noCorners:
+            return UnevenRoundedRectangle(topLeadingRadius: 0,
+                                          bottomLeadingRadius: 0,
+                                          bottomTrailingRadius: 0,
+                                          topTrailingRadius: 0)
+        }
+    }
+    
+    public init(geolocation: Geolocation, cornerStyle: PanelCornerStyle = .allCorners) {
         self.locationVM = GeolocationViewModel(geolocation: geolocation)
+        self.cornerStyle = cornerStyle
     }
     
     var body: some View {
@@ -39,12 +86,24 @@ struct GeolocationTableCellView: View {
                 .foregroundColor(.secondary)
         }
         .padding()
-        .ShadowPanel()
+        .background(
+            self.panelShape
+                .foregroundColor(self.backgroundColor)
+                .overlay(
+                    self.panelShape
+                        .stroke(self.strokeColor, lineWidth: self.strokeWidth)
+                )
+        )
     }
 }
 
 struct GeolocationTableCellView_Previews: PreviewProvider {
     static var previews: some View {
-        GeolocationTableCellView(geolocation: Geolocation.GetSample())
+        VStack(spacing: 0) {
+            GeolocationTableCellView(geolocation: Geolocation.GetSample(), cornerStyle: .topCorners)
+            GeolocationTableCellView(geolocation: Geolocation.GetSample(), cornerStyle: .noCorners)
+            GeolocationTableCellView(geolocation: Geolocation.GetSample(), cornerStyle: .bottomCorners)
+        }
+        .padding()
     }
 }

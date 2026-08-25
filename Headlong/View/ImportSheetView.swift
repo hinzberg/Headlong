@@ -19,7 +19,7 @@ struct ImportSheetView: View {
             Form {
                 Section(header: Text("JSON")
                     .font(.headline)
-                    .foregroundColor(.cocoaBlue))
+                    .foregroundColor(.veryPeri))
                 {
                     TextEditor(text: $jsonString)
                         .frame(minHeight: 250)
@@ -30,7 +30,7 @@ struct ImportSheetView: View {
 
                 Section(header: Text("Options")
                     .font(.headline)
-                    .foregroundColor(.cocoaBlue))
+                    .foregroundColor(.veryPeri))
                 {
                     Toggle("Replace existing locations", isOn: $replaceLocations)
                 }

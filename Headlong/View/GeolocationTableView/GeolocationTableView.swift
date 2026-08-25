@@ -72,7 +72,7 @@ struct GeolocationTableView: View {
                                             } label: {
                                                 Label("Navigate", systemImage: "map.fill")
                                             }
-                                            .tint(Color.cocoaBlue)
+                                            .tint(Color.veryPeri)
                                         }
                                     }
                                 }
@@ -112,3 +112,5 @@ struct ContentView_Previews: PreviewProvider {
         GeolocationTableView()
     }
 }
+
+

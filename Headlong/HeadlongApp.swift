@@ -22,7 +22,8 @@ class AppDelegate : NSObject, UIApplicationDelegate {
     
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool
     {
-        let bgColor = UIColor(red: 176.0 / 255, green: 174.0 / 255,  blue: 243.0 / 255, alpha: 1)
+        // let bgColor = UIColor(red: 176.0 / 255, green: 174.0 / 255,  blue: 243.0 / 255, alpha: 1)
+        // UITabBar.appearance().backgroundColor = bgColor
         
         UINavigationBar.appearance().standardAppearance = CustomNavigationBarAppearance.DefaultAppearance
         UINavigationBar.appearance().compactAppearance = CustomNavigationBarAppearance.DefaultAppearance
@@ -30,7 +31,7 @@ class AppDelegate : NSObject, UIApplicationDelegate {
                
         UITableViewHeaderFooterView.appearance().tintColor = UIColor.clear
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .white
-        // UITabBar.appearance().backgroundColor = bgColor
+        
         return true
     }
 }

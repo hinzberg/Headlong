@@ -11,7 +11,7 @@ struct SubmitButtonStyle: ButtonStyle {
             .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5) )
             .font(.title3)
             .foregroundColor(.white)
-            .background(Color.cocoaBlue)
+            .background(Color.veryPeri)
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .scaleEffect(configuration.isPressed ? 1.1 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)

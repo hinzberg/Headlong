@@ -97,7 +97,7 @@ struct StoredLocationMapView: View {
             
         } label: {
             Image(systemName: "line.horizontal.3")
-                .tint(Color.cocoaBlue)
+                .tint(Color.veryPeri)
         }
     }
 }

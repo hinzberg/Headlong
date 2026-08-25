@@ -22,7 +22,7 @@ struct SettingsView: View {
             Form {
                 Section(header: Text("Settings")
                     .font(.headline)
-                    .foregroundColor(.cocoaBlue)  )
+                    .foregroundColor(.veryPeri)  )
                 {
                     Picker("Map Type", selection: $mapType ) {
                         ForEach(mapTypes, id: \.self) {
@@ -32,7 +32,7 @@ struct SettingsView: View {
                 
                 Section(header: Text("Sharing")
                     .font(.headline)
-                    .foregroundColor(.cocoaBlue)  )
+                    .foregroundColor(.veryPeri)  )
                 {
                     TextField("Share Prefix", text: $sharePrefix)
                     TextField("Share Postfix", text: $sharePostfix)
@@ -40,7 +40,7 @@ struct SettingsView: View {
                 
                 Section(header: Text("Location Data")
                     .font(.headline)
-                    .foregroundColor(.cocoaBlue)  )
+                    .foregroundColor(.veryPeri)  )
                 {
                     ExportLocationsShareLink()
                     Button {
@@ -62,7 +62,7 @@ struct SettingsView: View {
                 
                 Section(header: Text("About Headlong")
                     .font(.headline)
-                    .foregroundColor(.cocoaBlue)  ) {
+                    .foregroundColor(.veryPeri)  ) {
                         HStack {
                             Text("Version")
                             Spacer()

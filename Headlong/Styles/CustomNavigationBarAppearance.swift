@@ -15,9 +15,9 @@ class CustomNavigationBarAppearance
             // Backgroundcolor
             instance!.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 1.0, alpha: 1)
             // Font color for navigationBarTitleDisplayMode large
-            instance!.largeTitleTextAttributes = [.foregroundColor: UIColor(Color.cocoaBlue)]
+            instance!.largeTitleTextAttributes = [.foregroundColor: UIColor(Color.veryPeri)]
             // Font color for navigationBarTitleDisplayMode inline
-            instance!.titleTextAttributes = [.foregroundColor: UIColor(Color.cocoaBlue)]
+            instance!.titleTextAttributes = [.foregroundColor: UIColor(Color.veryPeri)]
         }
         return instance!
     }

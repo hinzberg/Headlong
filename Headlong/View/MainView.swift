@@ -26,7 +26,7 @@ struct MainView: View {
                 SettingsView()
             }
         }
-        .accentColor(.cocoaBlue)
+        .accentColor(.veryPeri)
         .onChange(of: selection) {     }
     }
 }
