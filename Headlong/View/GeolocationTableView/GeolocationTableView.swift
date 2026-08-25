@@ -30,7 +30,7 @@ struct GeolocationTableView: View {
     {
         VStack {
             NavigationView {
-                    
+                
                 Group {
                     if self.dateGroups.isEmpty {
                         ContentUnavailableView {
@@ -41,18 +41,20 @@ struct GeolocationTableView: View {
                     } else {
                         List {
                             ForEach (self.dateGroups, id:\.id) { dateGroup in
+                                
                                 Section(header: GeocodeTableViewSectionHeader(headlineText: dateGroup.dateDescription) )
                                 {
                                     ForEach (dateGroup.geoLocations, id:\.id) { location in
                                         
                                         ZStack { // With this Zstack you can hide the disclosure indicator
-                                           NavigationLink(destination: StoredLocationMapView(geolocation: location) )
+                                            NavigationLink(destination: StoredLocationMapView(geolocation: location) )
                                             {
                                                 EmptyView()
                                             }
                                             GeolocationTableCellView(geolocation:location)
                                         }
-                                        .listRowSeparator(.hidden)
+                                        .listRowInsets(.init(top: 0, leading: 20, bottom: 0, trailing: 20))
+                                        
                                         // The Swipe actions
                                         .swipeActions(edge: .trailing , allowsFullSwipe: true) {
                                             Button {
@@ -80,6 +82,10 @@ struct GeolocationTableView: View {
                         }
                         // List configuration
                         .listStyle(.plain)
+                        .listRowBackground(Color.clear)
+                        .listRowSpacing(3)
+                        //.listRowSeparator(.hidden)
+                        .environment(\.defaultMinListRowHeight, 1)
                     }
                 }
                 .searchable(

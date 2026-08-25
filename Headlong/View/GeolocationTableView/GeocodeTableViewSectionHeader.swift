@@ -11,12 +11,12 @@ import SwiftUI
 struct GeocodeTableViewSectionHeader: View
 {
     var headlineText : String
-    let backColor = Color(UIColor.systemBackground)
+    let backColor = Color(UIColor.clear)
     
     var body: some View {
             HStack {
                 Text(headlineText)
-                    .font(.title3.bold())
+                    .font(.title3)
                     .foregroundColor(Color.veryPeri)
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 Spacer()

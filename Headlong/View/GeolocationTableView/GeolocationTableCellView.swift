@@ -27,7 +27,7 @@ struct GeolocationTableCellView: View {
     }
     
     private var strokeColor : Color {
-        return colorScheme == .dark ? Color.black : Color.white
+        return colorScheme == .dark ? Color.veryPeri : Color.veryPeri
     }
     
     private var panelShape : UnevenRoundedRectangle {
@@ -55,7 +55,8 @@ struct GeolocationTableCellView: View {
         }
     }
     
-    public init(geolocation: Geolocation, cornerStyle: PanelCornerStyle = .allCorners) {
+    public init(geolocation: Geolocation, cornerStyle: PanelCornerStyle = .allCorners)
+    {
         self.locationVM = GeolocationViewModel(geolocation: geolocation)
         self.cornerStyle = cornerStyle
     }
@@ -85,8 +86,8 @@ struct GeolocationTableCellView: View {
             Image(systemName: "chevron.right")
                 .foregroundColor(.secondary)
         }
-        .padding()
-        .background(
+       .padding()
+       .background(
             self.panelShape
                 .foregroundColor(self.backgroundColor)
                 .overlay(
