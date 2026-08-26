@@ -17,6 +17,7 @@ struct GeolocationTableCellView: View {
     @Environment(\.colorScheme) private var colorScheme
     
     private var locationVM : GeolocationViewModel
+    private var geolocation : Geolocation
     private var cornerStyle : PanelCornerStyle
     
     private let strokeWidth : CGFloat = 1
@@ -58,6 +59,7 @@ struct GeolocationTableCellView: View {
     public init(geolocation: Geolocation, cornerStyle: PanelCornerStyle = .allCorners)
     {
         self.locationVM = GeolocationViewModel(geolocation: geolocation)
+        self.geolocation = geolocation
         self.cornerStyle = cornerStyle
     }
     
@@ -69,6 +71,11 @@ struct GeolocationTableCellView: View {
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                     Spacer()
+                    if self.geolocation.isFavorite {
+                        Image(systemName: "heart.fill")
+                            .font(.subheadline)
+                            .foregroundColor(.red)
+                    }
                 }
                 HStack {
                     Text(locationVM.name)

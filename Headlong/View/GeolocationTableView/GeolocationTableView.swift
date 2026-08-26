@@ -78,11 +78,18 @@ struct GeolocationTableView: View {
                                         }
                                         .swipeActions(edge: .leading , allowsFullSwipe: true) {
                                             Button {
-                                                print("Navigate")
+                                                withAnimation {
+                                                    location.isFavorite.toggle()
+                                                    do {
+                                                        try self.geolocationRepositoy.update(location: location)
+                                                    } catch {
+                                                        print("Failed to update location: \(error)")
+                                                    }
+                                                }
                                             } label: {
-                                                Label("Navigate", systemImage: "map.fill")
+                                                Label("Favorite", systemImage: "heart.fill")
                                             }
-                                            .tint(Color.veryPeri)
+                                            .tint(Color.red)
                                         }
                                     }
                                 }

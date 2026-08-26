@@ -82,7 +82,9 @@ final class GeolocationRepository : GeolocationRepositoryProtocol, Observable, O
     }
     
     func update(location: Geolocation)  throws {
-        
+        try self.modelContext.save()
+        self.objectWillChange.send()
+        print("Location updated in ModelContext")
     }
     
     func delete(location: Geolocation)  throws {
@@ -178,18 +180,18 @@ final class GeolocationRepository : GeolocationRepositoryProtocol, Observable, O
 
     func addSampleLandmarks()  throws {
         let landmarks = [
-            ("Eiffel Tower", 48.8584, 2.2945),
-            ("Statue of Liberty", 40.6892, -74.0445),
-            ("Sydney Opera House", -33.8568, 151.2153),
-            ("Colosseum", 41.8902, 12.4922),
-            ("Golden Gate Bridge", 37.8199, -122.4783),
-            ("Taj Mahal", 27.1751, 78.0421),
-            ("Christ the Redeemer", -22.9519, -43.2105),
-            ("Pyramids of Giza", 29.9792, 31.1342),
-            ("Great Wall of China", 40.4319, 116.5704),
-            ("Machu Picchu", -13.1631, -72.5450),
-            ("Stonehenge", 51.1789, -1.8262),
-            ("Petra", 30.3285, 35.4444)
+            ("Eiffel Tower", 48.8584, 2.2945, true),
+            ("Statue of Liberty", 40.6892, -74.0445, false),
+            ("Sydney Opera House", -33.8568, 151.2153, true),
+            ("Colosseum", 41.8902, 12.4922, false),
+            ("Golden Gate Bridge", 37.8199, -122.4783, true),
+            ("Taj Mahal", 27.1751, 78.0421, false),
+            ("Christ the Redeemer", -22.9519, -43.2105, false),
+            ("Pyramids of Giza", 29.9792, 31.1342, true),
+            ("Great Wall of China", 40.4319, 116.5704, false),
+            ("Machu Picchu", -13.1631, -72.5450, true),
+            ("Stonehenge", 51.1789, -1.8262, false),
+            ("Petra", 30.3285, 35.4444, false)
         ]
         
         let sharedDate = GeolocationRepository.randomDate()
@@ -200,6 +202,7 @@ final class GeolocationRepository : GeolocationRepositoryProtocol, Observable, O
             location.name = landmark.0
             location.latitude = landmark.1
             location.longitude = landmark.2
+            location.isFavorite = landmark.3
             location.date = index >= 6 && index <= 8 ? sharedDate : (index >= 10 ? sharedDate2 : GeolocationRepository.randomDate())
             try self.add(location: location)
         }
