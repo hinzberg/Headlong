@@ -50,6 +50,15 @@ struct SettingsView: View {
                     }
                     Button {
                         do {
+                            try GeolocationRepository.shared.addSampleLandmarks()
+                        } catch {
+                            print("Failed to add sample locations: \(error)")
+                        }
+                    } label: {
+                        Label("Add sample Locations", systemImage: "star")
+                    }
+                    Button {
+                        do {
                             try GeolocationRepository.shared.deleteAll()
                         } catch {
                             print("Failed to delete all locations: \(error)")

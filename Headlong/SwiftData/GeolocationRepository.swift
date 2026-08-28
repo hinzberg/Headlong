@@ -20,10 +20,6 @@ final class GeolocationRepository : GeolocationRepositoryProtocol, Observable, O
         private init() {
             self.modelContainer =  GeolocationRepository.createModelContainer()
             self.modelContext = modelContainer.mainContext
-            let locationCount = (try? self.modelContext.fetchCount(FetchDescriptor<Geolocation>())) ?? 0
-            if locationCount == 0 {
-                try? self.addSampleLandmarks()
-            }
         }
     
     @MainActor
@@ -73,6 +69,11 @@ final class GeolocationRepository : GeolocationRepositoryProtocol, Observable, O
     }
         
     func add(location: Geolocation)  throws {
+        let allLocations = self.fetchAll()
+        guard !allLocations.contains(where: { $0.id == location.id }) else {
+            print("Location with id \(location.id) already exists. Skipping.")
+            return
+        }
         self.modelContext.insert(location)
         try self.modelContext.save()
         self.objectWillChange.send()
@@ -179,19 +180,19 @@ final class GeolocationRepository : GeolocationRepositoryProtocol, Observable, O
     }
 
     func addSampleLandmarks()  throws {
-        let landmarks = [
-            ("Eiffel Tower", 48.8584, 2.2945, true),
-            ("Statue of Liberty", 40.6892, -74.0445, false),
-            ("Sydney Opera House", -33.8568, 151.2153, true),
-            ("Colosseum", 41.8902, 12.4922, false),
-            ("Golden Gate Bridge", 37.8199, -122.4783, true),
-            ("Taj Mahal", 27.1751, 78.0421, false),
-            ("Christ the Redeemer", -22.9519, -43.2105, false),
-            ("Pyramids of Giza", 29.9792, 31.1342, true),
-            ("Great Wall of China", 40.4319, 116.5704, false),
-            ("Machu Picchu", -13.1631, -72.5450, true),
-            ("Stonehenge", 51.1789, -1.8262, false),
-            ("Petra", 30.3285, 35.4444, false)
+        let landmarks: [(UUID, String, Double, Double, Bool)] = [
+            (UUID(uuidString: "A1B2C3D4-1111-2222-3333-000000000001")!, "Eiffel Tower", 48.8584, 2.2945, true),
+            (UUID(uuidString: "A1B2C3D4-1111-2222-3333-000000000002")!, "Statue of Liberty", 40.6892, -74.0445, false),
+            (UUID(uuidString: "A1B2C3D4-1111-2222-3333-000000000003")!, "Sydney Opera House", -33.8568, 151.2153, true),
+            (UUID(uuidString: "A1B2C3D4-1111-2222-3333-000000000004")!, "Colosseum", 41.8902, 12.4922, false),
+            (UUID(uuidString: "A1B2C3D4-1111-2222-3333-000000000005")!, "Golden Gate Bridge", 37.8199, -122.4783, true),
+            (UUID(uuidString: "A1B2C3D4-1111-2222-3333-000000000006")!, "Taj Mahal", 27.1751, 78.0421, false),
+            (UUID(uuidString: "A1B2C3D4-1111-2222-3333-000000000007")!, "Christ the Redeemer", -22.9519, -43.2105, false),
+            (UUID(uuidString: "A1B2C3D4-1111-2222-3333-000000000008")!, "Pyramids of Giza", 29.9792, 31.1342, true),
+            (UUID(uuidString: "A1B2C3D4-1111-2222-3333-000000000009")!, "Great Wall of China", 40.4319, 116.5704, false),
+            (UUID(uuidString: "A1B2C3D4-1111-2222-3333-000000000010")!, "Machu Picchu", -13.1631, -72.5450, true),
+            (UUID(uuidString: "A1B2C3D4-1111-2222-3333-000000000011")!, "Stonehenge", 51.1789, -1.8262, false),
+            (UUID(uuidString: "A1B2C3D4-1111-2222-3333-000000000012")!, "Petra", 30.3285, 35.4444, false)
         ]
         
         let sharedDate = GeolocationRepository.randomDate()
@@ -199,10 +200,11 @@ final class GeolocationRepository : GeolocationRepositoryProtocol, Observable, O
         
         for (index, landmark) in landmarks.enumerated() {
             let location = Geolocation()
-            location.name = landmark.0
-            location.latitude = landmark.1
-            location.longitude = landmark.2
-            location.isFavorite = landmark.3
+            location.id = landmark.0
+            location.name = landmark.1
+            location.latitude = landmark.2
+            location.longitude = landmark.3
+            location.isFavorite = landmark.4
             location.date = index >= 6 && index <= 8 ? sharedDate : (index >= 10 ? sharedDate2 : GeolocationRepository.randomDate())
             try self.add(location: location)
         }
