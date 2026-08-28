@@ -48,6 +48,7 @@ struct SettingsView: View {
                     } label: {
                         Label("Import Locations", systemImage: "square.and.arrow.down")
                     }
+                    .buttonStyle(.glass)
                     Button {
                         do {
                             try GeolocationRepository.shared.addSampleLandmarks()
@@ -57,6 +58,7 @@ struct SettingsView: View {
                     } label: {
                         Label("Add sample Locations", systemImage: "star")
                     }
+                    .buttonStyle(.glass)
                     Button {
                         do {
                             try GeolocationRepository.shared.deleteAll()
@@ -66,7 +68,8 @@ struct SettingsView: View {
                     } label: {
                         Label("Delete all Locations", systemImage: "trash")
                     }
-                    .foregroundColor(.red)
+                    .buttonStyle(.glass)
+                    .tint(.red)
                 }
                 
                 Section(header: Text("About Headlong")

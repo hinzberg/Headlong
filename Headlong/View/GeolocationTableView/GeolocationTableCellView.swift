@@ -24,7 +24,7 @@ struct GeolocationTableCellView: View {
     private let cornerRadius : CGFloat = 10
     
     private var backgroundColor : Color {
-        return colorScheme == .dark ? Color(hex: "#404040") : Color(hex: "#F0F0F3")
+        return colorScheme == .dark ? Color(hex: "#404040")  : Color(hex: "#F0F0F3")
     }
     
     private var strokeColor : Color {

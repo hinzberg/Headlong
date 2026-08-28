@@ -98,9 +98,7 @@ struct GeolocationTableView: View {
                         // List configuration
                         .listStyle(.plain)
                         .listRowBackground(Color.clear)
-                        .listRowSpacing(3)
-                        //.listRowSeparator(.hidden)
-                        .environment(\.defaultMinListRowHeight, 1)
+                        .listRowSpacing(0)
                     }
                 }
                 .searchable(

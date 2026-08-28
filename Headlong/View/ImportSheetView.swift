@@ -40,10 +40,12 @@ struct ImportSheetView: View {
                         importLocations()
                     }
                     .disabled(jsonString.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    .buttonStyle(.glass)
 
                     Button("Cancel") {
                         dismiss()
                     }
+                    .buttonStyle(.glass)
                 }
             }
             .navigationBarTitle("Import Locations", displayMode: .inline)

@@ -31,14 +31,13 @@ struct StoredLocationMapView: View {
             // ButtonStack
             HStack {
                 Button("Navigate To", action: self.controller.NavigateTo)
-                    .buttonStyle(ShadowButtonStyle())
-                    .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0) )
+                    .buttonStyle(.glass)
                 
                 Button("AR View", action: self.controller.NavigateTo)
-                    .buttonStyle(ShadowButtonStyle())
-                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5) )
+                    .buttonStyle(.glass)
             }
-            .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+            .padding(.horizontal)
+            .padding(.bottom, 10)
         }
         .onAppear() {
             // MapAppearanceController.shared.updateAppearance()
