@@ -21,12 +21,12 @@ struct StoredLocationMapView: View {
     var body: some View {
         VStack {
             // MapView
+            
+            ZStack {
             Map(coordinateRegion: $controller.region, showsUserLocation: true, annotationItems: controller.pointsOfInterest ){ item in
-                MapAnnotation(coordinate: item.coordinate) { MapAnnotationView() }
+                    MapAnnotation(coordinate: item.coordinate) { MapAnnotationView() }
+                }
             }
-            // LocationView
-           // GeocodeLocationView(locationVM: $controller.geocodeLocationVM)
-           //     .padding(EdgeInsets(top: 2, leading: 10, bottom: 0, trailing: 10) )
             
             // ButtonStack
             HStack {
@@ -58,6 +58,8 @@ struct StoredLocationMapView: View {
         .navigationBarTitle(Text("Current Location"), displayMode: .inline)
         .sheet(isPresented: $shareSheetIsPresented, content: {ActivityViewController(location: controller.geocodeLocationVM)})
         */
+        
+        .toolbar(.hidden, for: .tabBar)
         
         .navigationBarTitle(Text("Selected Location"), displayMode: .inline)
                 .navigationBarBackButtonHidden(true)

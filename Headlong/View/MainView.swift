@@ -19,6 +19,7 @@ struct MainView: View {
             Tab("Locations", systemImage: "list.dash", value: .locations) {
                 GeolocationTableView()
             }
+            
             Tab("AR View", systemImage: "move.3d", value: .view3d) { // Make this role: .prominent in iOS 27
                 testSheet
             }

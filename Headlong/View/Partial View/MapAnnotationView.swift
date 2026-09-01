@@ -10,7 +10,7 @@ struct MapAnnotationView: View {
     var body: some View {
         Image(systemName: "flag.circle")
             .resizable()
-            .foregroundColor(.veryPeri)
+            .foregroundColor(.red)
             .frame(width: 30, height: 30)
     }
 }
