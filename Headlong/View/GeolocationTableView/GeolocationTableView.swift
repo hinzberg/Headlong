@@ -93,6 +93,7 @@ struct GeolocationTableView: View {
                                         }
                                     }
                                 }
+                                .listSectionSpacing(5)
                             }
                         }
                         // List configuration

@@ -74,7 +74,7 @@ struct GeolocationTableCellView: View {
                     if self.geolocation.isFavorite {
                         Image(systemName: "heart.fill")
                             .font(.subheadline)
-                            .foregroundColor(.red)
+                            .foregroundColor(.paradisePink)
                     }
                 }
                 HStack {
@@ -91,10 +91,10 @@ struct GeolocationTableCellView: View {
                 }
             }
             Image(systemName: "chevron.right")
-                .foregroundColor(.secondary)
+                .foregroundColor(.veryPeri)
         }
-       .padding()
-       .background(
+        .padding()
+        .background(
             self.panelShape
                 .foregroundColor(self.backgroundColor)
                 .overlay(

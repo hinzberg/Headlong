@@ -248,7 +248,8 @@ final class GeolocationRepository : GeolocationRepositoryProtocol, Observable, O
     
     private static func formatDate(_ date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.setLocalizedDateFormatFromTemplate("EEE, dd MMM yyyy")
+        formatter.locale = Locale.current
+        formatter.setLocalizedDateFormatFromTemplate("EEE, d MMM yyyy")
         return formatter.string(from: date)
     }
 }
