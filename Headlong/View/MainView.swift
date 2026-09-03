@@ -28,6 +28,7 @@ struct MainView: View {
             }
         }
         .accentColor(.veryPeri)
+        .background(.red)
         .onChange(of: selection) {     }
     }
 }

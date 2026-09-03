@@ -3,6 +3,7 @@
 //  Created by Holger Hinzberg on 19.07.26.
 
 import SwiftUI
+import Hinzberg_SwiftUI
 
 struct GeolocationTableView: View {
     
@@ -30,7 +31,6 @@ struct GeolocationTableView: View {
     {
         VStack {
             NavigationView {
-                
                 Group {
                     if self.dateGroups.isEmpty {
                         ContentUnavailableView {
@@ -61,8 +61,8 @@ struct GeolocationTableView: View {
                                             }
                                             GeolocationTableCellView(geolocation:location, cornerStyle: cornerStyle)
                                         }
-                                        .listRowInsets(.init(top: 0, leading: 20, bottom: 0, trailing: 20))
-                                        
+                                         .listRowInsets(.init(top: 0, leading: 20, bottom: 0, trailing: 20))
+                                                                                
                                         // The Swipe actions
                                         .swipeActions(edge: .trailing , allowsFullSwipe: true) {
                                             Button {
@@ -97,7 +97,6 @@ struct GeolocationTableView: View {
                         }
                         // List configuration
                         .listStyle(.plain)
-                        .listRowBackground(Color.clear)
                         .listRowSpacing(0)
                     }
                 }
@@ -121,6 +120,7 @@ struct GeolocationTableView: View {
                     AddLocationMapView()
                 }
             }
+            
         }.ignoresSafeArea()
     }
 }

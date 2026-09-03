@@ -5,20 +5,17 @@ import SwiftUI
 
 class CustomNavigationBarAppearance
 {
-    static private var instance : UINavigationBarAppearance?
-    
-    static var DefaultAppearance : UINavigationBarAppearance
-    {
-        if instance == nil
-        {
-            instance = UINavigationBarAppearance()
-            // Backgroundcolor
-            instance!.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 1.0, alpha: 1)
-            // Font color for navigationBarTitleDisplayMode large
-            instance!.largeTitleTextAttributes = [.foregroundColor: UIColor(Color.veryPeri)]
-            // Font color for navigationBarTitleDisplayMode inline
-            instance!.titleTextAttributes = [.foregroundColor: UIColor(Color.veryPeri)]
-        }
-        return instance!
+    static func makeAppearance(for colorScheme: ColorScheme) -> UINavigationBarAppearance {
+        
+        let backgroundColor: Color = colorScheme == .dark ? Color.anthracite : Color.whiteSand
+        let titleTextColor: Color = colorScheme == .dark ? Color.whiteSand : Color.veryPeri
+        
+        let appearance = UINavigationBarAppearance()
+        
+        appearance.backgroundColor = UIColor(backgroundColor)
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor(titleTextColor)]
+        appearance.titleTextAttributes = [.foregroundColor: UIColor(titleTextColor)]
+        
+        return appearance
     }
 }

@@ -11,6 +11,7 @@ struct StoredLocationMapView: View {
     @ObservedObject  var controller : StoredLocationMapViewController
     @Environment(\.presentationMode) var presentationMode
     @State var shareSheetIsPresented = false
+    @State private var hasCenteredOnStoredLocation = false
     
     init(geolocation : Geolocation)
     {
@@ -23,8 +24,13 @@ struct StoredLocationMapView: View {
             // MapView
             
             ZStack {
-            Map(coordinateRegion: $controller.region, showsUserLocation: true, annotationItems: controller.pointsOfInterest ){ item in
-                    MapAnnotation(coordinate: item.coordinate) { MapAnnotationView() }
+                Map(position: $controller.cameraPosition) {
+                    UserAnnotation()
+                    ForEach(controller.pointsOfInterest) { item in
+                        Annotation(item.name, coordinate: item.coordinate) {
+                            MapAnnotationView()
+                        }
+                    }
                 }
             }
             
@@ -41,6 +47,7 @@ struct StoredLocationMapView: View {
         }
         .onAppear() {
             // MapAppearanceController.shared.updateAppearance()
+            self.centerCameraOnStoredLocation()
         }
         .edgesIgnoringSafeArea(.top)
         /*
@@ -74,6 +81,18 @@ struct StoredLocationMapView: View {
                     Image(systemName: "square.and.arrow.up")
                 })
               //  .sheet(isPresented: $shareSheetIsPresented, content: {ActivityViewController(location: controller.geocodeLocationVM)})
+    }
+    
+    // MARK: Move the map camera to the stored location
+    private func centerCameraOnStoredLocation()
+    {
+        guard !self.hasCenteredOnStoredLocation else { return }
+        self.hasCenteredOnStoredLocation = true
+        guard let location = self.controller.geolocationVM.location?.coordinate else { return }
+        let region = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude),
+            span: MKCoordinateSpan(latitudeDelta: 0.008, longitudeDelta: 0.008))
+        self.controller.cameraPosition = .region(region)
     }
     
     private func viewMenu() -> some View  {

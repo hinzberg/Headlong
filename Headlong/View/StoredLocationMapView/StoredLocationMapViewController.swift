@@ -5,11 +5,12 @@
 
 import Foundation
 import MapKit
+import SwiftUI
 
 public class StoredLocationMapViewController: ObservableObject {
     
     @Published var geolocationVM : GeolocationViewModel
-    @Published var region : MKCoordinateRegion
+    @Published var cameraPosition : MapCameraPosition
     @Published var pointsOfInterest : [MapAnnotatedItem]
         
     init(geolocationVM : GeolocationViewModel)
@@ -19,8 +20,9 @@ public class StoredLocationMapViewController: ObservableObject {
         let longitude : CLLocationDegrees = geolocationVM.location!.coordinate.longitude
         let latitude : CLLocationDegrees = geolocationVM.location!.coordinate.latitude
         let span = MKCoordinateSpan(latitudeDelta: 0.008, longitudeDelta: 0.008)
+        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: span)
         
-        region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: span)
+        self.cameraPosition = .region(region)
         pointsOfInterest = [ MapAnnotatedItem(name: "", coordinate: geolocationVM.location!.coordinate )]
     }
     
