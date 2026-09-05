@@ -12,8 +12,6 @@ public class CurrentLocationController : NSObject, CLLocationManagerDelegate, Ob
     var locationManager: CLLocationManager?
   
     // All the information aboutt the current location
-    private var currentCLLocation : CLLocation?
-    private var currentCLPlacemark : CLPlacemark?
     @Published var currentLocation : Geolocation
         
     public override init()
@@ -60,23 +58,26 @@ public class CurrentLocationController : NSObject, CLLocationManagerDelegate, Ob
     
     private func reverseGeoCoding(location : CLLocation)
     {
-        self.currentCLLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        guard let request = MKReverseGeocodingRequest(location: location) else
+        {
+            print("MKReverseGeocodingRequest could not be created")
+            return
+        }
         
-        self.currentCLLocation!.geocode { placemark, error in
-            if let error = error as? CLError
+        Task
+        {
+            guard let mapItems = try? await request.mapItems,
+                  let mapItem = mapItems.first
+            else
             {
-                print("CLError:", error)
+                print("Reverse geocoding failed")
                 return
             }
-            else if let placemark = placemark?.first
+            
+            await MainActor.run
             {
-                self.currentCLPlacemark = placemark
-
-                DispatchQueue.main.async
-                {
-                    let geoLocation = Geolocation(clPlacemark: self.currentCLPlacemark!, clLocation: self.currentCLLocation!)
-                    self.currentLocation = geoLocation
-                }
+                let geoLocation = Geolocation(mapItem: mapItem)
+                self.currentLocation = geoLocation
             }
         }
     }

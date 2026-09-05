@@ -6,7 +6,7 @@
 
 import Foundation
 import SwiftData
-import CoreLocation
+import MapKit
 
 @Model
 public class Geolocation {
@@ -47,23 +47,14 @@ public class Geolocation {
         self.id = UUID()
     }
     
-    init(clPlacemark : CLPlacemark, clLocation : CLLocation)
+    init(mapItem : MKMapItem)
     {
         self.id = UUID()
-        self.longitude = clLocation.coordinate.longitude
-        self.latitude = clLocation.coordinate.latitude
-        self.name = clPlacemark.name ?? ""
-        self.address1 = clPlacemark.thoroughfare ?? ""
-        self.address2 = clPlacemark.subThoroughfare ?? ""
-        self.neighbourhood = clPlacemark.subLocality ?? ""
-        self.city = clPlacemark.locality ?? ""
-        self.state = clPlacemark.administrativeArea ?? ""
-        self.subAdministrativeArea = clPlacemark.subAdministrativeArea ?? ""
-        self.zipCode = clPlacemark.postalCode ?? ""
-        self.country = clPlacemark.country ?? ""
-        self.isoCountryCode  = clPlacemark.isoCountryCode ?? ""
-        self.regionIdentifier = clPlacemark.region?.identifier ?? ""
-        self.timezone = clPlacemark.timeZone?.identifier ?? ""
+        self.longitude = mapItem.location.coordinate.longitude
+        self.latitude = mapItem.location.coordinate.latitude
+        self.name = mapItem.name ?? ""
+        self.address1 = mapItem.address?.fullAddress ?? ""
+        self.address2 = mapItem.address?.shortAddress ?? ""
         self.date = Date()
         self.SetAddressLines()
     }

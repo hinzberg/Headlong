@@ -62,24 +62,6 @@ public class GeolocationViewModel
         self.date = geolocation.date ?? Date()
     }
     
-    init(placemark: CLPlacemark, location: CLLocation)
-    {
-        self.location = location
-        self.name = placemark.name ?? ""
-        self.address1 = placemark.thoroughfare ?? ""
-        self.address2 = placemark.subThoroughfare ?? ""
-        self.neighborhood = placemark.subLocality ?? ""
-        self.city = placemark.locality ?? ""
-        self.state = placemark.administrativeArea ?? ""
-        self.subAdministrativeArea = placemark.subAdministrativeArea ?? ""
-        self.zipCode = placemark.postalCode ?? ""
-        self.country = placemark.country ?? ""
-        self.isoCountryCode  = placemark.isoCountryCode ?? ""
-        self.regionIdentifier = placemark.region?.identifier ?? ""
-        self.timezone = placemark.timeZone?.identifier ?? ""
-        self.date = Date()
-    }
-    
     public static func GetSample() -> GeolocationViewModel
     {
         let geoLocation = GeolocationViewModel()
